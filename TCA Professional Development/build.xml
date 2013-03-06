@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="ProfessionalDevelopment" default="default" basedir=".">
-    <description>Builds, tests, and runs the project ProfessionalDevelopment.</description>
+<project name="TCA_Professional_Development" default="default" basedir=".">
+    <description>Builds, tests, and runs the project TCA Professional Development.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
