@@ -30,7 +30,7 @@ public class ControllerServlet extends HttpServlet {
         String userPath = request.getServletPath();
 
         // if category page is requested
-        if (userPath.equals("/category")) {
+        if (userPath.equals("/courselist")) {
             // TODO: Implement category request
 
         // if cart page is requested
