@@ -12,7 +12,7 @@
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </div>
 
-            <div id="sidebar">
+            <div id="sideBar">
                 <%@include file="/WEB-INF/jspf/sidebar.jspf" %>
             </div>
 
