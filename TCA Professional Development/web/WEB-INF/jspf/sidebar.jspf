@@ -2,9 +2,18 @@
 
 <div id="sideMenu">
     
-    <ul>
-        <li><a href="index.jsp">Home</a></li>
-        <li><a href="courselist.jsp">Courses</a></li>
-        <li><a href="addhours.jsp">Add Hours</a></li>
-    </ul>
+    <br>
+    
+    <a href="index.jsp" class="links">Home</a>
+    
+    <br>
+    
+    <a href="courselist.jsp" class="links">Courses</a>
+    
+    <br>
+    
+    <a href="addhours.jsp" class="links">Add Hours</a>
+    
+    <br>
+    
 </div>

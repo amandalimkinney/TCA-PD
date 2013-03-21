@@ -16,17 +16,21 @@
                 <%@include file="/WEB-INF/jspf/sidebar.jspf" %>
             </div>
 
-            <div margin-top="100">
-                <table id="courseTable">
-                    <tr id="courseTableRow">
-                        <th>Courses</th>
-                    </tr>
-                    <tr id="courseTableRow">
+            <div id="pageBody">
+                <table class="courseTable">
+                    <thead>
+                        <tr id="courseTableRow">
+                          <th>Courses</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="courseTableRow">
                         <td>Course 1</td>
                         <td>Course 2</td>
                         <td>Course 3</td>
-                    </tr>
-                    
+                        </tr>
+                    </tbody>
+            </div>
                     
                     
                     

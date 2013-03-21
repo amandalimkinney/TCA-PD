@@ -1,21 +1,27 @@
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     width:  1000px;
-    text-align: center;
+    /*text-align: center;*/
     margin: auto auto auto auto;
    
 }
 
-#main { background: #FFFFFF } 
+#main {
+    background: #FFFFFF;
+    width: auto;
+    height: auto;
+}
 
 #header {
-    height: 200px;
+    height: 175px;
     background: #024274; 
+    text-align: center;
     
    
 }
 
-#logo {
+#headerLogo {
     height: 150px;
     width: 250px;
     float: left;
@@ -23,20 +29,20 @@ body {
     margin-top: -30px;
 }
 
-#logoText {
+#headerTitle {
     float: none;
-    width: content-box;
-    margin: 20px 0 0 125px;
-    /* font styles apply to text within alt tags */
+    width: 900px;
+    /*text-align: center;*/
+    margin: 20px 0 0 90px;
     font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
     font-size: 40px;
     color: #FFFFFF;
 }
 
-#subLogoText {
+#headerSubTitle {
     float: none;
-    width: content-box;
-    margin: 15px 0 0 125px;
+    width: 900px;
+    margin: 15px 0 0 95px;
     font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
     font-size: 24px;
     color: #FFFFFF;
@@ -44,14 +50,13 @@ body {
 
 #widgetBar {
     height: 40px;
-    float: none;
     background: #BDBDBD;
     border-bottom: 2px solid;
 }
 
 .headerWidget {
     width: 50px;
-    margin: 20px 10px;
+    margin: 20px 15px;
     font-size: small;
     float: right;
     line-height: 4px;
@@ -59,14 +64,13 @@ body {
 }
 
 #footer {
-    height: 87px;
+    height: 90px;
     margin-top: 0px;
     clear: left;
     background: #BDBDBD;
 }
 
 #mission {
-    backgroud: #BDBDBD;
     margin-top: 0px;
     
     
@@ -98,8 +102,8 @@ body {
     float: top;
 }
 
-#sidebar {
-    height: 400px;
+#sideBar {
+    height: 425px;
     width: 250px;
     float: left;
     background: #024274;
@@ -110,20 +114,24 @@ body {
 }
 
 #sideMenu {
-    margin-top: 15px;
-    margin-left: 25px;
-    background: #FFFFFF;
-    height: 370px;
-    width: 200px;
+    margin: 10px 10px 10px 10px;
+    background: #FAFAFA;
+    height: 400px;
+    width: 225px;
     border: 2px solid;
-   
+}
+
+.links {
+    text-align: left;
+    margin-left: 20px;
+    line-height: 20px;
 }
 
 #pageBody {
-    height: 400px;
+    height: 425px;
     width: auto;
     float: none;
-    background: #FFFFFF;
+    background: #FAFAFA;
     border-top: 2px solid;
     margin-left: 250px;
     border-bottom: 2px solid;
@@ -131,12 +139,9 @@ body {
 }
 
 .courseTable {
-    /*height: 176px;*/
-    width: 560px;
-    margin: 50px 50px 50px;
-    /*float: inherit;*/
-    background: transparent; 
-    column-span: 30px;
+    margin: 20px 20px 20px;
+    background: #ccc; 
+    border: 2px solid;
 }
 
 .courseLabelText {
