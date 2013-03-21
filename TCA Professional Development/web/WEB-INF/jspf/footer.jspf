@@ -1,2 +1,15 @@
 <%-- any content can be specified here e.g.: --%>
 <%@ page pageEncoding="UTF-8" %>
+<div id="mission">
+    <h1 id="missionTitle"> TCA Mission Statement</h1>
+    <p id="missionStatement"> Trinity Christian Academy is an independent 
+        coeducational school, which offers Christian families and their children
+        a demanding, college preparatory curriculum within a Christian community
+        committed to integrating Biblical faith and learning. The school desires
+        to educate and develop the whole person for the glory of God by helping 
+        equip each student to grow in the grace and knowledge of Jesus Christ, 
+        and to become a faithful disciple of Him. </p>
+</div>
+<div id="footerLogo">
+    <img src="http://www.trinitychristian.org/ftpimages/223/podium/style637/images/tcaLogoHP.png" alt="TCA logo" hieght="125" width="125"> 
+</div>

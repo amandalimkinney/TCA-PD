@@ -16,13 +16,26 @@
                 <%@include file="/WEB-INF/jspf/sidebar.jspf" %>
             </div>
 
-            <div id="pageBody">
+            <div margin-top="100">
                 <table id="courseTable">
+                    <tr id="courseTableRow">
+                        <th>Courses</th>
+                    </tr>
+                    <tr id="courseTableRow">
+                        <td>Course 1</td>
+                        <td>Course 2</td>
+                        <td>Course 3</td>
+                    </tr>
+                    
+                    
+                    
+                    
+                    
                     <!-- course name, type, room, time, number of hours, number of 
                     available seats, number of people on the waitlist, instructor, assistants, 
                     materials needed, and miscellaneous for extra information. The type of course 
                     can be technology, textbook training, team building, leadership, or HR. -->
-                    <tr class="${((iter.index % 2) == 0) ? 'lightBlue' : 'white'}">
+                    <!--<tr class="${((iter.index % 2) == 0) ? 'lightBlue' : 'white'}">
                         <td>
                             <img src="${initParam.productImagePath}${product.name}.png"
                                  alt="<fmt:message key="${product.name}"/>">
@@ -54,7 +67,7 @@
                                    value="<fmt:message key='update'/>">
                         </form>
                     </td>
-                    </tr>
+                    </tr>-->
                 </table>
 
             </div>

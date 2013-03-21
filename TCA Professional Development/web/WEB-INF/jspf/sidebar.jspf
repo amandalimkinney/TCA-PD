@@ -1,6 +1,10 @@
 <%@ page pageEncoding="UTF-8" %>
-<ul>
-    <li><a href="index.jsp">Home</a></li>
-    <li><a href="courselist.jsp">Courses</a></li>
-    <li><a href="addhours.jsp">Add Hours</a></li>
-</ul>
+
+<div id="sideMenu">
+    
+    <ul>
+        <li><a href="index.jsp">Home</a></li>
+        <li><a href="courselist.jsp">Courses</a></li>
+        <li><a href="addhours.jsp">Add Hours</a></li>
+    </ul>
+</div>

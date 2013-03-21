@@ -1,79 +1,150 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
-    width: 850px;
+    width:  1000px;
     text-align: center;
-    margin: 20px auto;
+    margin: auto auto auto auto;
+   
 }
 
-#main { background: #eee }
+#main { background: #FFFFFF } 
 
 #header {
-    height: 250px;
-    background: #aaa;
+    height: 200px;
+    background: #024274; 
+    
+   
 }
 
 #logo {
-    height: 155px;
-    width: 155px;
+    height: 150px;
+    width: 250px;
     float: left;
     margin-left: 30px;
-    margin-top: -20px;
+    margin-top: -30px;
 }
 
 #logoText {
-    float: left;
-    margin: 20px 0 0 70px;
+    float: none;
+    width: content-box;
+    margin: 20px 0 0 125px;
     /* font styles apply to text within alt tags */
-    font-family: 'American Typewriter', Courier, monospace;
-    font-size: 50px;
-    color: #333;
+    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+    font-size: 40px;
+    color: #FFFFFF;
+}
+
+#subLogoText {
+    float: none;
+    width: content-box;
+    margin: 15px 0 0 125px;
+    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+    font-size: 24px;
+    color: #FFFFFF;
 }
 
 #widgetBar {
-    height: 50px;
-    width: 850px;
-    float: right;
-    background: #ccc;
+    height: 40px;
+    float: none;
+    background: #BDBDBD;
+    border-bottom: 2px solid;
 }
 
 .headerWidget {
-    width: 194px;
-    margin: 20px 2px;
+    width: 50px;
+    margin: 20px 10px;
     font-size: small;
     float: right;
-    line-height: 25px;
-    background: #aaa;
+    line-height: 4px;
+    background: #BDBDBD;
 }
 
 #footer {
-    height: 60px;
+    height: 87px;
+    margin-top: 0px;
     clear: left;
-    background: #aaa;
+    background: #BDBDBD;
+}
+
+#mission {
+    backgroud: #BDBDBD;
+    margin-top: 0px;
+    
+    
+}
+
+#missionTitle {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+}
+
+#missionStatement {
+    margin-top: 5px;
+    text-align: left;
+    font-size: 11px;
+    font-family:"Times New Roman",Georgia,Serif;
+    margin-right: 250px;
+    margin-left: 250px;
+}
+
+#footerLogo {
+    margin-left: 850px;
+    height: 35px;
+    width: 35px;
+    margin-top: -85px;
+    float: top;
 }
 
 #sidebar {
     height: 400px;
     width: 250px;
     float: left;
-    background: #ccc;
+    background: #024274;
+    border-bottom: 2px solid;
+    border-top: 2px solid;
+    border-right: 2px solid;
+    
+}
+
+#sideMenu {
+    margin-top: 15px;
+    margin-left: 25px;
+    background: #FFFFFF;
+    height: 370px;
+    width: 200px;
+    border: 2px solid;
+   
 }
 
 #pageBody {
     height: 400px;
-    width: 600px;
-    float: left;
-    background: #eee;
+    width: auto;
+    float: none;
+    background: #FFFFFF;
+    border-top: 2px solid;
+    margin-left: 250px;
+    border-bottom: 2px solid;
+    
 }
 
 .courseTable {
     /*height: 176px;*/
     width: 560px;
-    margin: 20px 20px 20px;
-    float: inherit;
-    background: #ccc;
+    margin: 50px 50px 50px;
+    /*float: inherit;*/
+    background: transparent; 
+    column-span: 30px;
 }
 
 .courseLabelText {
     line-height: 150%;
     font-size: x-large;
+}
+
+#courseTableRow {
+    border: 10px solid;
+    margin: 25px;
 }

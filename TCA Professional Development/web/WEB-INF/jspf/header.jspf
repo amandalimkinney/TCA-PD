@@ -2,19 +2,21 @@
 <div id="header">
     <div id="widgetBar">
 
-        <div class="headerWidget">
-            [ language toggle ]
-        </div>
+        <a href="#" class="headerWidget">
+            Logout
+        </a>
 
-        <div class="headerWidget">
-            [ shopping cart widget ]
-        </div>
+        <a href="index.jsp" class="headerWidget">
+            Home
+        </a>
 
     </div>
 
     <a href="#">
-        <img src="#" id="logo" alt="Affable Bean logo">
+        <img src="http://www.trinitychristian.org/ftpimages/223/podium/style637/images/tcaLogoHP.png" id="logo" alt="TCA">
     </a>
-
-    <img src="#" id="logoText" alt="the affable bean">
+    <div>
+        <h1 id="logoText"> Trinity Christian Academy</h1>
+        <h2 id="subLogoText">Professional Development Tracking System</h2>
+    </div>
 </div>
