@@ -13,6 +13,8 @@ body {
     height: auto;
 }
 
+
+
 #header {
     height: 175px;
     background: #024274; 
@@ -68,6 +70,7 @@ body {
     margin-top: 0px;
     clear: left;
     background: #BDBDBD;
+    border-top: 2px solid black;
 }
 
 #mission {
@@ -103,7 +106,7 @@ body {
 }
 
 #sideBar {
-    height: 425px;
+    height: auto;
     width: 250px;
     float: left;
     background: #024274;
@@ -121,6 +124,29 @@ body {
     border: 2px solid;
 }
 
+#linkLabel {
+    font-size: 16px;
+    
+    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+    margin: 0px 0px 0px 0px;
+    background: #CEECF5;
+    text-align: center;
+    line-height: 40px;
+    height: 40px;
+    border-bottom: 1px solid black;
+    
+}
+
+#standardLinks {
+    margin-top: 10px;
+    height: 142px;
+    border-bottom: 1px solid black;
+}
+
+#roleLinks {
+    margin-top: 10px;
+    height: 142px;
+}
 .links {
     text-align: left;
     margin-left: 20px;
@@ -128,18 +154,18 @@ body {
 }
 
 #pageBody {
-    height: 425px;
+    height: auto;
     width: auto;
     float: none;
     background: #FAFAFA;
     border-top: 2px solid;
     margin-left: 250px;
-    border-bottom: 2px solid;
+    
     
 }
 
 tr, td {
-    border: 1px solid black;
+    /*border: 1px solid black;*/
 }
 
 th {
@@ -154,26 +180,63 @@ th {
     height: 385px;
     background: #FAFAFA; 
     vertical-align: top;
+    border-spacing: 10px;
 }
 
 .tableHead {
     width: 610px;
     height: 50px;
-    background: #FFFFFF;
+    background: #FAFAFA;
     text-align: left;
     line-height: 25px;
     border: 1px solid black;
     
 }
 
-.courseLabelText {
-    line-height: 20px;
+h4 {
+    margin-top: 5px;
+    margin-left: 5px;
     font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.courseLabelText {
+    line-height: 30px;
+    font-size: 16px;
+    
 }
 
 #courseTableRow {
-    border: 10px solid black;
+    border: 1px solid black;
+    width: 215px;
+    float: none;
    /* margin: 25px;*/
     background: #F2F2F2;
     vertical-align: top;
+    margin-bottom: 5px;
+}
+
+#courseDescription {
+    font-size: 12px;
+    margin-top: 10px;
+    height: 100px;
+}
+
+#courseDetails {
+    width: 200px;
+    height: 130px;
+    margin-left: 10px;
+    font-size: 12px;
+    margin-top: 10px;
+    border-spacing: 7px;
+    border: 1px solid #black;
+    margin-bottom: 10px;
+}
+
+#signUp {
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-top: 25px;
+    margin-left: 165px;
+    font-size: 12px;
 }

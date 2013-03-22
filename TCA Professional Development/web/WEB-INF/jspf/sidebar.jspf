@@ -2,18 +2,37 @@
 
 <div id="sideMenu">
     
-    <br>
+    <div  id="linkLabel"> 
+        Quick Links
+    </div>
     
-    <a href="index.jsp" class="links">Home</a>
+    <div id="standardLinks">
     
-    <br>
+        <a href="index.jsp" class="links">Home</a>
     
-    <a href="courselist.jsp" class="links">Courses</a>
+        <br>
     
-    <br>
+        <a href="courselist.jsp" class="links">Courses</a>
     
-    <a href="addhours.jsp" class="links">Add Hours</a>
+        <br>
+       
+        <a href="addhours.jsp" class="links">Add Hours</a>
     
-    <br>
+    </div>
+    
+    <div id="linkLabel">
+        Views
+    </div>
+    
+    <div id="roleLinks">
+        <a href="#" class="links"> Instructor</a>
+        
+        <br>
+        
+        <a href="#" class="links"> System Administrator</a>
+    </div>
+    
+    
+    
     
 </div>

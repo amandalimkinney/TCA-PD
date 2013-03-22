@@ -10,12 +10,165 @@
     
     <tbody>
         <tr id="courseTableRow">
-           <td class="courseLabelText">
-               Course Name1
-               <div> Test </div>
-           </td>
-           <td class="courseLabelText">Course Name2</td>
-           <td class="courseLabelText">Course Name3</td>
+            <td id="courseTableRow"> 
+                <div>
+                    <h4> ALL in learning User Group </h4>
+                    <p id="courseDescription"> Come take a look at how teachers are using the ALL in
+                     the classroom. Join us for some quick tips and important 
+                    how to's. Be ready to share what has worked well and what
+                    to avoid. </p>
+                </div>
+                
+                <div>
+                    <table id='courseDetails'>
+                        <tr>
+                            <td>Instructor:</td>
+                            <td>  </t> </td>
+                            <td>Jane Doe</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Assistants:</td>
+                            <td>  </t> </td>
+                            <td>John Smith</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Date:</td>
+                            <td>  </t> </td>
+                            <td>3/22/13</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Location:</td>
+                            <td>  </t> </td>
+                            <td>MS Room 15</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Time:</td>
+                            <td>  </t> </td>
+                            <td>10:00 a.m.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Notes:</td>
+                        </tr>
+                      
+                    </table>
+                </div>
+                
+                <div id="signUp">
+                    <a href="#" > Sign up </a>
+                </div>
+            </td>
+                    
+            <td id="courseTableRow">
+                <div>
+                    <h4>InDesign</h4>
+                    <p id="courseDescription"> Learn about CS6 inDesign. Explore
+                    inDesign's menus, palettes, tools, and navigation cues. Create,
+                     place, and manipulate text and graphic objects. Discover 
+                    how to use master pages.</p>
+                </div>
+                
+                 <div>
+                    <table id='courseDetails'>
+                        <tr>
+                            <td>Instructor:</td>
+                            <td>  </t> </td>
+                            <td>Mike Jones</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Assistants:</td>
+                            <td>  </t> </td>
+                            <td>Mary Brown</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Date:</td>
+                            <td>  </t> </td>
+                            <td>3/22/13</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Location:</td>
+                            <td>  </t> </td>
+                            <td>Art Computer Lab</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Time:</td>
+                            <td>  </t> </td>
+                            <td>1:00 p.m.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Notes:</td>
+                        </tr>
+                      
+                    </table>
+                </div>
+                
+                <div id="signUp">
+                    <a href="#" > Sign up </a>
+                </div>
+            </td>
+            
+            <td id="courseTableRow">
+                <div>
+                    <h4>ProPresenter</h4>
+                    <p id="courseDescription">ProPresenter is a lyric and media 
+                    presentation package built specifically to make high-quality
+                     live productions easy - such productions include worship 
+                    gatherings, chapel, concerts, or performances. Come learn 
+                    how to utilize this software.</p>
+                </div>
+                
+                 <div>
+                    <table id='courseDetails'>
+                        <tr>
+                            <td>Instructor:</td>
+                            <td>  </t> </td>
+                            <td>Joe Johnson</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Assistants:</td>
+                            <td>  </t> </td>
+                            <td>Bill Banks</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Date:</td>
+                            <td>  </t> </td>
+                            <td>3/22/13</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Location:</td>
+                            <td>  </t> </td>
+                            <td>PAC</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Time:</td>
+                            <td>  </t> </td>
+                            <td>11:00 a.m.</td>
+                        </tr>
+                        
+                        <tr>
+                            <td>Notes:</td>
+                        </tr>
+                      
+                    </table>
+                </div>
+                
+                <div id="signUp">
+                    <a href="#" > Sign up </a>
+                </div>
+            </td>
         </tr>
     </tbody>
     
