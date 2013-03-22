@@ -1,0 +1,22 @@
+<%@ page pageEncoding="UTF-8" %>
+
+<table class="courseTable">
+    
+    <thead class="tableHead">
+        <tr>
+            <th colspan="100%">Courses</th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr id="courseTableRow">
+           <td class="courseLabelText">
+               Course Name1
+               <div> Test </div>
+           </td>
+           <td class="courseLabelText">Course Name2</td>
+           <td class="courseLabelText">Course Name3</td>
+        </tr>
+    </tbody>
+    
+</table>

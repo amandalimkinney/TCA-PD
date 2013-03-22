@@ -17,19 +17,7 @@
             </div>
 
             <div id="pageBody">
-                <table class="courseTable">
-                    <thead>
-                        <tr id="courseTableRow">
-                          <th>Courses</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id="courseTableRow">
-                        <td>Course 1</td>
-                        <td>Course 2</td>
-                        <td>Course 3</td>
-                        </tr>
-                    </tbody>
+                <%@include file="/WEB-INF/jspf/courseTable.jspf" %>
             </div>
                     
                     
