@@ -18,7 +18,10 @@
 
             <div id="pageBody">
                 <div id="addCourseBox">
-                    hi
+                    <div id="linkLabel">Add New Course</div>
+                    <div id="submit">
+                        <a href="#">Save Course</a>
+                    </div>
                 </div>
 
             </div>

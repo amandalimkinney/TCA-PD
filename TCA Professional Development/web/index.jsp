@@ -18,7 +18,36 @@
             </div>
 
             <div id="pageBody">
-                text text text
+                <div id="upcomingCourses">
+                    <div id="linkLabel">Upcoming Courses</div>
+                    
+                    <ul>  
+                        <li>
+                            3/22 - ALL in learning User Group
+                        </li>
+                    
+                        <li>
+                            3/22 - InDesign
+                        </li>
+                    </ul>
+                </div>
+                
+                <div id="announcements">
+                    <div id="linkLabel">Announcements</div>
+                    <ul>
+                        <li>
+                            3/19 - Reminder this Friday (3/22) is Tech Friday.
+                        </li>
+                        <li>
+                            3/12 - Reminder to sign up for the upcoming Tech
+                            Friday.
+                        </li>
+                        <li>
+                            2/29 - New courses have been posted for next months 
+                            Tech Friday.
+                        </li>
+                    </ul>
+                </div>
             </div>
 
             <div id="footer">

@@ -160,8 +160,23 @@ body {
     background: #FAFAFA;
     border-top: 2px solid;
     margin-left: 250px;
-    
-    
+}
+
+#upcomingCourses {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    background: #E6E6E6;
+    margin: 20px;
+}
+
+#announcements {
+    width: 355px;
+    height: 300px;
+    border: 1px solid black;
+    background: #E6E6E6;
+    margin-top: -220px;
+    margin-left: 300px;
 }
 
 tr, td {
@@ -239,4 +254,19 @@ h4 {
     margin-top: 25px;
     margin-left: 165px;
     font-size: 12px;
+}
+
+#addCourseBox {
+    width: 500px;
+    height: 700px;
+    margin: 20px 20px 20px 100px;
+    border: 1px solid black;
+    background: #E6E6E6;
+}
+
+#submit {
+    width: 100px;
+    line-height: 20px;
+    margin: 625px 10px 20px 400px;
+    font-size: 14px;
 }
