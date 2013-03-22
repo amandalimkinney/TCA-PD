@@ -73,7 +73,8 @@ public class ControllerServlet extends HttpServlet {
 
         // if addToCart action is called
         if (userPath.equals("/addhours")) {
-            // TODO: Implement add product to cart action
+            // TODO: add hours button - check input, if false then say it is wrong; 
+            //else send to database and give confirmation page
 
         // if updateCart action is called
         } else if (userPath.equals("/updateCart")) {
