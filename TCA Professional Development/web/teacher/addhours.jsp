@@ -19,7 +19,7 @@
             <div id="pageBody">
                 <div id="addCourseBox">
                     <div id="linkLabel">Add New Course</div>
-                    <form action="/TCA_Professional_Development/addhours" method="post">
+                    <form action="<%=request.getRequestURI()%>/submit" method="post">
                         Date <INPUT TYPE=Date NAME=date><BR>
                         Number of Hours <INPUT TYPE=text NAME=numHours SIZE=5><BR>
                         Method <select NAME=method>

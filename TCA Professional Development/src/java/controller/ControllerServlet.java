@@ -72,9 +72,17 @@ public class ControllerServlet extends HttpServlet {
         String userPath = request.getServletPath();
 
         // if addToCart action is called
-        if (userPath.equals("/addhours")) {
-            // TODO: add hours button - check input, if false then say it is wrong; 
+        if (userPath.equals("/teacher/addhours.jsp/submit")) {
+            // TODO: addhours button - check input, if false then say it is wrong / give error message; 
             //else send to database and give confirmation page
+            
+            //check input
+            
+            //return error (bad input)
+            
+            //return confirmation (successfully added)
+            
+            //userPath = "teacher/addhoursconfirmation.jsp";
 
         // if updateCart action is called
         } else if (userPath.equals("/updateCart")) {
@@ -88,7 +96,8 @@ public class ControllerServlet extends HttpServlet {
         }
 
         // use RequestDispatcher to forward request internally
-        String url = "/WEB-INF/view" + userPath + ".jsp";
+        //String url = "/WEB-INF/view" + userPath + ".jsp";
+        String url = userPath;
 
         try {
             request.getRequestDispatcher(url).forward(request, response);

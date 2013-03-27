@@ -6,7 +6,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ControllerServlet</servlet-name>
-        <url-pattern>/addhours</url-pattern>
+        <url-pattern>/teacher/addhours.jsp/submit</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
