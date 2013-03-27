@@ -2,18 +2,18 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:include flush="true" page="/WEB-INF/jspf/head.jsp">
+        <jsp:include flush="true" page="../WEB-INF/jspf/head.jsp">
             <jsp:param name="title" value="Add hours"/>
         </jsp:include>
     </head>
     <body>
         <div id="main">
             <div id="header">
-                <%@include file="/WEB-INF/jspf/header.jspf" %>
+                <%@include file="../WEB-INF/jspf/header.jspf" %>
             </div>
 
             <div id="sideBar">
-                <%@include file="/WEB-INF/jspf/sidebar.jspf" %>
+                <%@include file="../WEB-INF/jspf/sidebar.jspf" %>
             </div>
 
             <div id="pageBody">
@@ -56,7 +56,7 @@
             </div>
 
             <div id="footer">
-                <%@include file="/WEB-INF/jspf/footer.jspf" %>
+                <%@include file="../WEB-INF/jspf/footer.jspf" %>
             </div>
         </div>
     </body>

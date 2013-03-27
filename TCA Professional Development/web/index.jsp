@@ -2,9 +2,10 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:include flush="true" page="/WEB-INF/jspf/head.jsp">
-            <jsp:param name="title" value="Main page"/>
-        </jsp:include>
+
+    <meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
+    <title>TCA Professional Development Home</title>
+    <link rel="stylesheet" type="text/css" href="css/TCAProfDev.css" />
     </head>
 
     <body>
@@ -18,36 +19,8 @@
             </div>
 
             <div id="pageBody">
-                <div id="upcomingCourses">
-                    <div id="linkLabel">Upcoming Courses</div>
-                    
-                    <ul>  
-                        <li>
-                            3/22 - ALL in learning User Group
-                        </li>
-                    
-                        <li>
-                            3/22 - InDesign
-                        </li>
-                    </ul>
-                </div>
-                
-                <div id="announcements">
-                    <div id="linkLabel">Announcements</div>
-                    <ul>
-                        <li>
-                            3/19 - Reminder this Friday (3/22) is Tech Friday.
-                        </li>
-                        <li>
-                            3/12 - Reminder to sign up for the upcoming Tech
-                            Friday.
-                        </li>
-                        <li>
-                            2/29 - New courses have been posted for next months 
-                            Tech Friday.
-                        </li>
-                    </ul>
-                </div>
+                <a href="home/index.jsp"> home </a> <br>
+                <a href="home/login.jsp"> log in </a>
             </div>
 
             <div id="footer">
