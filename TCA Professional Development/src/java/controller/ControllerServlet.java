@@ -1,20 +1,15 @@
 package controller;
 
+import Data_Objects.Account;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Panda
- */
-//@WebServlet(name = "ControllerServlet", 
-//        loadOnStartup = 1,
-//        urlPatterns = {"/courselist, /addhours"})
 public class ControllerServlet extends HttpServlet {
 
+    Account currentAccount = new Account();
     /**
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
@@ -73,16 +68,33 @@ public class ControllerServlet extends HttpServlet {
 
         // if addToCart action is called
         if (userPath.equals("/teacher/addhours.jsp/submit")) {
-            // TODO: addhours button - check input, if false then say it is wrong / give error message; 
+            // TODO: check input, if false then say it is wrong / give error message; 
             //else send to database and give confirmation page
             
             //check input
-            
+            String errMsg = currentAccount.checkDevHoursInput(request);
             //return error (bad input)
+            if(errMsg != null)
+            {
+                //return error message
+                //should display the same screen with same input
+                //but display the error message at top, and show the field
+                //userPath = "teacher/addhoursconfirmation.jsp";
+            }
             
             //return confirmation (successfully added)
+            else
+            {
+                currentAccount.addDevHours(new String[]{request.getParameter("date"),
+                request.getParameter("numHours"),
+                request.getParameter("method"),
+                request.getParameter("location"),
+                request.getParameter("type"),
+                request.getParameter("TEXT")});
             
-            //userPath = "teacher/addhoursconfirmation.jsp";
+                //userPath = "teacher/addhoursconfirmation.jsp";
+            }
+            
 
         // if updateCart action is called
         } else if (userPath.equals("/updateCart")) {
