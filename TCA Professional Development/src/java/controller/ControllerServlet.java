@@ -1,10 +1,13 @@
 package controller;
 
 import java.io.IOException;
+import java.lang.String;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import Access_Control.*;
+import Data_Objects.*;
 
 /**
  *
@@ -15,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 //        urlPatterns = {"/courselist, /addhours"})
 public class ControllerServlet extends HttpServlet {
 
+    Account currentAccount = new Account();
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
@@ -73,6 +78,16 @@ public class ControllerServlet extends HttpServlet {
 
         // if addToCart action is called
         if (userPath.equals("/teacher/addhours.jsp/submit")) {
+            
+            currentAccount.addDevHours(new String[]{request.getParameter("date"),
+                request.getParameter("numHours"),
+                request.getParameter("method"),
+                request.getParameter("location"),
+                request.getParameter("type"),
+                request.getParameter("TEXT")});
+            
+            
+            
             // TODO: addhours button - check input, if false then say it is wrong / give error message; 
             //else send to database and give confirmation page
             
