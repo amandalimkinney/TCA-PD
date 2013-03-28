@@ -11,7 +11,7 @@
     
         <br>
     
-        <a href="../teacher/courselist.jsp" class="links">Courses</a>
+        <a href="../teacher/viewcourselist" class="links">Courses</a>
     
         <br>
        

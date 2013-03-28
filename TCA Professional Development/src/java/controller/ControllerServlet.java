@@ -24,8 +24,18 @@ public class ControllerServlet extends HttpServlet {
         String userPath = request.getServletPath();
 
         // if category page is requested
-        if (userPath.equals("/courselist")) {
+        if (userPath.equals("/teacher/viewcourselist")) {
             // TODO: Implement category request
+            
+            //request.setAttribute("categoryProducts", categoryProducts);
+            
+            //instantiate list of courses
+
+            //set this to servlet/app level
+            //getServletContext().setAttribute("categories", obj here);
+            
+            
+            userPath = "/teacher/courselist.jsp";
 
         // if cart page is requested
         } else if (userPath.equals("/viewCart")) {
@@ -44,8 +54,9 @@ public class ControllerServlet extends HttpServlet {
         }
 
         // use RequestDispatcher to forward request internally
-        String url = "/WEB-INF/view" + userPath + ".jsp";
-
+        //String url = "/WEB-INF/view" + userPath + ".jsp";
+        String url = userPath;
+        
         try {
             request.getRequestDispatcher(url).forward(request, response);
         } catch (Exception ex) {
@@ -66,7 +77,6 @@ public class ControllerServlet extends HttpServlet {
 
         String userPath = request.getServletPath();
 
-        // if addToCart action is called
         if (userPath.equals("/teacher/addhours.jsp/submit")) {
             // TODO: check input, if false then say it is wrong / give error message; 
             //else send to database and give confirmation page
@@ -79,7 +89,7 @@ public class ControllerServlet extends HttpServlet {
                 //return error message
                 //should display the same screen with same input
                 //but display the error message at top, and show the field
-                //userPath = "teacher/addhoursconfirmation.jsp";
+                //userPath = 
             }
             
             //return confirmation (successfully added)
@@ -97,7 +107,7 @@ public class ControllerServlet extends HttpServlet {
             
 
         // if updateCart action is called
-        } else if (userPath.equals("/updateCart")) {
+        } else if (userPath.equals("/teacher/courselist.jsp/signup")) {
             // TODO: Implement update cart action
 
         // if purchase action is called
