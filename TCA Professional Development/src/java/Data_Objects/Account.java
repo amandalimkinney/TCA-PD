@@ -49,22 +49,6 @@ public class Account
         return accounts;
     }
     
-    /* Check the input for PD Hours
-     * Return null if no error
-     * Return error message otherwise
-     */
-    public String checkDevHoursInput(HttpServletRequest request)
-    {
-        String errMsg = null;
-        //TODO fill out the logic here with error messages
-        return errMsg;
-    }
-    
-    public void addDevHours(String[] info)
-    {
-        devHours.add(info);
-    }
-    
     public LinkedList<String[]> getDevHours()
     {
         return devHours;

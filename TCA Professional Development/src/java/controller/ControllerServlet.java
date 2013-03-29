@@ -1,5 +1,6 @@
 package controller;
 
+import BusinessTierInterface.*;
 import Data_Objects.Account;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -9,7 +10,16 @@ import javax.servlet.http.HttpServletResponse;
 
 public class ControllerServlet extends HttpServlet {
 
-    Account currentAccount = new Account();
+    //Account currentAccount = new Account();
+    BusinessTierFunctions funcs = new BusinessTierFunctions();
+    
+//    @Override
+//    public void init() throws ServletException {
+//
+//        //this is called only once when application is deployed
+//
+//    }
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      * @param request servlet request
@@ -42,15 +52,6 @@ public class ControllerServlet extends HttpServlet {
             // TODO: Implement cart page request
 
             userPath = "/cart";
-
-        // if checkout page is requested
-        } else if (userPath.equals("/checkout")) {
-            // TODO: Implement checkout page request
-
-        // if user switches language
-        } else if (userPath.equals("/chooseLanguage")) {
-            // TODO: Implement language request
-
         }
 
         // use RequestDispatcher to forward request internally
@@ -82,28 +83,28 @@ public class ControllerServlet extends HttpServlet {
             //else send to database and give confirmation page
             
             //check input
-            String errMsg = currentAccount.checkDevHoursInput(request);
-            //return error (bad input)
-            if(errMsg != null)
-            {
-                //return error message
-                //should display the same screen with same input
-                //but display the error message at top, and show the field
-                //userPath = 
-            }
-            
-            //return confirmation (successfully added)
-            else
-            {
-                currentAccount.addDevHours(new String[]{request.getParameter("date"),
-                request.getParameter("numHours"),
-                request.getParameter("method"),
-                request.getParameter("location"),
-                request.getParameter("type"),
-                request.getParameter("TEXT")});
-            
-                //userPath = "teacher/addhoursconfirmation.jsp";
-            }
+//            String errMsg = funcs.checkAddHoursInput(request);
+//            //return error (bad input)
+//            if(errMsg != "")
+//            {
+//                //return error message
+//                //should display the same screen with same input
+//                //but display the error message at top, and show the field
+//                //userPath = 
+//            }
+//            
+//            //return confirmation (successfully added)
+//            else
+//            {
+//                currentAccount.addDevHours(new String[]{request.getParameter("date"),
+//                request.getParameter("numHours"),
+//                request.getParameter("method"),
+//                request.getParameter("location"),
+//                request.getParameter("type"),
+//                request.getParameter("TEXT")});
+//            
+//                //userPath = "teacher/addhoursconfirmation.jsp";
+//            }
             
 
         // if updateCart action is called
