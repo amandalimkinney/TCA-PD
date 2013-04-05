@@ -14,11 +14,11 @@ public class Account
         grade,
         subject;
     private Date hiredDate;
-    private LinkedList<String[]> devHours;
+    private LinkedList<DevelopmentHours> devHours;
     
     public Account()
     {
-        devHours = new LinkedList<String[]>();
+        devHours = new LinkedList<DevelopmentHours>();
     }
     
     public Account(String accountID,String firstName,String lastName,String division,String grade,String subject,Date hiredDate)
@@ -48,12 +48,14 @@ public class Account
         return accounts;
     }
     
-    public void addDevHours(String[] info)
+    public void addDevHours(String date,String numHours,String method,String location,String type,String additionalComments) throws Exception
     {
-        devHours.add(info);
+        DevelopmentHours tempDevHours = new DevelopmentHours(date,numHours,method,location,type,additionalComments);
+        DataAccess.addDevHours(tempDevHours);
+        devHours.add(tempDevHours);
     }
     
-    public LinkedList<String[]> getDevHours()
+    public LinkedList<DevelopmentHours> getDevHours()
     {
         return devHours;
     }
