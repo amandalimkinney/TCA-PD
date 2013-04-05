@@ -1,5 +1,7 @@
 package controller;
 
+import BusinessTierInterface.*;
+import Data_Objects.Account;
 import java.io.IOException;
 import java.lang.String;
 import javax.servlet.ServletException;
@@ -10,16 +12,17 @@ import javax.servlet.http.HttpServletRequestWrapper;
 import Access_Control.*;
 import Data_Objects.*;
 
-/**
- *
- * @author Panda
- */
-//@WebServlet(name = "ControllerServlet", 
-//        loadOnStartup = 1,
-//        urlPatterns = {"/courselist, /addhours"})
 public class ControllerServlet extends HttpServlet {
 
-    Account currentAccount = new Account();
+    //Account currentAccount = new Account();
+    BusinessTierFunctions funcs = new BusinessTierFunctions();
+    
+//    @Override
+//    public void init() throws ServletException {
+//
+//        //this is called only once when application is deployed
+//
+//    }
     
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -35,28 +38,30 @@ public class ControllerServlet extends HttpServlet {
         String userPath = request.getServletPath();
 
         // if category page is requested
-        if (userPath.equals("/courselist")) {
+        if (userPath.equals("/teacher/viewcourselist")) {
             // TODO: Implement category request
+            
+            //request.setAttribute("categoryProducts", categoryProducts);
+            
+            //instantiate list of courses
+
+            //set this to servlet/app level
+            //getServletContext().setAttribute("categories", obj here);
+            
+            
+            userPath = "/teacher/courselist.jsp";
 
         // if cart page is requested
         } else if (userPath.equals("/viewCart")) {
             // TODO: Implement cart page request
 
             userPath = "/cart";
-
-        // if checkout page is requested
-        } else if (userPath.equals("/checkout")) {
-            // TODO: Implement checkout page request
-
-        // if user switches language
-        } else if (userPath.equals("/chooseLanguage")) {
-            // TODO: Implement language request
-
         }
 
         // use RequestDispatcher to forward request internally
-        String url = "/WEB-INF/view" + userPath + ".jsp";
-
+        //String url = "/WEB-INF/view" + userPath + ".jsp";
+        String url = userPath;
+        
         try {
             request.getRequestDispatcher(url).forward(request, response);
         } catch (Exception ex) {
@@ -75,39 +80,38 @@ public class ControllerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String userPath = request.getServletPath();
-        // if addToCart action is called
+
         if (userPath.equals("/teacher/addhours.jsp/submit")) {
-            
-            try
-            {
-            currentAccount.addDevHours(request.getParameter("date"),
-                request.getParameter("numHours"),
-                request.getParameter("method"),
-                request.getParameter("location"),
-                request.getParameter("type"),
-                request.getParameter("TEXT"));
-            
-            }
-            catch(Exception e)
-            {   
-                
-                //request.setAttribute("ERROR", "Unable to add Hours");
-            }
-            response.sendRedirect("/TCA_Professional_Development/teacher/addhours.jsp?ERROR=Unable To Add Hours");
-             //request.getRequestDispatcher("/teacher/addhours.jsp").forward(request, response);
-            // TODO: addhours button - check input, if false then say it is wrong / give error message; 
+            // TODO: check input, if false then say it is wrong / give error message; 
             //else send to database and give confirmation page
             
             //check input
+//            String errMsg = funcs.checkAddHoursInput(request);
+//            //return error (bad input)
+//            if(errMsg != "")
+//            {
+//                //return error message
+//                //should display the same screen with same input
+//                //but display the error message at top, and show the field
+//                //userPath = 
+//            }
+//            
+//            //return confirmation (successfully added)
+//            else
+//            {
+//                currentAccount.addDevHours(new String[]{request.getParameter("date"),
+//                request.getParameter("numHours"),
+//                request.getParameter("method"),
+//                request.getParameter("location"),
+//                request.getParameter("type"),
+//                request.getParameter("TEXT")});
+//            
+//                //userPath = "teacher/addhoursconfirmation.jsp";
+//            }
             
-            //return error (bad input)
-            
-            //return confirmation (successfully added)
-            
-            //userPath = "teacher/addhoursconfirmation.jsp";
 
         // if updateCart action is called
-        } else if (userPath.equals("/updateCart")) {
+        } else if (userPath.equals("/teacher/courselist.jsp/signup")) {
             // TODO: Implement update cart action
 
         // if purchase action is called

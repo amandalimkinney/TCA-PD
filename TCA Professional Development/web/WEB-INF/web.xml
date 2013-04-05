@@ -6,7 +6,9 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>ControllerServlet</servlet-name>
+        <url-pattern>/teacher/courselist.jsp/signup</url-pattern>
         <url-pattern>/teacher/addhours.jsp/submit</url-pattern>
+        <url-pattern>/teacher/viewcourselist</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
