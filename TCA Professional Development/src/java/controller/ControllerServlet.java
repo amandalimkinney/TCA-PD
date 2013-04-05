@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpServletRequestWrapper;
 import Access_Control.*;
 import Data_Objects.*;
 
@@ -73,21 +74,27 @@ public class ControllerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-
         String userPath = request.getServletPath();
-
         // if addToCart action is called
         if (userPath.equals("/teacher/addhours.jsp/submit")) {
             
-            currentAccount.addDevHours(new String[]{request.getParameter("date"),
+            try
+            {
+            currentAccount.addDevHours(request.getParameter("date"),
                 request.getParameter("numHours"),
                 request.getParameter("method"),
                 request.getParameter("location"),
                 request.getParameter("type"),
-                request.getParameter("TEXT")});
+                request.getParameter("TEXT"));
             
-            
-            
+            }
+            catch(Exception e)
+            {   
+                
+                //request.setAttribute("ERROR", "Unable to add Hours");
+            }
+            response.sendRedirect("/TCA_Professional_Development/teacher/addhours.jsp?ERROR=Unable To Add Hours");
+             //request.getRequestDispatcher("/teacher/addhours.jsp").forward(request, response);
             // TODO: addhours button - check input, if false then say it is wrong / give error message; 
             //else send to database and give confirmation page
             
@@ -108,14 +115,16 @@ public class ControllerServlet extends HttpServlet {
             // TODO: Implement purchase action
 
             userPath = "/confirmation";
+        } else if (userPath.equals("/purchase"))
+        {
+            
         }
 
         // use RequestDispatcher to forward request internally
         //String url = "/WEB-INF/view" + userPath + ".jsp";
         String url = userPath;
-
         try {
-            request.getRequestDispatcher(url).forward(request, response);
+            //request.getRequestDispatcher(url).forward(request, response);
         } catch (Exception ex) {
             ex.printStackTrace();
         }

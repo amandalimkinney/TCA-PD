@@ -51,4 +51,9 @@ public class DataAccess
         
         return null;
     }
+    
+    public static void addDevHours(DevelopmentHours devHours)
+    {
+        
+    }
 }
