@@ -116,6 +116,22 @@ public class Course
         return null;
     }
     
+    public static Course[] searchCourses(Calendar min, Calendar max)
+    {
+        
+    }
+    public static Course[] getCurrentCourses()
+    {
+        /*if(AccessControl.hasPower("getCourses"))
+        {
+            Course[] toReturn = DataAccess.getCurrentCourses();
+        }
+        return toReturn;*/
+        
+        return null;
+    }
+    
+    
     public static void updateAttendance(String courseID,String[] attendance)
     {
         //if(AccessControl.hasPower("updateAttendance:" + courseID))
