@@ -38,11 +38,11 @@ public class Account
     
     public static Account getAccount(String accountID)
     {
-        if(AccessControl.hasPower("readAccount:" + accountID))
-        {
+        //if(AccessControl.hasPower("readAccount:" + accountID))
+        //{
             return DataAccess.getAccount(accountID);
-        }
-        return null;
+        //}
+        //return null;
     }
     
     public static Account[] getAccounts(String[] accountIDs)
