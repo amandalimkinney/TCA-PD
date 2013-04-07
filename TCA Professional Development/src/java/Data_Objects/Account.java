@@ -61,7 +61,7 @@ public class Account
         Account[] accounts = new Account[maxIndex];
         for(int i=0;i<maxIndex;i++)
         {
-            accounts[i] = DataAccess.getAccount(tempIDs[i]);
+            //accounts[i] = DataAccess.getAccount(tempIDs[i]);
         }
         return accounts;
     }
