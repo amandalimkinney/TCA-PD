@@ -40,7 +40,7 @@ public class Account
     {
         //if(AccessControl.hasPower("readAccount:" + accountID))
         //{
-            return DataAccess.getAccount(accountID);
+            //return DataAccess.getAccount(accountID);
         //}
         //return null;
     }
