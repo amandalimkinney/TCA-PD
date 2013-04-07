@@ -98,7 +98,7 @@ public final class Scheduler {
             // ... And course month matches current month
             if (theCourseMonth - todayMonth == 0){
                 // ... And course day matches today then send reminder
-                if (theCourseDay - todayDay == 0){
+                if (theCourseDay - todayDay == 3){
                       sendReminder();
                 } else {
                     // do nothing
@@ -113,9 +113,9 @@ public final class Scheduler {
     public void sendReminder() throws Exception{
         
         Emailer sendMailer = new Emailer(relevantAccounts);
-        String subjectLine = ("REMINDER: CLASS TODAY -- " + theCourse.getCourseName());
+        String subjectLine = ("REMINDER: CLASS IN 3 DAYS -- " + theCourse.getCourseName());
         String messageBody = ("This is a reminder that a class you signed up for, "
-                + theCourse.getCourseID() + ", is today. Here is further information: "
+                + theCourse.getCourseID() + ", is in 3 days. Here is further information: "
                 + theCourse.getDetails());
         
         sendMailer.sendEmail (subjectLine, messageBody);
