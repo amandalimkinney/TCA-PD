@@ -40,14 +40,12 @@ public final class Emailer {
         }
     }
     
-    public String getRecipientName(Account anAccount) throws Exception{
-        String tempName = (anAccount.getFirstName() + " " + anAccount.getLastName());
-        return tempName;
+    public String[] getRecipientNames() throws Exception{
+        return recipientName;
     }
     
-    public String getRecipientEmail(Account anAccount) throws Exception{
-        String tempEmail = anAccount.getEmail();  
-        return tempEmail;
+    public String[] getRecipientEmail() throws Exception{
+        return recipientEmail;
     }
     
     public void sendEmail(String subject, String bodyText){
