@@ -40,9 +40,9 @@ public class Account
     {
         //if(AccessControl.hasPower("readAccount:" + accountID))
         //{
-            return DataAccess.getAccount(accountID);
+            //return DataAccess.getAccount(accountID);
         //}
-        //return null;
+        return null;
     }
     
     public static Account[] getAccounts(String[] accountIDs)
@@ -61,7 +61,7 @@ public class Account
         Account[] accounts = new Account[maxIndex];
         for(int i=0;i<maxIndex;i++)
         {
-            accounts[i] = DataAccess.getAccount(tempIDs[i]);
+            //accounts[i] = DataAccess.getAccount(tempIDs[i]);
         }
         return accounts;
     }
