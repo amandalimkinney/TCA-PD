@@ -15,7 +15,7 @@ public class Account
         grade,
         subject,
         email;
-    private Date hiredDate;
+    private Calendar hiredDate;
     private LinkedList<DevelopmentHours> devHours;
     
     public Account()
@@ -23,7 +23,7 @@ public class Account
         devHours = new LinkedList<DevelopmentHours>();
     }
     
-    public Account(String accountID,String email,String firstName,String lastName,String division,String grade,String subject,Date hiredDate)
+    public Account(String accountID,String email,String firstName,String lastName,String division,String grade,String subject,Calendar hiredDate)
     {
         super();
         setAccountID(accountID);
@@ -88,7 +88,7 @@ public class Account
     public void setDivision(String division){this.division = division;}
     public void setGrade(String grade){this.grade = grade;}
     public void setSubject(String subject){this.subject = subject;}
-    public void setHiredDate(Date hiredDate){this.hiredDate = hiredDate;}
+    public void setHiredDate(Calendar hiredDate){this.hiredDate = hiredDate;}
     
     
     public String getAccountID(){return accountID;}
@@ -98,6 +98,6 @@ public class Account
     public String getDivision(){return division;}
     public String getGrade(){return grade;}
     public String getSubject(){return subject;}
-    public Date getHiredDate(){return hiredDate;}
+    public Calendar getHiredDate(){return hiredDate;}
             
 }

@@ -29,8 +29,7 @@ public final class Scheduler {
 
         setTodayReminder();
         set3DayReminder();
-        sendTodayReminder();
-        send3DayReminder();
+        sendReminder();
         sendSignUpExpires();
         send3DaySignUpExpires();
         
@@ -48,7 +47,7 @@ public final class Scheduler {
         this.relevantAccounts = Account.getAccounts(theCourse.getAttendees());
     }
     
-    public void setTodayReminder(){
+    public void setTodayReminder() throws Exception{
         Calendar courseDate = theCourse.getDate();
         Calendar todayCal = new GregorianCalendar();
         todayCal.setTime(new Date());
@@ -68,7 +67,7 @@ public final class Scheduler {
             if (theCourseMonth - todayMonth == 0){
                 // ... And course day matches today then send reminder
                 if (theCourseDay - todayDay == 0){
-                    // sendTodayReminder();
+                    sendReminder();
                 } else {
                     // do nothing
                 } 
@@ -80,7 +79,7 @@ public final class Scheduler {
         
     }
     
-    public void set3DayReminder(){
+    public void set3DayReminder() throws Exception{
         Calendar courseDate = theCourse.getDate();
         Calendar todayCal = new GregorianCalendar();
         todayCal.setTime(new Date());
@@ -100,7 +99,7 @@ public final class Scheduler {
             if (theCourseMonth - todayMonth == 0){
                 // ... And course day matches today then send reminder
                 if (theCourseDay - todayDay == 0){
-                    // send3DayReminder();
+                      sendReminder();
                 } else {
                     // do nothing
                 } 
@@ -111,15 +110,16 @@ public final class Scheduler {
         } 
     }
     
-    public void sendTodayReminder(){
+    public void sendReminder() throws Exception{
         
-        //Emailer sendMail = new Emailer(relevantAccounts);
-
+        Emailer sendMailer = new Emailer(relevantAccounts);
+        String subjectLine = ("REMINDER: CLASS TODAY -- " + theCourse.getCourseName());
+        String messageBody = ("This is a reminder that a class you signed up for, "
+                + theCourse.getCourseID() + ", is today. Here is further information: "
+                + theCourse.getDetails());
         
-    }
-    
-    public void send3DayReminder(){
-        // todo
+        sendMailer.sendEmail (subjectLine, messageBody);
+        
     }
     
     public void sendSignUpExpires(){
