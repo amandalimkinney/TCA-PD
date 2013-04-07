@@ -1,14 +1,12 @@
 package controller;
 
 import BusinessTierInterface.*;
-import Data_Objects.Account;
+import Data_Objects.*;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Access_Control.*;
-import Data_Objects.*;
 
 public class ControllerServlet extends HttpServlet {
 
@@ -38,7 +36,8 @@ public class ControllerServlet extends HttpServlet {
         // if category page is requested
         if (userPath.equals("/teacher/viewcourselist")) {
             // TODO: Implement category request
-            
+            Array courseList = new Array();
+            request.setAttribute("courseList", courseList);
             //request.setAttribute("categoryProducts", categoryProducts);
             
             //instantiate list of courses
@@ -78,43 +77,7 @@ public class ControllerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String userPath = request.getServletPath();
-/*
-        if (userPath.equals("/teacher/addhours")) {
-            // TODO: check input, if false then say it is wrong / give error message; 
-            //else send to database and give confirmation page
-            if(request.getParameter("submit") == "true")
-            {
-                userPath = "teacher/addhours.jsp";
-            }
-            else
-            {
-                userPath = "/home/addhours.jsp";
-            }
-            //request.setAttribute("errormsg", "ERROR");
-                        //request.getRequestDispatcher("teacher/addhours.jsp").forward(request, response);
-//            try{
-//                //TODO: fix this input for all things
-//            DevelopmentHours newHours = new DevelopmentHours(request.getParameter("date"), 
-//                    request.getParameter("numHours"), 
-//                    request.getParameter("method"),
-//                    //request.getParameter("hostOrg"),
-//                    request.getParameter("location"),
-//                    request.getParameter("type"),
-//                    "");
-//            userPath = "teacher/addhoursconfirmation.jsp";
-//            
-//                    }
-//            catch(Exception e)
-//                    {
-//                        request.setAttribute("errormsg", e.toString());
-//                        request.getRequestDispatcher("/login.jsp").forward(request, response);
-//                    }
-//            
-//            
-//                //userPath = "teacher/addhoursconfirmation.jsp";
-//            }
-            
-} else */
+
             if (userPath.equals("/teacher/addhours.jsp-submit")) {
                
                 userPath = "/teacher/addhours.jsp";
@@ -177,10 +140,10 @@ public class ControllerServlet extends HttpServlet {
             // TODO: Implement update cart action
 
         // if purchase action is called
-        } else if (userPath.equals("/purchase")) {
+        } else if (userPath.equals("/admin/addcourse.jsp-submit")) {
             // TODO: Implement purchase action
 
-            userPath = "/confirmation";
+            userPath = "/admin/addcourse.jsp";
         } else if (userPath.equals("/purchase"))
         {
             
