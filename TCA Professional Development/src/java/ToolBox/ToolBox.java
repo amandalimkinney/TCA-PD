@@ -44,7 +44,7 @@ public class ToolBox
         }
         catch(Exception e)
         {
-            throw new Exception("Invalid Date Format");
+            throw new Exception("Invalid Date Format; " + e);
         }
     }
 }
