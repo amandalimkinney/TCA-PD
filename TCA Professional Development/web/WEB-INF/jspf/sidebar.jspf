@@ -15,7 +15,10 @@
     
         <br>
        
-        <a href="../teacher/addhours.jsp" class="links">Add Hours</a>
+        <a href="../teacher/addhours" class="links">Add Hours</a><br>
+        
+        <a href="../teacher/coursehistory" class="links">Your Course History</a><br>
+        <a href="../teacher/coursehistory" class="links">Your Saved PD Hours</a><br>
     
     </div>
     
@@ -28,7 +31,10 @@
         
         <br>
         
-        <a href="#" class="links"> System Administrator</a>
+        <a href="#" class="links"> System Administrator</a><br>
+        <a href="../admin/addcourse.jsp" class="links">Add TCA Course</a><br>
+        <a href="../admin/addaccount" class="links">Add New Account</a><br>
+        <a href="../admin/editaccount" class="links">Edit an Account</a><br>
     </div>
     
     
