@@ -118,8 +118,9 @@ public class Course
     
     public static Course[] searchCourses(Calendar min, Calendar max)
     {
-        
+        return null;
     }
+    
     public static Course[] getCurrentCourses()
     {
         /*if(AccessControl.hasPower("getCourses"))
