@@ -71,7 +71,7 @@ public class Account
         //if(AccessControl.hasPower("addDevHours:" + accountID))
         //{
             DevelopmentHours tempDevHours = new DevelopmentHours(date,numHours,method,location,type,hostOrginization,topic);
-            DataAccess.addDevHours(tempDevHours,accountID);
+            //DataAccess.addDevHours(tempDevHours,accountID);
             devHours.add(tempDevHours);
         //}
     }
