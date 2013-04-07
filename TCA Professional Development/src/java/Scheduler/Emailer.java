@@ -11,41 +11,48 @@ import java.util.*;
  *
  * @author Erik
  */
-public class Emailer {
+public final class Emailer {
     
-    private String recipientName;
-    private String recipientEmail;
-    
-    private Account recipientAccount;
+    private String[] recipientName;
+    private String[] recipientEmail;  
+    private Account[] recipientAccount;
     
     public Emailer(){
 
     }
     
-    public Emailer(Account account, String name, String email) throws Exception{
-        
+    public Emailer(Account[] account) throws Exception{
         this.recipientAccount = account;
-        this.recipientName = getRecipientName(account);
-        this.recipientEmail = getRecipientEmail(account);
- 
     }    
     
-    public void getRecipientName(Account anAccount) throws Exception{
-        
+    public void setRecipientNames() throws Exception{
+        for (int i = 0; i < recipientAccount.length; i++){
+            this.recipientName[i] = (recipientAccount[i].getFirstName() + " " + recipientAccount[i].getLastName());
+        }
+    }
+    
+    public void setRecipientEmails() throws Exception{
+        for (int j = 0; j < recipientAccount.length; j++){
+            this.recipientEmail[j] = (recipientAccount[j].getEmail());
+        }
+    }
+    
+    public String getRecipientName(Account anAccount) throws Exception{
         String tempName = (anAccount.getFirstName() + " " + anAccount.getLastName());
-        this.recipientName = tempName;
-        
+        return tempName;
     }
     
-    public void getRecipientEmail(Account anAccount) throws Exception{
-        
-        this.recipientEmail = anAccount.getEmail();
-        
+    public String getRecipientEmail(Account anAccount) throws Exception{
+        String tempEmail = anAccount.getEmail();  
+        return tempEmail;
     }
     
-    public void sendEmail(){
-        
-        // todo
+    public void sendEmail(String message){
+        for (int k = 0; k < recipientAccount.length; k++){
+             //EMAIL: recipientEmail[k]
+             //NAME: recipientName[k]
+             //MESSAGE: message;
+        }
         
     }
 }
