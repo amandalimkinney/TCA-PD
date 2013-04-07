@@ -49,7 +49,7 @@ public class Course
         setCourseName(courseName);
         setType(type);
         setDate(ToolBox.ConvertStringToDate(date));
-        setDeatails(details);
+        setDetails(details);
         setHours(hours);
         setInstructorID(instructorID);
         setRoom(room);
@@ -67,7 +67,7 @@ public class Course
             toAdd.setCourseName(courseName);
             toAdd.setType(Type);
             toAdd.setDate(ToolBox.ConvertStringToDate(Date));
-            toAdd.setDeatails(details);
+            toAdd.setDetails(details);
             toAdd.setHours(hours);
             toAdd.setInstructorID(InstructorID);
             toAdd.setMaterials(materials);
@@ -89,7 +89,7 @@ public class Course
             toModify.setCourseName(courseName);
             toModify.setType(Type);
             toModify.setDate(ToolBox.ConvertStringToDate(Date));
-            toModify.setDeatails(details);
+            toModify.setDetails(details);
             toModify.setHours(hours);
             toModify.setInstructorID(InstructorID);
             toModify.setMaterials(materials);
@@ -223,7 +223,7 @@ public class Course
     public void setType(String type){if(type != null)this.type = type;}
     public void setRoom(String room){if(room != null)this.room = room;}
     public void setInstructorID(String instructorID){if(instructorID != null)this.instructorID = instructorID;}
-    public void setDeatails(String details){if(details != null)this.details = details;}
+    public void setDetails(String details){if(details != null)this.details = details;}
     public void setDate(Calendar date){if(date != null)this.date = date;}
     public void setHours(int hours){if(hours > 0)this.hours = hours;}
     public void setTotalSeats(int totalSeats){if(totalSeats > 0)this.totalSeats = totalSeats;}
@@ -254,7 +254,7 @@ public class Course
     public String getType(){return type;}
     public String getRoom(){return room;}
     public String getInstructorID(){return instructorID;}
-    public String getDeatails(){return details;}
+    public String getDetails(){return details;}
     public Calendar getDate(){return date;}
     public int getHours(){return hours;}
     public int getTotalSeats(){return totalSeats;}
