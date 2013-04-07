@@ -30,7 +30,8 @@ public final class Emailer {
     
     public void setRecipientNames() throws Exception{
         for (int i = 0; i < recipientAccount.length; i++){
-            this.recipientName[i] = (recipientAccount[i].getFirstName() + " " + recipientAccount[i].getLastName());
+            this.recipientName[i] = (recipientAccount[i].getFirstName() + " " + 
+                    recipientAccount[i].getLastName());
         }
     }
     
@@ -44,7 +45,7 @@ public final class Emailer {
         return recipientName;
     }
     
-    public String[] getRecipientEmail() throws Exception{
+    public String[] getRecipientEmails() throws Exception{
         return recipientEmail;
     }
     
