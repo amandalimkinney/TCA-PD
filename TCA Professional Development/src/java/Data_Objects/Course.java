@@ -24,7 +24,7 @@ public class Course
         instructorID,
         details;
     
-    private Date
+    private Calendar
         date;
     
     private int
@@ -224,7 +224,7 @@ public class Course
     public void setRoom(String room){if(room != null)this.room = room;}
     public void setInstructorID(String instructorID){if(instructorID != null)this.instructorID = instructorID;}
     public void setDeatails(String details){if(details != null)this.details = details;}
-    public void setDate(Date date){if(date != null)this.date = date;}
+    public void setDate(Calendar date){if(date != null)this.date = date;}
     public void setHours(int hours){if(hours > 0)this.hours = hours;}
     public void setTotalSeats(int totalSeats){if(totalSeats > 0)this.totalSeats = totalSeats;}
     
@@ -255,7 +255,7 @@ public class Course
     public String getRoom(){return room;}
     public String getInstructorID(){return instructorID;}
     public String getDeatails(){return details;}
-    public Date getDate(){return date;}
+    public Calendar getDate(){return date;}
     public int getHours(){return hours;}
     public int getTotalSeats(){return totalSeats;}
    
