@@ -40,7 +40,8 @@ public class ControllerServlet extends HttpServlet {
             // TODO: Implement category request
             
             //request.setAttribute("categoryProducts", categoryProducts);
-            
+            Course[] courseList = Course.getCurrentCourses();
+            getServletContext().setAttribute("courseList", courseList);
             //instantiate list of courses
 
             //set this to servlet/app level

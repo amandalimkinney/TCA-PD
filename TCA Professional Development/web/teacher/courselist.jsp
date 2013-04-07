@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,67 +27,64 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr id="courseTableRow">
-                            <td id="courseTableRow"> 
-                                <div>
-                                    <h4> ALL in learning User Group </h4>
-                                    <p id="courseDescription"> Come take a look at how teachers are using the ALL in
-                                        the classroom. Join us for some quick tips and important 
-                                        how to's. Be ready to share what has worked well and what
-                                        to avoid. </p>
-                                </div>
+                        <c:forEach var="course" items="${courseList}">
+                            <tr id="courseTableRow">
+                                <td id="courseTableRow"> 
+                                    <div>
+                                        <h4> <fmt:message key="${course.name}"/> </h4>
+                                        <p id="courseDescription"> <fmt:message key="${course.description}"/> </p>
+                                    </div>
 
-                                <div>
-                                    <table id='courseDetails'>
-                                        <tr>
-                                            <td>Instructor:</td>
-                                            <td>  </t> </td>
-                                            <td>Jane Doe</td>
-                                        </tr>
+                                    <div>
+                                        <table id='courseDetails'>
+                                            <tr>
+                                                <td>Instructor:</td>
+                                                <td>  </t> </td>
+                                                <td><fmt:message key="${course.instructor}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Assistants:</td>
+                                                <td>  </t> </td>
+                                                <td><fmt:message key="${course.assistants}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Date:</td>
+                                                <td>  </t> </td>
+                                                <td><fmt:message key="${course.date}"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Location:</td>
+                                                <td>  </t> </td>
+                                                <td><fmt:message key="${course.location}"/></td>
+                                            </tr>
 
-                                        <tr>
-                                            <td>Assistants:</td>
-                                            <td>  </t> </td>
-                                            <td>John Smith</td>
-                                        </tr>
+                                            <tr>
+                                                <td>Time:</td>
+                                                <td>  </t> </td>
+                                                <td><fmt:message key="${course.time}"/></td>
+                                            </tr>
 
-                                        <tr>
-                                            <td>Date:</td>
-                                            <td>  </t> </td>
-                                            <td>3/22/13</td>
-                                        </tr>
+                                            <tr>
+                                                <td>Notes:</td>
+                                                <td>  </t> </td>
+                                                <td><fmt:message key="${course.other}"/></td>
+                                            </tr>
 
-                                        <tr>
-                                            <td>Location:</td>
-                                            <td>  </t> </td>
-                                            <td>MS Room 15</td>
-                                        </tr>
+                                        </table>
+                                    </div>
 
-                                        <tr>
-                                            <td>Time:</td>
-                                            <td>  </t> </td>
-                                            <td>10:00 a.m.</td>
-                                        </tr>
+                                    <div id="signUp">
+                                        <a href="<c:url value='courselist?${course.id}'/>">
+                                            Sign up </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </c:forEach>
 
-                                        <tr>
-                                            <td>Notes:</td>
-                                        </tr>
 
-                                    </table>
-                                </div>
-
-                                <div id="signUp">
-                                    <a href="#" > Sign up </a>
-                                </div>
-                            </td>
-                        </tr>
                     </tbody>
 
                 </table>
-
-                <c:forEach var="category" items="${categories}">
-                </c:foreach>
-
             </div>
 
 
