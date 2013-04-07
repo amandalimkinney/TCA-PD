@@ -14,32 +14,27 @@ public class DevelopmentHours
 {
     private Date date;
     private int numHours;
-    private String method,location,type,additionalComments;
-    
+    private String method,location,type,additionalComments,hostOrginization,topic;
     public DevelopmentHours()
     {
     }
     
-    public DevelopmentHours(String date,String numHours,String method,String location,String type,String additionalComments) throws Exception
+    public DevelopmentHours(String date,String numHours,String method,String location,String type,String hostOrginization,String topic) throws Exception
     {
         setDate(date);
         setNumHours(numHours);
         setMethod(method);
         setLocation(location);
         setType(type);
-        setAdditionalComments(additionalComments);
-        
+        //setAdditionalComments(additionalComments);
+        setHostOrginization(hostOrginization);
+        setTopic(topic);
     }
     
-    public void setDate(String date) throws Exception
-    {
-        this.date = ToolBox.ConvertStringToDate(date);
-    }
+    //set Methods
+    public void setDate(String date) throws Exception{this.date = ToolBox.ConvertStringToDate(date);}
     
-    public void setNumHours(String numHours) throws Exception
-    {
-        this.numHours = Integer.parseInt(numHours);
-    }
+    public void setNumHours(String numHours) throws Exception{this.numHours = Integer.parseInt(numHours);}
     
     public void setMethod(String method) throws Exception
     {
@@ -71,5 +66,56 @@ public class DevelopmentHours
     public void setAdditionalComments(String additionalComments)
     {
         this.additionalComments = additionalComments;
+    }
+    
+    public void setHostOrginization(String hostOrginization)
+    {
+        this.hostOrginization = hostOrginization;
+    }
+    
+    public void setTopic(String topic)
+    {
+        this.topic = topic;
+    }
+    
+    //get Methods
+    public Date getDate()
+    {
+        return date;
+    }
+    
+    public int getNumHours()
+    {
+        return numHours;
+    }
+    
+    public String getMethod()
+    {
+        return method;
+    }
+    
+    public String getLocation()
+    {
+        return location;
+    }
+    
+    public String getType()
+    {
+        return type;
+    }
+    
+    public String getAdditionalComments()
+    {
+        return additionalComments;
+    }
+    
+    public String getHostOrginization()
+    {
+        return hostOrginization;
+    }
+    
+    public String getTopic()
+    {
+        return topic;
     }
 }
