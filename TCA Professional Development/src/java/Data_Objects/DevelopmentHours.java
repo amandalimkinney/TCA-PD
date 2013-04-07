@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class DevelopmentHours 
 {
-    private Date date;
+    private Calendar date;
     private int numHours;
     private String method,location,type,additionalComments,hostOrganization,topic;
     public DevelopmentHours()
@@ -79,7 +79,7 @@ public class DevelopmentHours
     }
     
     //get Methods
-    public Date getDate()
+    public Calendar getDate()
     {
         return date;
     }
