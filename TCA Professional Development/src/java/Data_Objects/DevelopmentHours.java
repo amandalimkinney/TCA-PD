@@ -14,12 +14,12 @@ public class DevelopmentHours
 {
     private Date date;
     private int numHours;
-    private String method,location,type,additionalComments,hostOrginization,topic;
+    private String method,location,type,additionalComments,hostOrganization,topic;
     public DevelopmentHours()
     {
     }
     
-    public DevelopmentHours(String date,String numHours,String method,String location,String type,String hostOrginization,String topic) throws Exception
+    public DevelopmentHours(String date,String numHours,String method,String location,String type,String hostOrganization,String topic) throws Exception
     {
         setDate(date);
         setNumHours(numHours);
@@ -27,7 +27,7 @@ public class DevelopmentHours
         setLocation(location);
         setType(type);
         //setAdditionalComments(additionalComments);
-        setHostOrginization(hostOrginization);
+        setHostOrganization(hostOrganization);
         setTopic(topic);
     }
     
@@ -68,9 +68,9 @@ public class DevelopmentHours
         this.additionalComments = additionalComments;
     }
     
-    public void setHostOrginization(String hostOrginization)
+    public void setHostOrganization(String hostOrganization)
     {
-        this.hostOrginization = hostOrginization;
+        this.hostOrganization = hostOrganization;
     }
     
     public void setTopic(String topic)
@@ -109,9 +109,9 @@ public class DevelopmentHours
         return additionalComments;
     }
     
-    public String getHostOrginization()
+    public String getHostOrganization()
     {
-        return hostOrginization;
+        return hostOrganization;
     }
     
     public String getTopic()
