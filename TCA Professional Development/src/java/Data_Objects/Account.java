@@ -3,6 +3,7 @@ package Data_Objects;
 
 import java.util.*;
 import Data_Access.*;
+import Access_control.*;
 
 public class Account 
 {
@@ -37,24 +38,42 @@ public class Account
     
     public static Account getAccount(String accountID)
     {
-        return DataAccess.getAccount(accountID);
+        //if(AccessControl.hasPower("readAccount:" + accountID))
+        //{
+            //return DataAccess.getAccount(accountID);
+        //}
+        return null;
     }
     
     public static Account[] getAccounts(String[] accountIDs)
     {
-        Account[] accounts = new Account[accountIDs.length];
+        int maxIndex = 0;
+        String[] tempIDs = new String[accountIDs.length];
         for(int i=0;i<accountIDs.length;i++)
         {
-            accounts[i] = DataAccess.getAccount(accountIDs[i]);
+            if(AccessControl.hasPower("readAccount:"+accountIDs[i]))
+            {
+                tempIDs[maxIndex] = accountIDs[i];
+                maxIndex++;
+            }
+        }
+        
+        Account[] accounts = new Account[maxIndex];
+        for(int i=0;i<maxIndex;i++)
+        {
+            //accounts[i] = DataAccess.getAccount(tempIDs[i]);
         }
         return accounts;
     }
     
-    public void addDevHours(String date,String numHours,String method,String location,String type,String additionalComments) throws Exception
+    public void addDevHours(String date,String numHours,String method,String location,String type,String hostOrginization,String topic) throws Exception
     {
-        DevelopmentHours tempDevHours = new DevelopmentHours(date,numHours,method,location,type,additionalComments);
-        DataAccess.addDevHours(tempDevHours);
-        devHours.add(tempDevHours);
+        //if(AccessControl.hasPower("addDevHours:" + accountID))
+        //{
+            DevelopmentHours tempDevHours = new DevelopmentHours(date,numHours,method,location,type,hostOrginization,topic);
+            //DataAccess.addDevHours(tempDevHours,accountID);
+            devHours.add(tempDevHours);
+        //}
     }
     
     public LinkedList<DevelopmentHours> getDevHours()
