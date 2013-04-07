@@ -42,7 +42,7 @@ public class Account
         //{
             //return DataAccess.getAccount(accountID);
         //}
-        //return null;
+        return null;
     }
     
     public static Account[] getAccounts(String[] accountIDs)
