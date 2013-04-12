@@ -19,7 +19,7 @@
                 <div id="pageBody">
                     
                     <h1>Login</h1>
-                    <p>This site requires authentication. Please eenter your credentials to continue.</p>
+                    <p>This site requires authentication. Please enter your credentials to continue.</p>
 
                     <form name="frmLogin" onSubmit="return validate();" action="doLogin.jsp" method="post">
                     User Name <input type="text" name="sUserName" /><br />
