@@ -14,9 +14,9 @@
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </div>
 
-            <div id="emptyDiv">
+            <div id="page1div">
 
-                <div id="pageBody">
+
                     
                     <h1>Login</h1>
                     <p>This site requires authentication. Please enter your credentials to continue.</p>
@@ -25,9 +25,11 @@
                     User Name <input type="text" name="sUserName" /><br />
                     Password <input type="password" name="sPwd" /><br />
                     <input type="submit" name="sSubmit" value="Submit" />
-                    </form>                    
+                    </form>            
                     
-                </div>
+                    <p>&nbsp;</p>
+                    
+
                 
             </div>
             <div id="footer">
