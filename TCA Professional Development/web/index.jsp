@@ -22,10 +22,9 @@
                     <p>This site requires authentication. Please enter your credentials to continue.</p>
 
                     <form name="frmLogin" onSubmit="return validate();" action="doLogin.jsp" method="post">
-                    User Name <input type="text" name="sUserName" /><br />
-                    Password <input type="password" name="sPwd" /><br />
-                    <p>&nbsp;</p>
-                    <input type="submit" name="sSubmit" value="Submit" />
+                    <strong>User Name</strong> <input type="text" name="sUserName" /><br />
+                    <strong>Password</strong><input type="password" name="sPwd" /><br />
+                    <input type="submit" name="sSubmit" value="Submit" style="margin: 5px 0 0 0;"/>
                     </form>            
                     
                     <p>&nbsp;</p>
