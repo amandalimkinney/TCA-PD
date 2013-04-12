@@ -3,6 +3,7 @@
     <div id="widgetBar">
 
         <% String a=session.getAttribute("sUserName").toString();
+            System.out.println(a);
             %>
         <a href="doLogout.jsp" class="headerWidget">
             Logout
