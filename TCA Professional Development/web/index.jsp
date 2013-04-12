@@ -14,53 +14,22 @@
                 <%@include file="/WEB-INF/jspf/header.jspf" %>
             </div>
 
-            <div id="sideBar">
-                <!--                These links will not work, TODO replace this-->
-                <%--<%@include file="/WEB-INF/jspf/sidebar.jspf" %>--%>
-                <div id="sideMenu">
+            <div id="emptyDiv">
 
-                    <div  id="linkLabel"> 
-                        Quick Links
-                    </div>
+                <div id="pageBody">
+                    
+                    <h1>Login</h1>
+                    <p>This site requires authentication. Please enter your credentials to continue.</p>
 
-                    <div id="standardLinks">
-
-                        <a href="home/index.jsp" class="links">Home</a>
-                        <!--    
-                                <br>
-                            
-                                <a href="../teacher/viewcourselist" class="links">Courses</a>
-                            
-                                <br>
-                               
-                                <a href="../teacher/addhours.jsp" class="links">Add Hours</a>-->
-
-                    </div>
-
-                    <div id="linkLabel">
-                        Views
-                    </div>
-
-                    <!--    <div id="roleLinks">
-                            <a href="#" class="links"> Instructor</a>
-                            
-                            <br>
-                            
-                            <a href="#" class="links"> System Administrator</a>
-                        </div>-->
-
-
-
-
+                    <form name="frmLogin" onSubmit="return validate();" action="doLogin.jsp" method="post">
+                    User Name <input type="text" name="sUserName" /><br />
+                    Password <input type="password" name="sPwd" /><br />
+                    <input type="submit" name="sSubmit" value="Submit" />
+                    </form>                    
+                    
                 </div>
+                
             </div>
-
-            <div id="pageBody">
-                <!--This is going to be the home page which will lead to either the log in page or the logged-in home screen-->
-                <a href="home/index.jsp"> home </a> <br>
-                <a href="home/login.jsp"> log in </a>
-            </div>
-
             <div id="footer">
                 <%@include file="/WEB-INF/jspf/footer.jspf" %>
             </div>
