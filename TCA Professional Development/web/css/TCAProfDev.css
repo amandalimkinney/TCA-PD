@@ -177,7 +177,13 @@ body {
     margin-left: 300px;
 }
 
-#emptyDiv {
+#page1div {
+    height: auto;
+    width: auto;
+    float: none;
+    background: #FAFAFA;
+    border-top: 2px solid;
+    margin-left: 250px;
     border-left: 2px solid #000;
     border-right: 2px solid #000;
 }
