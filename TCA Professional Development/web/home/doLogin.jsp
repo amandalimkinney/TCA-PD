@@ -6,12 +6,12 @@
     </head>
     <body>
         <%
-        String username=request.getParameter("username");
-        String password=request.getParameter("password");
+        String username=request.getParameter("sUserName");
+        String password=request.getParameter("sPwd");
         
         if((username.equals("anurag") && password.equals("jain")))
             {
-            session.setAttribute("username",username);
+            session.setAttribute("sUserName",username);
             response.sendRedirect("index.jsp");
             }
         else
