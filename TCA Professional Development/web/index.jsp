@@ -24,6 +24,7 @@
                     <form name="frmLogin" onSubmit="return validate();" action="doLogin.jsp" method="post">
                     User Name <input type="text" name="sUserName" /><br />
                     Password <input type="password" name="sPwd" /><br />
+                    <p>&nbsp;</p>
                     <input type="submit" name="sSubmit" value="Submit" />
                     </form>            
                     
