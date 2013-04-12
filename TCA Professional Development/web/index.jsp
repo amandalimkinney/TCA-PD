@@ -11,7 +11,7 @@
     <body>
         <div id="main">
             <div id="header">
-                <%@include file="/WEB-INF/jspf/header.jspf" %>
+                <%@include file="/WEB-INF/jspf/indexheader.jspf" %>
             </div>
 
             <div id="page1div">
@@ -21,10 +21,12 @@
                     <h1>Login</h1>
                     <p>This site requires authentication. Please enter your credentials to continue.</p>
 
-                    <form name="frmLogin" onSubmit="return validate();" action="doLogin.jsp" method="post">
-                    <strong>User Name</strong> <input type="text" name="sUserName" /><br />
-                    <strong>Password</strong><input type="password" name="sPwd" /><br />
-                    <input type="submit" name="sSubmit" value="Submit" style="margin: 55px 0 0 0;"/>
+                    <form name="frmLogin" onSubmit="return validate();" action="doLogin.jsp" method="post" style="margin: 20px 0 0 0;">
+                    <strong>User Name</strong> 
+                    <input type="text" name="sUserName" style="margin: 0 0 0 10px;"/><br/><br/>
+                    <strong>Password</strong>
+                    <input type="password" name="sPwd" style="margin: 0 0 0 17px;"/><br/>
+                    <input type="submit" name="sSubmit" value="Submit" style="margin: 25px 0 0 0;"/>
                     </form>            
                     
                     <p>&nbsp;</p>
