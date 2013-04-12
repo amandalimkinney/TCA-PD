@@ -183,7 +183,7 @@ body {
     float: none;
     background: #FAFAFA;
     border-top: 2px solid;
-    margin-left: 250px;
+    padding-left: 250px;
     border-left: 2px solid #000;
     border-right: 2px solid #000;
 }
