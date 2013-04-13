@@ -15,7 +15,7 @@
             response.sendRedirect("index.jsp");
             }
         else
-            response.sendRedirect("Error.jsp");
+            response.sendRedirect("loginerror.jsp");
         %>
     </body>
 </html>
