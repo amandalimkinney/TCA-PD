@@ -10,6 +10,7 @@
         session.removeAttribute("sUserName");
         session.removeAttribute("sPwd");
         session.invalidate();
+        response.sendRedirect("../index.jsp");        
         %>
         <h1>Logout was done successfully.</h1>
          
