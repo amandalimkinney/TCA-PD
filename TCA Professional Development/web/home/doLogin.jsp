@@ -5,17 +5,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <%
-        String username=request.getParameter("sUserName");
-        String password=request.getParameter("sPwd");
-        
-        if((username.equals("anurag") && password.equals("jain")))
-            {
-            session.setAttribute("sUserName",username);
-            response.sendRedirect("index.jsp");
-            }
-        else
-            response.sendRedirect("loginerror.jsp");
-        %>
+       
     </body>
 </html>
