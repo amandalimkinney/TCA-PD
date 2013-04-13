@@ -2,7 +2,7 @@
 <!--<div id="header">-->
     <div id="widgetBar">
 
-        <a href="login.jsp" class="headerWidget">
+        <a href="home/login.jsp" class="headerWidget">
             Login
         </a>
 
