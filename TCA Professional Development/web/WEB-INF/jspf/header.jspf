@@ -3,11 +3,11 @@
     <div id="widgetBar">
     
         
-        <a href="home/login.jsp" class="headerWidget">
-            Login
+        <a href="<%=request.getContextPath()%>/home/doLogout.jsp" class="headerWidget">
+            Logout
         </a>
 
-        <a href="index.jsp" class="headerWidget">
+        <a href="<%=request.getContextPath()%>/home/index.jsp" class="headerWidget">
             Home
         </a>
 
