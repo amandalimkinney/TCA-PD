@@ -3,7 +3,7 @@
     <div id="widgetBar">
     
         
-        <a href="doLogin.jsp" class="headerWidget">
+        <a href="home/login.jsp" class="headerWidget">
             Login
         </a>
 
