@@ -11,7 +11,7 @@
     <body>
         <div id="main">
             <div id="header">
-                <%@include file="/WEB-INF/jspf/head.jsp" %>
+                <%@include file="/WEB-INF/jspf/head.jspf" %>
             </div>
 
             <div id="sideBar">
