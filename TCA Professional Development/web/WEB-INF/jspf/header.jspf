@@ -2,8 +2,9 @@
 <!--<div id="header">-->
     <div id="widgetBar">
 
-        <% String a=session.getAttribute("sUserName").toString();
-            System.out.println(a);
+        <% String a = session.getAttribute("sUserName").toString();
+            if (a == null){
+            System.out.println("no");}
             %>
         <a href="doLogout.jsp" class="headerWidget">
             Logout
