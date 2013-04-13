@@ -1,9 +1,10 @@
 <%@ page pageEncoding="UTF-8" %>
 <!--<div id="header">-->
     <div id="widgetBar">
-
-        <a href="doLogout.jsp" class="headerWidget">
-            Logout
+    
+        
+        <a href="doLogin.jsp" class="headerWidget">
+            Login
         </a>
 
         <a href="index.jsp" class="headerWidget">
