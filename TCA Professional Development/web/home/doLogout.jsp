@@ -7,8 +7,7 @@
     <body>
         <%
  
-        session.removeAttribute("sUserName");
-        session.removeAttribute("sPwd");
+        session.removeAttribute("currentSessionUser");
         session.invalidate();
         response.sendRedirect("../index.jsp");        
         %>
