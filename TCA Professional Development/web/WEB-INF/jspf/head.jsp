@@ -1,10 +1,27 @@
-<%-- 
-    contains everything in <head></head> that all pages need
-    requires parameter "title"
-    not a jspf because the java wouldn't work (?)
---%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page pageEncoding="UTF-8" %>
+<!--<div id="header">-->
+    <div id="widgetBar">
 
-<meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
-<title>TCA Professional Development <%= request.getParameter("title") %></title>
-<link rel="stylesheet" type="text/css" href="../css/TCAProfDev.css" />
+        <a href="login.jsp" class="headerWidget">
+            Login
+        </a>
+
+        <a href="index.jsp" class="headerWidget">
+            Home
+        </a>
+
+    </div>
+
+    <a href="http://www.trinitychristian.org">
+        
+        <img src="http://www.trinitychristian.org/ftpimages/223/podium/style637/images/tcaLogoHP.png" id="headerLogo" alt="TCA">
+    </a>
+
+    <div>
+        
+        <h1 id="headerTitle"> Trinity Christian Academy</h1>
+        
+        <h2 id="headerSubTitle">Professional Development Tracking System</h2>
+        
+    </div>
+<!--</div>-->
