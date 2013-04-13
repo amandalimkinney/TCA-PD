@@ -21,7 +21,7 @@
                     <h1>Login</h1>
                     <p>This site requires authentication. Please enter your credentials to continue.</p>
 
-                    <form name="frmLogin" onSubmit="return validate();" action="doLogin.jsp" method="post" style="margin: 20px 0 0 0;">
+                    <form name="frmLogin" onSubmit="return validate();" action="home/doLogin.jsp" method="post" style="margin: 20px 0 0 0;">
                     <strong>User Name</strong> 
                     <input type="text" name="sUserName" style="margin: 0 0 0 10px;"/><br/><br/>
                     <strong>Password</strong>
