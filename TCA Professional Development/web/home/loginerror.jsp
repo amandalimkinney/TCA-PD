@@ -21,7 +21,7 @@
                     <h1>Invalid Entry!</h1>
                     <p>Your username and/or password was not recognized. Please try again.</p>
 
-                    <form name="frmLogin" onSubmit="return validate();" action="home/doLogin.jsp" method="get" style="margin: 20px 0 0 0;">
+                    <form name="frmLogin" onSubmit="return validate();" action="doLogin.jsp" method="get" style="margin: 20px 0 0 0;">
                     <strong>User Name</strong> 
                     <input type="text" name="sUserName" style="margin: 0 0 0 10px;"/><br/><br/>
                     <strong>Password</strong>
