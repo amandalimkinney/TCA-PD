@@ -40,13 +40,13 @@ public class AccessControl
         
         for(index = 0;index < powers.length;index++)
         {
-            if(splitRequest[0] == powers[index][0])
+            if(splitRequest[0].equals(powers[index][0]))
             {
                 if(splitRequest.length > 1 )
                 {
                     for(int i = 0;i < powers[index].length;i++)
                     {
-                        if(splitRequest[1] == powers[index][i] || powers[index][i] == "ALL" ||(powers[index][i] == "SELF" && splitRequest[1] == accountID))
+                        if(splitRequest[1].equals(powers[index][i]) || "ALL".equals(powers[index][i]) ||("SELF".equals(powers[index][i]) && splitRequest[1].equals(accountID)))
                         {
                             return true;
                         }
