@@ -1,67 +1,72 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Data_Access;
 
+import java.sql.*;
+import java.util.Scanner;
 import Data_Objects.*;
 import java.util.*;
-import ToolBox.*;
-
-/**
- *
- * @author Jeff
- */
+import java.sql.Statement;
+import java.sql.SQLException;
 public class DataAccess 
 {
-    public DataAccess()
-    {
+        static Connection conn = null;
+
         
-    }
-    
-    public static Account getAccount(String accountID) throws Exception
-    {
-        if(accountID.equals("fer10293"))
+        public static void main (String[] args) throws SQLException
         {
-            return new Account(accountID,"Fred","Richards","Middle School","7",
-                "Science","fred@email.com",ToolBox.ConvertStringToDate("08-12-2000"));
+                try
+                {
+                    addHours(new DevelopmentHours("5-1-97","9","te3","test4","test5","test6","test7"),"7");
+                }
+                catch(Exception e)
+                {
+                    System.out.println("AddDevelopmentHours");
+                }
+                
         }
-        if(accountID.equals("gef39482"))
+        public static void addHours(DevelopmentHours toAdd,String accountID)
         {
-            return new Account(accountID,"Gretta","Fernando","Lower School","3",
-                "K - 4","gretta@email.com",ToolBox.ConvertStringToDate("08-01-2010"));
-        }
-        if(accountID.equals("tud30495"))
-        {
-            return new Account(accountID,"Ted","Dabenport","High School","11",
-                "Math","ted@email.com",ToolBox.ConvertStringToDate("07-25-2003"));
-        }
-        if(accountID.equals("pqr03952"))
-        {
-            return new Account(accountID,"Pam","Rodriguez","High School","7",
-                "Science","pam@email.com",ToolBox.ConvertStringToDate("08-03-1995"));
-        }
-        if(accountID.equals("voh00947"))
-        {
-            return new Account(accountID,"Vicki","Hothstadder","Lower School",
-                "1","K - 4","vicki@email.com",ToolBox.ConvertStringToDate("06-30-2008"));
-        }
-        if(accountID.equals("ali33024"))
-        {
-            return new Account(accountID,"Anderson","Ivanavich","Middle School",
-                "8","Science","anderson@email.com",ToolBox.ConvertStringToDate("12-08-1992"));
-        }
-        if(accountID.equals("wkj86845"))
-        {
-            return new Account(accountID,"Wendy","Jacobs","High School","12",
-                "English","wendy@email.com",ToolBox.ConvertStringToDate("08-12-2000"));
-        }
-        
-        return null;
-    }
-    
-    public static void addDevHours(DevelopmentHours devHours)
-    {
-        
-    }
-}
+            String url = "jdbc:mysql://localhost:3307/";
+            String dbName = "tca";
+            String driver = "com.mysql.jdbc.Driver";
+            String userName = "root";
+            String password = "Waheguru011";
+               
+                
+            try
+            {
+                Class.forName(driver).newInstance();
+                conn = DriverManager.getConnection(url+dbName, userName, password);
+                System.out.println("Database connection established");
+                String sqlStatement = "insert into development_hours (id,date,num_hours,method,location,host_organization,topic,type,teacher_id) "
+                + "values('4','" + toAdd.getDate().get(1) +"/" + toAdd.getDate().get(2) + "/" + toAdd.getDate().get(3) +"','" + toAdd.getNumHours() + "','" + toAdd.getMethod() + "','" + toAdd.getLocation() + "','" + toAdd.getHostOrganization() + "','" + toAdd.getTopic() + "','" + toAdd.getType() + "','" + accountID +"')";
+                
+                Statement toRun = conn.createStatement();
+                
+                toRun.execute(sqlStatement);
+                
+                //toRun.executeQuery(sqlStatement);
+            }
+                
+            catch (Exception e)
+            {
+                System.err.println("Cannot connect to database server");
+            }
+                
+               finally
+                {
+                        if(conn != null)
+                        {
+                                try
+                                {
+                                       conn.close();
+                                        System.out.println("Database connection terminated");
+                               }
+                                catch (Exception e)
+                                {
+                                        
+                                }
+                        }
+               }
+        }        }
+
+
