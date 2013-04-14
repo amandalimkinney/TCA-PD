@@ -19,6 +19,7 @@
         
         <a href="../teacher/coursehistory" class="links">Your Course History</a><br>
         <a href="../teacher/coursehistory" class="links">Your Saved PD Hours</a><br>
+         <a href="../instructor/attendace" class="links">Attendance</a><br>
     
     </div>
     

@@ -1,6 +1,7 @@
 
 package Data_Objects;
 
+import ToolBox.*;
 import java.util.*;
 import Data_Access.*;
 import Access_control.*;
@@ -23,7 +24,7 @@ public class Account
         devHours = new LinkedList<DevelopmentHours>();
     }
     
-    public Account(String accountID,String email,String firstName,String lastName,String division,String grade,String subject,Calendar hiredDate)
+    public Account(String accountID,String email,String firstName,String lastName,String division,String grade,String subject,String hiredDate) throws Exception
     {
         super();
         setAccountID(accountID);
@@ -88,7 +89,9 @@ public class Account
     public void setDivision(String division){this.division = division;}
     public void setGrade(String grade){this.grade = grade;}
     public void setSubject(String subject){this.subject = subject;}
-    public void setHiredDate(Calendar hiredDate){this.hiredDate = hiredDate;}
+    public void setHiredDate(String hiredDate) throws Exception{this.hiredDate = ToolBox.ConvertStringToDate(hiredDate);}
+    
+    
     
     
     public String getAccountID(){return accountID;}
@@ -99,5 +102,6 @@ public class Account
     public String getGrade(){return grade;}
     public String getSubject(){return subject;}
     public Calendar getHiredDate(){return hiredDate;}
+    
             
 }
