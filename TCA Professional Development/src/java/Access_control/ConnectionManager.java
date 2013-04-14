@@ -20,14 +20,16 @@ public class ConnectionManager {
          {
             String urlx; 
             // assuming "DataSource" is your DataSource name
-             urlx = "jdbc:mysql://174.122.149.251:3306/lucindig_tca?zeroDateTimeBehavior=convertToNull";
+            //urlx = "jdbc:mysql://174.122.149.251:3306/lucindig_tca?zeroDateTimeBehavior=convertToNull";
+            urlx = "jdbc:mysql://localhost:3306/tca?zeroDateTimeBehavior=convertToNull";
 
             Class.forName("com.mysql.jdbc.Driver");
             
             try
             {            	
-               con = DriverManager.getConnection(urlx,"lucindig_tca3","August2012!"); 
-                								
+               //con = DriverManager.getConnection(urlx,"lucindig_tca3","August2012!"); 
+               con = DriverManager.getConnection(urlx,"root",""); 								
+                
             // assuming your SQL Server's	username is "username"               
             // and password is "password"
                  
