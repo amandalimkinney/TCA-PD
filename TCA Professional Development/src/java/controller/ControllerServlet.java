@@ -9,12 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import Access_Control.*;
 import Data_Objects.*;
+import java.util.Collection;
+import java.util.List;
+import javax.ejb.EJB;
 
 public class ControllerServlet extends HttpServlet {
 
     //Account currentAccount = new Account();
     BusinessTierFunctions funcs = new BusinessTierFunctions();
-    
+    @EJB
+    CourseFacade courseFacade;
 //    @Override
 //    public void init() throws ServletException {
 //
@@ -38,10 +42,10 @@ public class ControllerServlet extends HttpServlet {
         // if category page is requested
         if (userPath.equals("/teacher/viewcourselist")) {
             // TODO: Implement category request
-            
+            List<Access_control.Course> courselist = courseFacade.findAll();
             //request.setAttribute("categoryProducts", categoryProducts);
-            Course[] courseList = Course.getCurrentCourses();
-            getServletContext().setAttribute("courseList", courseList);
+            //Course[] courseList = Course.getCurrentCourses();
+            getServletContext().setAttribute("courseList", courselist);
             //instantiate list of courses
 
             //set this to servlet/app level

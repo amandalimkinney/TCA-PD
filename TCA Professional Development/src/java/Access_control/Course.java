@@ -5,6 +5,7 @@
 package Access_control;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,6 +15,8 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -39,6 +42,29 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Course.findByHours", query = "SELECT c FROM Course c WHERE c.hours = :hours"),
     @NamedQuery(name = "Course.findByEquipment", query = "SELECT c FROM Course c WHERE c.equipment = :equipment")})
 public class Course implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "begin_time")
+    @Temporal(TemporalType.TIME)
+    private Date beginTime;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "end_time")
+    @Temporal(TemporalType.TIME)
+    private Date endTime;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "date")
+    @Temporal(TemporalType.DATE)
+    private Date date;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "course_instructor")
+    private String courseInstructor;
+    @Size(max = 90)
+    @Column(name = "course_assistants")
+    private String courseAssistants;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -80,11 +106,6 @@ public class Course implements Serializable {
     private boolean status;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "date")
-    private String date;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "hours")
     private int hours;
     @Size(max = 45)
@@ -102,7 +123,7 @@ public class Course implements Serializable {
         this.courseId = courseId;
     }
 
-    public Course(Integer courseId, String courseName, String courseType, String courseRoom, String courseDetails, int totalSeats, String description, boolean status, String date, int hours) {
+    public Course(Integer courseId, String courseName, String courseType, String courseRoom, String courseDetails, int totalSeats, String description, boolean status, Date date, int hours) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseType = courseType;
@@ -179,14 +200,6 @@ public class Course implements Serializable {
         this.status = status;
     }
 
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
     public int getHours() {
         return hours;
     }
@@ -242,6 +255,46 @@ public class Course implements Serializable {
     @Override
     public String toString() {
         return "Access_control.Course[ courseId=" + courseId + " ]";
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public String getCourseInstructor() {
+        return courseInstructor;
+    }
+
+    public void setCourseInstructor(String courseInstructor) {
+        this.courseInstructor = courseInstructor;
+    }
+
+    public String getCourseAssistants() {
+        return courseAssistants;
+    }
+
+    public void setCourseAssistants(String courseAssistants) {
+        this.courseAssistants = courseAssistants;
+    }
+
+    public Date getBeginTime() {
+        return beginTime;
+    }
+
+    public void setBeginTime(Date beginTime) {
+        this.beginTime = beginTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
     
 }

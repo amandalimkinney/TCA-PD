@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,61 +28,63 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach var="course" items="${courseList}">
-                            <tr id="courseTableRow">
+                        <c:forEach var="c" items="${courseList}">
+<tr id="courseTableRow">
                                 <td id="courseTableRow"> 
                                     <div>
-                                        <h4> <fmt:message key="${course.name}"/> </h4>
-                                        <p id="courseDescription"> <fmt:message key="${course.description}"/> </p>
+                                        <h4> <c:out value="${c.courseName}"/> </h4>
+                                        <p id="courseDescription"> <c:out value="${c.description}"/> </p>
                                     </div>
-
                                     <div>
                                         <table id='courseDetails'>
                                             <tr>
                                                 <td>Instructor:</td>
-                                                <td>  </t> </td>
-                                                <td><fmt:message key="${course.instructor}"/></td>
+                                                <td><c:out value="${c.courseInstructor}"/></td>
                                             </tr>
-                                            <tr>
+                                           <tr>
                                                 <td>Assistants:</td>
                                                 <td>  </t> </td>
-                                                <td><fmt:message key="${course.assistants}"/></td>
+                                                <td><fmt:message key="${c.courseAssistants}"/></td>
                                             </tr>
+                                                
                                             <tr>
                                                 <td>Date:</td>
                                                 <td>  </t> </td>
-                                                <td><fmt:message key="${course.date}"/></td>
+                                                <td><fmt:formatDate type="date" value="${c.date}" /></td>
                                             </tr>
                                             <tr>
                                                 <td>Location:</td>
-                                                <td>  </t> </td>
-                                                <td><fmt:message key="${course.location}"/></td>
+                                                <td><c:out value="${c.courseRoom}"/></td>
                                             </tr>
-
+                                            
                                             <tr>
                                                 <td>Time:</td>
                                                 <td>  </t> </td>
-                                                <td><fmt:message key="${course.time}"/></td>
+                                                <td><fmt:formatDate type="time" value="${c.beginTime}"/> to <fmt:formatDate type="time" value="${c.endTime}"/></td>
                                             </tr>
-
+                                            
+                                            <tr>
+                                                <td>Number of seats:</td>
+                                                <td>  </t> </td>
+                                                <td><c:out value="${c.totalSeats}"/></td>
+                                            </tr>
+                                            
                                             <tr>
                                                 <td>Notes:</td>
                                                 <td>  </t> </td>
-                                                <td><fmt:message key="${course.other}"/></td>
+                                                <td><c:out value="${c.courseType}"/></td>
                                             </tr>
+
 
                                         </table>
                                     </div>
-
+                                    
                                     <div id="signUp">
-                                        <a href="<c:url value='courselist?${course.id}'/>">
+                                        <a href="<c:url value='courselist?${c.courseId}'/>">
                                             Sign up </a>
                                     </div>
-                                </td>
-                            </tr>
-                        </c:forEach>
-
-
+                                </td></tr>
+</c:forEach>
                     </tbody>
 
                 </table>
