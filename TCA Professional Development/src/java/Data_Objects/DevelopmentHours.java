@@ -6,6 +6,7 @@ package Data_Objects;
 
 import Data_Objects.Teacher;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -17,6 +18,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -39,17 +42,17 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DevelopmentHours.findByTopic", query = "SELECT d FROM DevelopmentHours d WHERE d.topic = :topic"),
     @NamedQuery(name = "DevelopmentHours.findByType", query = "SELECT d FROM DevelopmentHours d WHERE d.type = :type")})
 public class DevelopmentHours implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "date")
+    @Temporal(TemporalType.DATE)
+    private Date date;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "hours_id")
     private Integer hoursId;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 30)
-    @Column(name = "date")
-    private String date;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -91,7 +94,7 @@ public class DevelopmentHours implements Serializable {
         this.hoursId = hoursId;
     }
 
-    public DevelopmentHours(Integer hoursId, String date, String numHours, String method, String location, String hostOrganization, String topic, String type) {
+    public DevelopmentHours(Integer hoursId, Date date, String numHours, String method, String location, String hostOrganization, String topic, String type) {
         this.hoursId = hoursId;
         this.date = date;
         this.numHours = numHours;
@@ -108,14 +111,6 @@ public class DevelopmentHours implements Serializable {
 
     public void setHoursId(Integer hoursId) {
         this.hoursId = hoursId;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public String getNumHours() {
@@ -197,6 +192,14 @@ public class DevelopmentHours implements Serializable {
     @Override
     public String toString() {
         return "Access_control.DevelopmentHours[ hoursId=" + hoursId + " ]";
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
     
 }

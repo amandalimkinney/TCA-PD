@@ -1,24 +1,18 @@
 package controller;
 
 import Data_Access.DevelopmentHours;
-import session.CourseFacade;
-import BusinessTierInterface.*;
-import Data_Access.Account;
 import java.io.IOException;
+import java.util.List;
+import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import Access_Control.*;
-import Data_Objects.*;
-import java.util.Collection;
-import java.util.List;
-import javax.ejb.EJB;
+import session.CourseFacade;
 
 public class ControllerServlet extends HttpServlet {
 
     //Account currentAccount = new Account();
-    BusinessTierFunctions funcs = new BusinessTierFunctions();
     @EJB
     CourseFacade courseFacade;
 //    @Override

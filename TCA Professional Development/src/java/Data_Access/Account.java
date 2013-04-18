@@ -52,11 +52,11 @@ public class Account
         String[] tempIDs = new String[accountIDs.length];
         for(int i=0;i<accountIDs.length;i++)
         {
-            if(AccessControl.hasPower("readAccount:"+accountIDs[i]))
-            {
-                tempIDs[maxIndex] = accountIDs[i];
-                maxIndex++;
-            }
+//            if(AccessControl.hasPower("readAccount:"+accountIDs[i]))
+//            {
+//                tempIDs[maxIndex] = accountIDs[i];
+//                maxIndex++;
+//            }
         }
         
         Account[] accounts = new Account[maxIndex];
