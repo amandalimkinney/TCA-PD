@@ -56,15 +56,10 @@
                             <option value="other"<c:if test="${method != null && method == 'other'}">
                                                      selected="true"</c:if>>Other</option>
                         </select><BR>
-                        Hosting Organization <select name="hostOrg">
-                            <option disabled="true" selected="true">Select one</option>
-                            <option value="1"<c:if test="${hostOrg != null && hostOrg == '1'}">
-                                                     selected="true"</c:if>>popular 1</option>
-                            <option value="2"<c:if test="${hostOrg != null && hostOrg == '2'}">
-                                                     selected="true"</c:if>>popular 2</option>
-                            <option value="other"<c:if test="${hostOrg != null && hostOrg == 'other'}">
-                                                     selected="true"</c:if>>Other</option>
-                        </select><BR>
+                        Hosting Organization <INPUT TYPE=text NAME=hostOrg SIZE=30 maxlength="30"
+                                               <c:if test="${hostOrg != null}">
+                                                     value=<%=request.getAttribute("hostOrg")%>
+                                                 </c:if>><BR>
                         Location <input NAME=location TYPE=radio VALUE="on-site" 
                                         <c:if test="${location != null && location == 'on-site'}">
                                                      checked="true"</c:if>/> On-site
@@ -78,7 +73,7 @@
                                                      checked="true"</c:if>/> Technology
                         <input NAME=type TYPE=radio VALUE="spiritual"  <c:if test="${type != null && type == 'spiritual'}">
                                                     checked="true"</c:if>/> Spiritual<BR>
-                        Topic <INPUT TYPE=TEXT NAME=topicName SIZE=30<c:if test="${topicName != null}">
+                        Topic <INPUT TYPE=TEXT NAME=topicName maxlength="30" SIZE=30<c:if test="${topicName != null}">
                                                      value=<%=request.getAttribute("topicName")%>
                                                  </c:if>><BR>
                         <INPUT TYPE=SUBMIT>

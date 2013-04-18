@@ -4,7 +4,6 @@
  */
 package Data_Objects;
 
-import Data_Objects.Teacher;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -42,11 +41,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DevelopmentHours.findByTopic", query = "SELECT d FROM DevelopmentHours d WHERE d.topic = :topic"),
     @NamedQuery(name = "DevelopmentHours.findByType", query = "SELECT d FROM DevelopmentHours d WHERE d.type = :type")})
 public class DevelopmentHours implements Serializable {
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "date")
-    @Temporal(TemporalType.DATE)
-    private Date date;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,9 +49,13 @@ public class DevelopmentHours implements Serializable {
     private Integer hoursId;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 50)
+    @Column(name = "date")
+    @Temporal(TemporalType.DATE)
+    private Date date;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "num_hours")
-    private String numHours;
+    private int numHours;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -94,7 +92,7 @@ public class DevelopmentHours implements Serializable {
         this.hoursId = hoursId;
     }
 
-    public DevelopmentHours(Integer hoursId, Date date, String numHours, String method, String location, String hostOrganization, String topic, String type) {
+    public DevelopmentHours(Integer hoursId, Date date, int numHours, String method, String location, String hostOrganization, String topic, String type) {
         this.hoursId = hoursId;
         this.date = date;
         this.numHours = numHours;
@@ -113,11 +111,19 @@ public class DevelopmentHours implements Serializable {
         this.hoursId = hoursId;
     }
 
-    public String getNumHours() {
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public int getNumHours() {
         return numHours;
     }
 
-    public void setNumHours(String numHours) {
+    public void setNumHours(int numHours) {
         this.numHours = numHours;
     }
 
@@ -191,15 +197,7 @@ public class DevelopmentHours implements Serializable {
 
     @Override
     public String toString() {
-        return "Access_control.DevelopmentHours[ hoursId=" + hoursId + " ]";
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
+        return "Data_Objects.DevelopmentHours[ hoursId=" + hoursId + " ]";
     }
     
 }

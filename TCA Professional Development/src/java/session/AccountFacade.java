@@ -5,6 +5,7 @@
 package session;
 
 import Data_Objects.Account;
+import Data_Objects.Teacher;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

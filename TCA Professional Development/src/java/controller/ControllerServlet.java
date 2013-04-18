@@ -1,13 +1,17 @@
 package controller;
 
-import Data_Access.DevelopmentHours;
+import ToolBox.Converter;
+import ToolBox.Validator;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import session.AccountFacade;
+import session.AddHoursManager;
 import session.CourseFacade;
 
 public class ControllerServlet extends HttpServlet {
@@ -15,6 +19,13 @@ public class ControllerServlet extends HttpServlet {
     //Account currentAccount = new Account();
     @EJB
     CourseFacade courseFacade;
+    @EJB
+    AddHoursManager addhoursmanager;
+    @EJB
+    AccountFacade account;
+    
+    Converter converter = new Converter();
+    Validator validator = new Validator();
 //    @Override
 //    public void init() throws ServletException {
 //
@@ -117,19 +128,30 @@ public class ControllerServlet extends HttpServlet {
             
 } else */
             if (userPath.equals("/teacher/addhours.jsp-submit")) {
-               
+               //in case of error, send them back
                 userPath = "/teacher/addhours.jsp";
+                
+                String date2 = request.getParameter("date");
+                String numHours2 = request.getParameter("numHours");
+                String method = request.getParameter("method");
+                String hostOrg = request.getParameter("hostOrg");
+                String location = request.getParameter("location");
+                String type = request.getParameter("type");
+                String topicName = request.getParameter("topicName");
+                
+                //check for empty
+                //TODO: replace with Validator class method, validateAddHours
                 if(request.getParameter("date").isEmpty() || request.getParameter("date").length()<10) {
                     request.setAttribute("errormsg", "Incorrect date format (mm/dd/yyyy).");
                 }
                 else if(request.getParameter("numHours").isEmpty()) {
-                    request.setAttribute("errormsg", "Number of hours cannot be empty.");
+                    request.setAttribute("errormsg", "Number of hours cannot be blank.");
                 }
                 else if(request.getParameter("method")== null) {
                     request.setAttribute("errormsg", "Please choose a method.");
                 }
-                else if(request.getParameter("hostOrg")== null) {
-                    request.setAttribute("errormsg", "Please choose a host organization.");
+                else if(request.getParameter("hostOrg").isEmpty()) {
+                    request.setAttribute("errormsg", "Hosting organization cannot be blank.");
                 }
                 else if(request.getParameter("location")== null) {
                     request.setAttribute("errormsg", "Please choose a location.");
@@ -138,42 +160,28 @@ public class ControllerServlet extends HttpServlet {
                     request.setAttribute("errormsg", "Please choose a type.");
                 }
                 else if(request.getParameter("topicName").isEmpty()) {
-                    request.setAttribute("errormsg", "Topic cannot be empty.");
+                    request.setAttribute("errormsg", "Topic cannot be blank.");
                 }
-            //getServletContext().setAttribute("errormsg", "ERROR");
-                else {try{
-                //TODO: fix this input for all things
-            DevelopmentHours newHours = new DevelopmentHours(request.getParameter("date"), 
-                    request.getParameter("numHours"), 
-                    request.getParameter("method"),
-                    request.getParameter("location"),
-                    request.getParameter("type"),
-                    request.getParameter("hostOrg"),
-                    request.getParameter("topicName"));
-            userPath = "teacher/addhoursconfirmation.jsp";
-            
+                else {
+                    try{
+                        Date date = converter.ConvertStringToDate(date2);
+                        int numHours = converter.ConvertStringToInt(numHours2);
+                        addhoursmanager.addHours(date, numHours, method, hostOrg, location, type, topicName);
+                        userPath = "/teacher/addhoursconfirmation.jsp";
                     }
-            catch(Exception e)
+                    catch(Exception e)
                     {
-//                        request.setAttribute("date", request.getParameter("date"));
-//                        request.setAttribute("numHours", request.getParameter("numHours"));
-//                        request.setAttribute("method", request.getParameter("method"));
-//                        request.setAttribute("location", request.getParameter("location"));
-//                        request.setAttribute("type", request.getParameter("type"));
-//                        request.setAttribute("hostOrg", request.getParameter("hostOrg"));
-//                        request.setAttribute("topicName", request.getParameter("topicName"));
                         request.setAttribute("errormsg", e);
                         userPath = "/teacher/addhours.jsp";
                     }
                 }
-                        request.setAttribute("date", request.getParameter("date"));
-                        request.setAttribute("numHours", request.getParameter("numHours"));
-                        request.setAttribute("method", request.getParameter("method"));
-                        request.setAttribute("location", request.getParameter("location"));
-                        request.setAttribute("type", request.getParameter("type"));
-                        request.setAttribute("hostOrg", request.getParameter("hostOrg"));
-                        request.setAttribute("topicName", request.getParameter("topicName"));
-                //userPath = "/teacher/addhours.jsp";
+                    request.setAttribute("date", request.getParameter("date"));
+                    request.setAttribute("numHours", request.getParameter("numHours"));
+                    request.setAttribute("method", request.getParameter("method"));
+                    request.setAttribute("location", request.getParameter("location"));
+                    request.setAttribute("type", request.getParameter("type"));
+                    request.setAttribute("hostOrg", request.getParameter("hostOrg"));
+                    request.setAttribute("topicName", request.getParameter("topicName"));
         } else if (userPath.equals("/teacher/courselist.jsp/signup")) {
             // TODO: Implement update cart action
 
