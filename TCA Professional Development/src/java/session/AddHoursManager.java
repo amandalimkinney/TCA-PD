@@ -1,4 +1,4 @@
-package Beans;
+package session;
 
 import javax.ejb.Stateless;
 

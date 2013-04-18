@@ -4,6 +4,7 @@
  */
 package Access_control;
 
+import Data_Objects.Teacher;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;

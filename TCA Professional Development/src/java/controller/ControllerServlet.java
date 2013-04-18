@@ -1,5 +1,6 @@
 package controller;
 
+import session.CourseFacade;
 import BusinessTierInterface.*;
 import Data_Objects.Account;
 import java.io.IOException;

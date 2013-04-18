@@ -2,8 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Access_control;
+package Data_Objects;
 
+import Access_control.Attendance;
+import Access_control.CourseSignupQueue;
+import Access_control.DevelopmentHours;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;

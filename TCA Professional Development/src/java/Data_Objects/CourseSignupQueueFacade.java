@@ -4,6 +4,7 @@
  */
 package Data_Objects;
 
+import session.AbstractFacade;
 import Access_control.CourseSignupQueue;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;

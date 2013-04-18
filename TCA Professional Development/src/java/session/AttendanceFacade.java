@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Data_Objects;
+package session;
 
-import Access_control.Course;
+import Access_control.Attendance;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +14,7 @@ import javax.persistence.PersistenceContext;
  * @author Panda
  */
 @Stateless
-public class CourseFacade extends AbstractFacade<Course> {
+public class AttendanceFacade extends AbstractFacade<Attendance> {
     @PersistenceContext(unitName = "TCA_Professional_DevelopmentPU")
     private EntityManager em;
 
@@ -23,8 +23,8 @@ public class CourseFacade extends AbstractFacade<Course> {
         return em;
     }
 
-    public CourseFacade() {
-        super(Course.class);
+    public AttendanceFacade() {
+        super(Attendance.class);
     }
     
 }
