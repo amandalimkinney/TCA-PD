@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Data_Objects;
+package session;
 
-import session.AbstractFacade;
-import Access_control.CourseSignupQueue;
+import Data_Objects.Teacher;
+import Data_Objects.Teacher;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -15,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Panda
  */
 @Stateless
-public class CourseSignupQueueFacade extends AbstractFacade<CourseSignupQueue> {
+public class TeacherFacade extends AbstractFacade<Teacher> {
     @PersistenceContext(unitName = "TCA_Professional_DevelopmentPU")
     private EntityManager em;
 
@@ -24,8 +24,8 @@ public class CourseSignupQueueFacade extends AbstractFacade<CourseSignupQueue> {
         return em;
     }
 
-    public CourseSignupQueueFacade() {
-        super(CourseSignupQueue.class);
+    public TeacherFacade() {
+        super(Teacher.class);
     }
     
 }

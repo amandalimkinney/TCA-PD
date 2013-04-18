@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Access_control;
+package Data_Objects;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -15,7 +15,7 @@ import javax.validation.constraints.NotNull;
  * @author Panda
  */
 @Embeddable
-public class AttendancePK implements Serializable {
+public class CourseSignupQueuePK implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "course_id")
@@ -25,10 +25,10 @@ public class AttendancePK implements Serializable {
     @Column(name = "teacher_id")
     private int teacherId;
 
-    public AttendancePK() {
+    public CourseSignupQueuePK() {
     }
 
-    public AttendancePK(int courseId, int teacherId) {
+    public CourseSignupQueuePK(int courseId, int teacherId) {
         this.courseId = courseId;
         this.teacherId = teacherId;
     }
@@ -60,10 +60,10 @@ public class AttendancePK implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof AttendancePK)) {
+        if (!(object instanceof CourseSignupQueuePK)) {
             return false;
         }
-        AttendancePK other = (AttendancePK) object;
+        CourseSignupQueuePK other = (CourseSignupQueuePK) object;
         if (this.courseId != other.courseId) {
             return false;
         }
@@ -75,7 +75,7 @@ public class AttendancePK implements Serializable {
 
     @Override
     public String toString() {
-        return "Access_control.AttendancePK[ courseId=" + courseId + ", teacherId=" + teacherId + " ]";
+        return "Access_control.CourseSignupQueuePK[ courseId=" + courseId + ", teacherId=" + teacherId + " ]";
     }
     
 }

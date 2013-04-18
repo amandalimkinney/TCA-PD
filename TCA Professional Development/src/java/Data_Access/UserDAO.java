@@ -2,12 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Access_control;
+package Data_Access;
 
 /**
  *
  * @author Erik
  */
+import Access_control.ConnectionManager;
 import java.text.*;
 import java.util.*;
 import java.sql.*;

@@ -1,8 +1,9 @@
 package controller;
 
+import Data_Access.DevelopmentHours;
 import session.CourseFacade;
 import BusinessTierInterface.*;
-import Data_Objects.Account;
+import Data_Access.Account;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -43,7 +44,7 @@ public class ControllerServlet extends HttpServlet {
         // if category page is requested
         if (userPath.equals("/teacher/viewcourselist")) {
             // TODO: Implement category request
-            List<Access_control.Course> courselist = courseFacade.findAll();
+            List<Data_Objects.Course> courselist = courseFacade.findAll();
             //request.setAttribute("categoryProducts", categoryProducts);
             //Course[] courseList = Course.getCurrentCourses();
             getServletContext().setAttribute("courseList", courselist);

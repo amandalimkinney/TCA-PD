@@ -4,7 +4,8 @@
  */
 package session;
 
-import Data_Objects.Teacher;
+import session.AbstractFacade;
+import Data_Objects.CourseSignupQueue;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,7 +15,7 @@ import javax.persistence.PersistenceContext;
  * @author Panda
  */
 @Stateless
-public class TeacherFacade extends AbstractFacade<Teacher> {
+public class CourseSignupQueueFacade extends AbstractFacade<CourseSignupQueue> {
     @PersistenceContext(unitName = "TCA_Professional_DevelopmentPU")
     private EntityManager em;
 
@@ -23,8 +24,8 @@ public class TeacherFacade extends AbstractFacade<Teacher> {
         return em;
     }
 
-    public TeacherFacade() {
-        super(Teacher.class);
+    public CourseSignupQueueFacade() {
+        super(CourseSignupQueue.class);
     }
     
 }

@@ -4,7 +4,7 @@
  */
 package session;
 
-import Access_control.Attendance;
+import Data_Objects.Attendance;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

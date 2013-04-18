@@ -4,7 +4,7 @@
  */
 package session;
 
-import Access_control.Account;
+import Data_Objects.Account;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Access_control;
+package Data_Objects;
 
+import Data_Objects.Account;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;

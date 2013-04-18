@@ -4,7 +4,7 @@
  */
 package session;
 
-import Access_control.Course;
+import Data_Objects.Course;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

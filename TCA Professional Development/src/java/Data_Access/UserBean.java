@@ -1,5 +1,5 @@
 
-package Access_control;
+package Data_Access;
 
 public class UserBean {
 	

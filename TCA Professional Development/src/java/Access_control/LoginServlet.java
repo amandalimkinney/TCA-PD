@@ -4,6 +4,8 @@
  */
 package Access_control;
 
+import Data_Access.UserDAO;
+import Data_Access.UserBean;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;

@@ -1,279 +1,302 @@
-
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Data_Objects;
 
-import java.util.*;
-import Data_Access.*;
-import ToolBox.*;
+import Data_Objects.CourseSignupQueue;
+import Data_Objects.Attendance;
+import java.io.Serializable;
+import java.util.Date;
+import javax.persistence.Basic;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
-public class Course 
-{
-    private List<String> 
-        attendees,
-        waitList,
-        assistantInstructors,
-        materials,
-        attendance;
-    
-    
-    
-    private String 
-        courseID,
-        courseName,
-        type,
-        room,
-        instructorID,
-        details;
-    
-    private Calendar
-        date;
-    
-    private int
-        hours,
-        totalSeats;
-    
-    public Course()
-    {
-        attendees = new ArrayList();
-        waitList = new ArrayList();
-        assistantInstructors = new ArrayList();
-        materials = new ArrayList();
+/**
+ *
+ * @author Panda
+ */
+@Entity
+@Table(name = "course")
+@XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "Course.findAll", query = "SELECT c FROM Course c"),
+    @NamedQuery(name = "Course.findByCourseId", query = "SELECT c FROM Course c WHERE c.courseId = :courseId"),
+    @NamedQuery(name = "Course.findByCourseName", query = "SELECT c FROM Course c WHERE c.courseName = :courseName"),
+    @NamedQuery(name = "Course.findByCourseType", query = "SELECT c FROM Course c WHERE c.courseType = :courseType"),
+    @NamedQuery(name = "Course.findByCourseRoom", query = "SELECT c FROM Course c WHERE c.courseRoom = :courseRoom"),
+    @NamedQuery(name = "Course.findByCourseDetails", query = "SELECT c FROM Course c WHERE c.courseDetails = :courseDetails"),
+    @NamedQuery(name = "Course.findByTotalSeats", query = "SELECT c FROM Course c WHERE c.totalSeats = :totalSeats"),
+    @NamedQuery(name = "Course.findByDescription", query = "SELECT c FROM Course c WHERE c.description = :description"),
+    @NamedQuery(name = "Course.findByStatus", query = "SELECT c FROM Course c WHERE c.status = :status"),
+    @NamedQuery(name = "Course.findByDate", query = "SELECT c FROM Course c WHERE c.date = :date"),
+    @NamedQuery(name = "Course.findByHours", query = "SELECT c FROM Course c WHERE c.hours = :hours"),
+    @NamedQuery(name = "Course.findByEquipment", query = "SELECT c FROM Course c WHERE c.equipment = :equipment")})
+public class Course implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "begin_time")
+    @Temporal(TemporalType.TIME)
+    private Date beginTime;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "end_time")
+    @Temporal(TemporalType.TIME)
+    private Date endTime;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "date")
+    @Temporal(TemporalType.DATE)
+    private Date date;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "course_instructor")
+    private String courseInstructor;
+    @Size(max = 90)
+    @Column(name = "course_assistants")
+    private String courseAssistants;
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "course_id")
+    private Integer courseId;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "course_name")
+    private String courseName;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "course_type")
+    private String courseType;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "course_room")
+    private String courseRoom;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "course_details")
+    private String courseDetails;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "total_seats")
+    private int totalSeats;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "description")
+    private String description;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "status")
+    private boolean status;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "hours")
+    private int hours;
+    @Size(max = 45)
+    @Column(name = "equipment")
+    private String equipment;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "course")
+    private CourseSignupQueue courseSignupQueue;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "course")
+    private Attendance attendance;
+
+    public Course() {
     }
-    
-    public Course(String[] attendees,String[] waitList,String[] assistantInstructors,String[] materials,String courseID,String courseName,String type,String room,String instructorID,String details,String date,int hours,int totalSeats) throws Exception
-    {
-        super();
-        setAttendees(attendees);
-        setWaitList(waitList);
-        setAssistantInstructors(assistantInstructors);
-        setMaterials(materials);
-        setCourseName(courseName);
-        setType(type);
-        setDate(ToolBox.ConvertStringToDate(date));
-        setDetails(details);
-        setHours(hours);
-        setInstructorID(instructorID);
-        setRoom(room);
-        setTotalSeats(totalSeats);
+
+    public Course(Integer courseId) {
+        this.courseId = courseId;
     }
-    
-    
-    
-    public static void addCourse(String courseName,String Type,String Room,String InstructorID,String[] assistantInstructors,String[] materials,String details,String Date, int hours,int seats) throws Exception
-    {
-        //if(AccessControl.hasPower("addCourse"))
-        //{
-            Course toAdd = new Course();
-            toAdd.setAssistantInstructors(assistantInstructors);
-            toAdd.setCourseName(courseName);
-            toAdd.setType(Type);
-            toAdd.setDate(ToolBox.ConvertStringToDate(Date));
-            toAdd.setDetails(details);
-            toAdd.setHours(hours);
-            toAdd.setInstructorID(InstructorID);
-            toAdd.setMaterials(materials);
-            toAdd.setRoom(Room);
-            toAdd.setTotalSeats(seats);
-            //toAdd.setCourseID(DataAccess.getNextCourseID());
-            //DataAccess.addCourse(toAdd);
-        //}
-        
+
+    public Course(Integer courseId, String courseName, String courseType, String courseRoom, String courseDetails, int totalSeats, String description, boolean status, Date date, int hours) {
+        this.courseId = courseId;
+        this.courseName = courseName;
+        this.courseType = courseType;
+        this.courseRoom = courseRoom;
+        this.courseDetails = courseDetails;
+        this.totalSeats = totalSeats;
+        this.description = description;
+        this.status = status;
+        this.date = date;
+        this.hours = hours;
     }
-    
-    public static void modifyCourse(String courseID,String courseName,String Type,String Room,String InstructorID,String[] assistantInstructors,String[] materials,String details,String Date, int hours,int seats) throws Exception
-    {
-        //if(AccessControl.hasPower("modifyCourse:" + courseID))
-        //{
-            Course toModify = new Course();//Remove This when Data Acces is complete
-            //Course toModify = DataAccess.getCourse(courseID);
-            toModify.setAssistantInstructors(assistantInstructors);
-            toModify.setCourseName(courseName);
-            toModify.setType(Type);
-            toModify.setDate(ToolBox.ConvertStringToDate(Date));
-            toModify.setDetails(details);
-            toModify.setHours(hours);
-            toModify.setInstructorID(InstructorID);
-            toModify.setMaterials(materials);
-            toModify.setRoom(Room);
-            toModify.setTotalSeats(seats);
-            //DataAccess.saveCourse(toModify);
-        //}
-        
+
+    public Integer getCourseId() {
+        return courseId;
     }
-    
-    public static void deleteCourse(String CourseID)
-    {
-        //if(AccessControl.hasPower("modifyCourse:" + courseID))
-        //{
-            //DataAccess.deleteCourse(courseID);
-        //}
+
+    public void setCourseId(Integer courseId) {
+        this.courseId = courseId;
     }
-    
-    public static Course[] searchCourses(Course min,Course max)
-    {
-        Course[] toReturn = null;
-        //toReturn = DataAccess.searchCourses(min,max)
-        //toReturn = AccessControl.cleanCourses(toReturn)
-        return null;
+
+    public String getCourseName() {
+        return courseName;
     }
-    
-    public static Course[] searchCourses(Calendar min, Calendar max)
-    {
-        return null;
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
-    
-    public static Course[] getCurrentCourses()
-    {
-        /*if(AccessControl.hasPower("getCourses"))
-        {
-            Course[] toReturn = DataAccess.getCurrentCourses();
+
+    public String getCourseType() {
+        return courseType;
+    }
+
+    public void setCourseType(String courseType) {
+        this.courseType = courseType;
+    }
+
+    public String getCourseRoom() {
+        return courseRoom;
+    }
+
+    public void setCourseRoom(String courseRoom) {
+        this.courseRoom = courseRoom;
+    }
+
+    public String getCourseDetails() {
+        return courseDetails;
+    }
+
+    public void setCourseDetails(String courseDetails) {
+        this.courseDetails = courseDetails;
+    }
+
+    public int getTotalSeats() {
+        return totalSeats;
+    }
+
+    public void setTotalSeats(int totalSeats) {
+        this.totalSeats = totalSeats;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public int getHours() {
+        return hours;
+    }
+
+    public void setHours(int hours) {
+        this.hours = hours;
+    }
+
+    public String getEquipment() {
+        return equipment;
+    }
+
+    public void setEquipment(String equipment) {
+        this.equipment = equipment;
+    }
+
+    public CourseSignupQueue getCourseSignupQueue() {
+        return courseSignupQueue;
+    }
+
+    public void setCourseSignupQueue(CourseSignupQueue courseSignupQueue) {
+        this.courseSignupQueue = courseSignupQueue;
+    }
+
+    public Attendance getAttendance() {
+        return attendance;
+    }
+
+    public void setAttendance(Attendance attendance) {
+        this.attendance = attendance;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (courseId != null ? courseId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Course)) {
+            return false;
         }
-        return toReturn;*/
-        
-        return null;
-    }
-    
-    
-    public static void updateAttendance(String courseID,String[] attendance)
-    {
-        //if(AccessControl.hasPower("updateAttendance:" + courseID))
-        //DataAccess.updateAttendance(courseID,attendance);
-    }
-    
-    public static void addAttendee(String courseID,String attendeeID)
-    {
-        //Course toModify = DataAccess.getCourse(courseID);
-        //if(toModify.addAttendee(attendeeID))
-        //DataAccess.saveCourse(toModify);
-    }
-    
-    public static void addToWaitList(String courseID,String waitListedID)
-    {
-        //Course toModify = DataAccess.getCourse(courseID);
-        //if(toModify.addWaitList(attendeeID))
-        //DataAccess.saveCourse(toModify);
-    }
-    
-    public boolean addAttendee(String attendeeID)throws Exception
-    {
-        //if(AccessControl.hasPower("addAttendee:" + courseID + ":" + attendeeID))
-        //{
-            if(attendees.size() >= totalSeats)
-            {
-                //if(DataAccess.isValidID(attendeeID))
-                //{
-                    attendees.add(attendeeID);
-                    return true;
-                //}
-                //else
-                //{
-                    //throw new Exception("Invalid ID");
-                //}
-            }
-            else
-            {
-                throw new Exception("No Seats Left, Would You Like To Be Placed On the Waitlist?");
-            }
-        //}
-        //return false;
-    }
-    
-    public boolean addToWaitList(String attendeeID)throws Exception
-    {
-        //if(AccessControl.hasPower("addAttendee:" + courseID + ":" + attendeeID))
-        //{
-            //if(DataAccess.isValidID(attendeeID))
-            //{
-                waitList.add(attendeeID);
-                return true;
-            //}
-            //else
-            //{
-                //throw new Exception("Invalid ID");
-            //}
-        //}
-        //return false;
-    }
-    
-    public void setAttendees(String[] attendees)
-    {
-        for(int i=0;i<attendees.length;i++)
-        {
-            if(attendees[i] != null)
-            this.attendees.add(attendees[i]);
+        Course other = (Course) object;
+        if ((this.courseId == null && other.courseId != null) || (this.courseId != null && !this.courseId.equals(other.courseId))) {
+            return false;
         }
+        return true;
     }
-    public void setAttendance(String[] attendance)
-    {
-        for(int i=0;i<attendance.length;i++)
-        {
-            if(attendance[i] != null)
-            this.attendance.add(attendance[i]);
-        }
+
+    @Override
+    public String toString() {
+        return "Access_control.Course[ courseId=" + courseId + " ]";
     }
-    public void setWaitList(String[] waitList)
-    {
-        for(int i=0;i<waitList.length;i++)
-        {
-            if(waitList[i] != null)
-            this.waitList.add(waitList[i]);
-        }
+
+    public Date getDate() {
+        return date;
     }
-    public void setAssistantInstructors(String[] assistantInstructors)
-    {
-        for(int i=0;i<assistantInstructors.length;i++)
-        {
-            if(assistantInstructors[i] != null)
-            this.assistantInstructors.add(assistantInstructors[i]);
-        }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
-    public void setMaterials(String[] materials)
-    {
-        for(int i=0;i<materials.length;i++)
-        {
-            if(materials[i] != null)
-            this.materials.add(materials[i]);
-        }
+
+    public String getCourseInstructor() {
+        return courseInstructor;
     }
-    
-    public void setCourseID(String courseID){if(courseID != null)this.courseID = courseID;}
-    public void setCourseName(String courseName){if(courseName != null)this.courseName = courseName;}
-    public void setType(String type){if(type != null)this.type = type;}
-    public void setRoom(String room){if(room != null)this.room = room;}
-    public void setInstructorID(String instructorID){if(instructorID != null)this.instructorID = instructorID;}
-    public void setDetails(String details){if(details != null)this.details = details;}
-    public void setDate(Calendar date){if(date != null)this.date = date;}
-    public void setHours(int hours){if(hours > 0)this.hours = hours;}
-    public void setTotalSeats(int totalSeats){if(totalSeats > 0)this.totalSeats = totalSeats;}
-    
-    public String[] getAttendees()
-    {
-        return (String[])attendees.toArray();
+
+    public void setCourseInstructor(String courseInstructor) {
+        this.courseInstructor = courseInstructor;
     }
-    public String[] getAttendance()
-    {
-        return (String[])attendance.toArray();
+
+    public String getCourseAssistants() {
+        return courseAssistants;
     }
-    public String[] getWaitList()
-    {
-        return (String[])waitList.toArray();
+
+    public void setCourseAssistants(String courseAssistants) {
+        this.courseAssistants = courseAssistants;
     }
-    public String[] getAssistantInstructors()
-    {
-        return (String[])assistantInstructors.toArray();
+
+    public Date getBeginTime() {
+        return beginTime;
     }
-    public String[] getMaterials()
-    {
-        return (String[])materials.toArray();
+
+    public void setBeginTime(Date beginTime) {
+        this.beginTime = beginTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
     }
     
-    public String getCourseID(){return courseID;}
-    public String getCourseName(){return courseName;}
-    public String getType(){return type;}
-    public String getRoom(){return room;}
-    public String getInstructorID(){return instructorID;}
-    public String getDetails(){return details;}
-    public Calendar getDate(){return date;}
-    public int getHours(){return hours;}
-    public int getTotalSeats(){return totalSeats;}
-   
 }

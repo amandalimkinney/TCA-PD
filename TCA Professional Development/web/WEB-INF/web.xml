@@ -7,16 +7,16 @@
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>Access_control.LoginServlet</servlet-class>
-    </servlet> 
+    </servlet>
     <servlet>
         <servlet-name>GetCourseServlet</servlet-name>
-        <servlet-class>Data_Objects.GetCourseServlet</servlet-class>
-    </servlet>     
+        <servlet-class>Data_Access.GetCourseServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/home/doLogin.jsp</url-pattern>
     </servlet-mapping>
-        <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>GetCourseServlet</servlet-name>
         <url-pattern>/teacher/doRegister.jsp</url-pattern>
     </servlet-mapping>

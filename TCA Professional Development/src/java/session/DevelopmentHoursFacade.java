@@ -4,7 +4,7 @@
  */
 package session;
 
-import Access_control.DevelopmentHours;
+import Data_Objects.DevelopmentHours;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

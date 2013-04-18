@@ -4,6 +4,8 @@
  */
 package Scheduler;
 
+import Data_Access.Course;
+import Data_Access.Account;
 import Data_Objects.*;
 import java.util.*;
 

@@ -4,7 +4,7 @@
  */
 package session;
 
-import Access_control.HeadOfSchool;
+import Data_Objects.HeadOfSchool;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
