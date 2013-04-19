@@ -1,0 +1,281 @@
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    width:  1000px;
+    /*text-align: center;*/
+    margin: auto auto auto auto;
+   
+}
+
+#main {
+    background: #FFFFFF;
+    width: auto;
+    height: auto;
+}
+
+
+
+#header {
+    height: 175px;
+    background: #024274; 
+    text-align: center;
+}
+
+#headerLogo {
+    height: 150px;
+    width: 250px;
+    float: left;
+    margin-left: 30px;
+    margin-top: -30px;
+}
+
+#headerTitle {
+    float: none;
+    width: 900px;
+    /*text-align: center;*/
+    margin: 20px 0 0 90px;
+    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+    font-size: 40px;
+    color: #FFFFFF;
+}
+
+#headerSubTitle {
+    float: none;
+    width: 900px;
+    margin: 15px 0 0 95px;
+    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+#widgetBar {
+    height: 40px;
+    background: #BDBDBD;
+    border-bottom: 2px solid;
+}
+
+.headerWidget {
+    width: 50px;
+    margin: 20px 15px;
+    font-size: small;
+    float: right;
+    line-height: 4px;
+    background: #BDBDBD;
+}
+
+#footer {
+    height: 90px;
+    margin-top: 0px;
+    clear: left;
+    background: #BDBDBD;
+    border-top: 2px solid black;
+}
+
+#mission {
+    margin-top: 0px;
+    
+    
+}
+
+#missionTitle {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    margin-left: 10px;
+    text-align: center;
+    font-size: 14px;
+    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+}
+
+#missionStatement {
+    margin-top: 5px;
+    text-align: left;
+    font-size: 11px;
+    font-family:"Times New Roman",Georgia,Serif;
+    margin-right: 250px;
+    margin-left: 250px;
+}
+
+#footerLogo {
+    margin-left: 850px;
+    height: 35px;
+    width: 35px;
+    margin-top: -85px;
+    float: top;
+}
+
+#sideBar {
+    height: auto;
+    width: 250px;
+    float: left;
+    background: #024274;
+    border-bottom: 2px solid;
+    border-top: 2px solid;
+    border-right: 2px solid;
+    
+}
+
+#sideMenu {
+    margin: 10px 10px 10px 10px;
+    background: #FAFAFA;
+    height: 400px;
+    width: 225px;
+    border: 2px solid;
+}
+
+#linkLabel {
+    font-size: 16px;
+    
+    font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
+    margin: 0px 0px 0px 0px;
+    background: #CEECF5;
+    text-align: center;
+    line-height: 40px;
+    height: 40px;
+    border-bottom: 1px solid black;
+    
+}
+
+#standardLinks {
+    margin-top: 10px;
+    height: 142px;
+    border-bottom: 1px solid black;
+}
+
+#roleLinks {
+    margin-top: 10px;
+    height: 142px;
+}
+.links {
+    text-align: left;
+    margin-left: 20px;
+    line-height: 20px;
+}
+
+#pageBody {
+    height: auto;
+    width: auto;
+    float: none;
+    background: #FAFAFA;
+    border-top: 2px solid;
+    margin-left: 250px;
+}
+
+#upcomingCourses {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    background: #E6E6E6;
+    margin: 20px;
+}
+
+#announcements {
+    width: 355px;
+    height: 300px;
+    border: 1px solid black;
+    background: #E6E6E6;
+    margin-top: -220px;
+    margin-left: 300px;
+}
+
+#page1div {
+    height: auto;
+    width: auto;
+    float: none;
+    background: #FAFAFA;
+    border-top: 2px solid;
+    padding-left: 250px;
+    border-left: 2px solid #000;
+    border-right: 2px solid #000;
+}
+
+tr, td {
+    /*border: 1px solid black;*/
+}
+
+th {
+    font-size: 20px;
+}
+
+.courseTable {
+    margin: 20px 20px 20px;
+    width: 713px;
+    border-color: black;
+    border: 3px solid;
+    height: 385px;
+    background: #FAFAFA; 
+    vertical-align: top;
+    border-spacing: 10px;
+}
+
+.tableHead {
+    width: 610px;
+    height: 50px;
+    background: #FAFAFA;
+    text-align: left;
+    line-height: 25px;
+    border: 1px solid black;
+    
+}
+
+h4 {
+    margin-top: 5px;
+    margin-left: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.courseLabelText {
+    line-height: 30px;
+    font-size: 16px;
+    
+}
+
+#courseTableRow {
+    border: 1px solid black;
+    width: 215px;
+    float: none;
+   /* margin: 25px;*/
+    background: #F2F2F2;
+    vertical-align: top;
+    margin-bottom: 5px;
+}
+
+#courseDescription {
+    font-size: 12px;
+    margin-top: 10px;
+    height: 100px;
+}
+
+#courseDetails {
+    width: 200px;
+    height: 130px;
+    margin-left: 10px;
+    font-size: 12px;
+    margin-top: 10px;
+    border-spacing: 7px;
+    border: 1px solid #black;
+    margin-bottom: 10px;
+}
+
+#signUp {
+    margin-bottom: 5px;
+    margin-right: 5px;
+    margin-top: 25px;
+    margin-left: 165px;
+    font-size: 12px;
+}
+
+#addCourseBox {
+    width: 500px;
+    height: 700px;
+    margin: 20px 20px 20px 100px;
+    border: 1px solid black;
+    background: #E6E6E6;
+}
+
+#submit {
+    width: 100px;
+    line-height: 20px;
+    margin: 625px 10px 20px 400px;
+    font-size: 14px;
+}
