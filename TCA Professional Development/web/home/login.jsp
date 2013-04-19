@@ -2,27 +2,40 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <jsp:include flush="true" page="../WEB-INF/jspf/head.jsp">
-            <jsp:param name="title" value="Log In"/>
-        </jsp:include>
+
+        <meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
+              <title>TCA Professional Development Home</title>
+        <link rel="stylesheet" type="text/css" href="css/TCAProfDev.css" />
     </head>
+
     <body>
-        <div id="header">
-                <%@include file="../WEB-INF/jspf/header.jspf" %>
+        <div id="main">
+            <div id="header">
+                <%@include file="/WEB-INF/jspf/indexheader.jspf" %>
+            </div>
+
+            <div id="page1div">
+                    
+                    <h1>Login</h1>
+                    <p>This site requires authentication. Please enter your credentials to continue.</p>
+                    <form name="loginForm" method="POST" action="/TCA_Professional_Development/home/doLogin.jsp" style="margin: 20px 0 0 0;">
+                    <strong>Username: </strong>
+                    <input type="text" name="j_username" size="25" style="margin: 0 0 0 10px;"/><br/><br/>
+                    <strong>Password: </strong>
+                    <input type="password" size="25" name="j_password" style="margin: 0 0 0 17px;"/><br/><br/>
+                    <input type="submit" value="Submit" style="margin: 25px 0 0 0;"/>
+                    <input type="reset" value="Reset" style="margin: 25px 0 0 0;"/>
+                    </form>            
+                    
+                    <p>&nbsp;</p>
+                    
+
+                
+            </div>
+            <div id="footer">
+                <%@include file="/WEB-INF/jspf/footer.jspf" %>
+            </div>
         </div>
 
-        <div id="sideBar">
-            <%@include file="../WEB-INF/jspf/sidebar.jspf" %>
-        </div>
-        <div id="pageBody">
-            <form name="frmLogin" onSubmit="return validate();" action="doLogin.jsp" method="post">
-User Name <input type="text" name="sUserName" /><br />
-Password <input type="password" name="sPwd" /><br />
-<input type="submit" name="sSubmit" value="Submit" />
-</form>
-        </div>
-        <div id="footer">
-                <%@include file="../WEB-INF/jspf/footer.jspf" %>
-            </div>
     </body>
 </html>

@@ -5,6 +5,9 @@
         <title>JSP Page</title>
     </head>
     <body>
-       
+       <%
+String temp = ""; 
+            
+        %>
     </body>
 </html>

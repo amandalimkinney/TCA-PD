@@ -7,16 +7,12 @@
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>Access_control.LoginServlet</servlet-class>
-    </servlet> 
+    </servlet>
     <servlet>
         <servlet-name>GetCourseServlet</servlet-name>
         <servlet-class>Data_Objects.GetCourseServlet</servlet-class>
-    </servlet>     
+    </servlet>
     <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/home/doLogin.jsp</url-pattern>
-    </servlet-mapping>
-        <servlet-mapping>
         <servlet-name>GetCourseServlet</servlet-name>
         <url-pattern>/teacher/doRegister.jsp</url-pattern>
     </servlet-mapping>
@@ -26,9 +22,63 @@
         <url-pattern>/teacher/addhours</url-pattern>
         <url-pattern>/teacher/viewcourselist</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/home/doLogin.jsp</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <security-constraint>
+        <!-- web resources that are protected -->
+        <web-resource-collection>
+            <web-resource-name>All Resources</web-resource-name>
+            <url-pattern>/home/index.jsp</url-pattern>
+            <!-- All methods but OPTIONS must be authenticated. OPTIONS must work without authentication for cross domain in Firefox to work -->
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <web-resource-collection>
+            <web-resource-name>admin</web-resource-name>
+            <description/>
+            <url-pattern>/admin/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <!-- role-name indicates roles that are allowed to access the web resource specified above -->
+            <description>
+            Let only admins use this app
+      </description>
+            <role-name>administrator</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <security-constraint>
+        <display-name>teacher</display-name>
+        <web-resource-collection>
+            <web-resource-name>teacher</web-resource-name>
+            <description/>
+            <url-pattern>/teacher/*</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>POST</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description>teachers and admins</description>
+            <role-name>administrator</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>file</realm-name>
+        <form-login-config>
+            <form-login-page>/home/login.jsp</form-login-page>
+            <form-error-page>/home/loginerror.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
+    <security-role>
+        <description/>
+        <role-name>administrator</role-name>
+    </security-role>
 </web-app>
