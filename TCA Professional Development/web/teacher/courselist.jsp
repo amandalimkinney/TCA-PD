@@ -1,3 +1,4 @@
+<%@page import="session.CourseFacade"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,15 +21,11 @@
 
             <div id="pageBody">
                 <%--<%@include file="../WEB-INF/jspf/courseTable.jspf" %>--%>
-
                 <table class="courseTable">
                     <thead class="tableHead">
                         <tr>
                             <th colspan="100%">Courses</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <c:forEach var="c" items="${courseList}">
+                             <c:forEach var="c" items="${courseList}">
 <tr id="courseTableRow">
                                 <td id="courseTableRow"> 
                                     <div>
@@ -85,51 +82,14 @@
                                     </div>
                                 </td></tr>
 </c:forEach>
+                        </tr>
+                    </thead>
+                    <tbody>
+                       
                     </tbody>
 
                 </table>
             </div>
-
-
-
-
-            <!-- course name, type, room, time, number of hours, number of 
-            available seats, number of people on the waitlist, instructor, assistants, 
-            materials needed, and miscellaneous for extra information. The type of course 
-            can be technology, textbook training, team building, leadership, or HR. -->
-            <!--<tr class="${((iter.index % 2) == 0) ? 'lightBlue' : 'white'}">
-                <td>
-                    <img src="${initParam.productImagePath}${product.name}.png"
-                         alt="<fmt:message key="${product.name}"/>">
-                </td>
-
-                <td><fmt:message key="${product.name}"/></td>
-
-            <td>
-            <fmt:formatNumber type="currency" currencySymbol="&euro; " value="${cartItem.total}"/>
-            <br>
-            <span class="smallText">(
-                <fmt:formatNumber type="currency" currencySymbol="&euro; " value="${product.price}"/>
-                / <fmt:message key="unit"/> )</span>
-            </td>
-
-            <td>
-                <form action="<c:url value='updateCart'/>" method="post">
-                    <input type="hidden"
-                           name="productId"
-                           value="${product.id}">
-                    <input type="text"
-                           maxlength="2"
-                           size="2"
-                           value="${cartItem.quantity}"
-                           name="quantity"
-                           style="margin:5px">
-                    <input type="submit"
-                           name="submit"
-                           value="<fmt:message key='update'/>">
-                </form>
-            </td>
-            </tr>-->
         </table>
 
     </div>

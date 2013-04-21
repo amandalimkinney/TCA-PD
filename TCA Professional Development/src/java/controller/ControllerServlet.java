@@ -1,5 +1,6 @@
 package controller;
 
+import Data_Objects.Course;
 import ToolBox.Converter;
 import ToolBox.Validator;
 import java.io.IOException;
@@ -46,19 +47,17 @@ public class ControllerServlet extends HttpServlet {
 
         String userPath = request.getServletPath();
 
-        // if category page is requested
         if (userPath.equals("/teacher/viewcourselist")) {
-            // TODO: Implement category request
-            List<Data_Objects.Course> courselist = courseFacade.findAll();
-            //request.setAttribute("categoryProducts", categoryProducts);
-            //Course[] courseList = Course.getCurrentCourses();
+//            List<Course> courselist2 = courseFacade.findNextMonthCourses();
+//            getServletContext().setAttribute("courseList", courselist2);
+            //if(courselist.isEmpty())
+                //List<Course> courselist = courseFacade.findAll();
+                //List<Course> courselist2 = courseFacade.findNextMonthCourses2(courselist);
+                List<Course> courselist = courseFacade.findNextMonthCourses();
             getServletContext().setAttribute("courseList", courselist);
-            //instantiate list of courses
-
-            //set this to servlet/app level
-            //getServletContext().setAttribute("categories", obj here);
-            
-            
+            //getServletContext().setAttribute("coursetest", testing);
+            //request.setAttribute("categoryProducts", categoryProducts);
+            //getServletContext().setAttribute("courseList", courselist);
             userPath = "/teacher/courselist.jsp";
 
         // if cart page is requested
