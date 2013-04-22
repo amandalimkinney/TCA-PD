@@ -1,12 +1,11 @@
 <%@page import="session.CourseFacade"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <jsp:include flush="true" page="../WEB-INF/jspf/head.jsp">
-            <jsp:param name="title" value="Course list"/>
+            <jsp:param name="title" value="Course Sign Up"/>
         </jsp:include>
     </head>
     <body>
@@ -25,8 +24,8 @@
                     <thead class="tableHead">
                         <tr>
                             <th colspan="100%">Courses</th>
-                             <c:forEach var="c" items="${courseList}">
-<tr id="courseTableRow">
+                            <c:forEach var="c" items="${courseList}">
+                            <tr id="courseTableRow">
                                 <td id="courseTableRow"> 
                                     <div>
                                         <h4> <c:out value="${c.courseName}"/> </h4>
@@ -38,12 +37,12 @@
                                                 <td>Instructor:</td>
                                                 <td><c:out value="${c.courseInstructor}"/></td>
                                             </tr>
-                                           <tr>
+                                            <tr>
                                                 <td>Assistants:</td>
                                                 <td>  </t> </td>
                                                 <td><fmt:message key="${c.courseAssistants}"/></td>
                                             </tr>
-                                                
+
                                             <tr>
                                                 <td>Date:</td>
                                                 <td>  </t> </td>
@@ -53,39 +52,44 @@
                                                 <td>Location:</td>
                                                 <td><c:out value="${c.courseRoom}"/></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td>Time:</td>
                                                 <td>  </t> </td>
                                                 <td><fmt:formatDate type="time" value="${c.beginTime}"/> to <fmt:formatDate type="time" value="${c.endTime}"/></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td>Number of seats:</td>
                                                 <td>  </t> </td>
                                                 <td><c:out value="${c.totalSeats}"/></td>
                                             </tr>
-                                            
+
                                             <tr>
                                                 <td>Notes:</td>
                                                 <td>  </t> </td>
                                                 <td><c:out value="${c.courseType}"/></td>
                                             </tr>
-
-
+                                            
+                                            
+                                         
                                         </table>
                                     </div>
-                                    
-                                    <div id="signUp">
-                                        <a href="<c:url value='courselist?${c.courseId}'/>">
-                                            Sign up </a>
-                                    </div>
+                                    <form action="<c:url value='viewcourselist-signup'/>" method="post">
+                                                <input type="hidden"
+                                                       name="courseId"
+                                                       value="${c.courseId}">
+                                                <input type="submit"
+                                                       name="submit"
+                                                       value="Sign up">
+                                            </form>
+
                                 </td></tr>
-</c:forEach>
+                            </c:forEach>
                         </tr>
                     </thead>
                     <tbody>
-                       
+
                     </tbody>
 
                 </table>

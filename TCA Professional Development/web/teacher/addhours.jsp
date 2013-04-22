@@ -4,7 +4,7 @@
 <html>
     <head>
         <jsp:include flush="true" page="../WEB-INF/jspf/head.jsp">
-            <jsp:param name="title" value="Add hours"/>
+            <jsp:param name="title" value="Add PD Hours"/>
         </jsp:include>
     </head>
     <body>

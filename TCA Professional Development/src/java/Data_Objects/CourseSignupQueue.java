@@ -4,8 +4,8 @@
  */
 package Data_Objects;
 
-import Data_Objects.Teacher;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
@@ -15,8 +15,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -31,20 +32,20 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "CourseSignupQueue.findByCourseId", query = "SELECT c FROM CourseSignupQueue c WHERE c.courseSignupQueuePK.courseId = :courseId"),
     @NamedQuery(name = "CourseSignupQueue.findByTeacherId", query = "SELECT c FROM CourseSignupQueue c WHERE c.courseSignupQueuePK.teacherId = :teacherId"),
     @NamedQuery(name = "CourseSignupQueue.findByAppliedOn", query = "SELECT c FROM CourseSignupQueue c WHERE c.appliedOn = :appliedOn"),
-    @NamedQuery(name = "CourseSignupQueue.findByStatus", query = "SELECT c FROM CourseSignupQueue c WHERE c.status = :status")})
+    @NamedQuery(name = "CourseSignupQueue.findByWaitinglistNum", query = "SELECT c FROM CourseSignupQueue c WHERE c.waitinglistNum = :waitinglistNum")})
 public class CourseSignupQueue implements Serializable {
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected CourseSignupQueuePK courseSignupQueuePK;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 30)
     @Column(name = "applied_on")
-    private String appliedOn;
+    @Temporal(TemporalType.DATE)
+    private Date appliedOn;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "status")
-    private short status;
+    @Column(name = "waitinglist_num")
+    private int waitinglistNum;
     @JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id", insertable = false, updatable = false)
     @OneToOne(optional = false)
     private Teacher teacher;
@@ -59,10 +60,10 @@ public class CourseSignupQueue implements Serializable {
         this.courseSignupQueuePK = courseSignupQueuePK;
     }
 
-    public CourseSignupQueue(CourseSignupQueuePK courseSignupQueuePK, String appliedOn, short status) {
+    public CourseSignupQueue(CourseSignupQueuePK courseSignupQueuePK, Date appliedOn, int waitinglistNum) {
         this.courseSignupQueuePK = courseSignupQueuePK;
         this.appliedOn = appliedOn;
-        this.status = status;
+        this.waitinglistNum = waitinglistNum;
     }
 
     public CourseSignupQueue(int courseId, int teacherId) {
@@ -77,20 +78,20 @@ public class CourseSignupQueue implements Serializable {
         this.courseSignupQueuePK = courseSignupQueuePK;
     }
 
-    public String getAppliedOn() {
+    public Date getAppliedOn() {
         return appliedOn;
     }
 
-    public void setAppliedOn(String appliedOn) {
+    public void setAppliedOn(Date appliedOn) {
         this.appliedOn = appliedOn;
     }
 
-    public short getStatus() {
-        return status;
+    public int getWaitinglistNum() {
+        return waitinglistNum;
     }
 
-    public void setStatus(short status) {
-        this.status = status;
+    public void setWaitinglistNum(int waitinglistNum) {
+        this.waitinglistNum = waitinglistNum;
     }
 
     public Teacher getTeacher() {
@@ -131,7 +132,7 @@ public class CourseSignupQueue implements Serializable {
 
     @Override
     public String toString() {
-        return "Access_control.CourseSignupQueue[ courseSignupQueuePK=" + courseSignupQueuePK + " ]";
+        return "Data_Objects.CourseSignupQueue[ courseSignupQueuePK=" + courseSignupQueuePK + " ]";
     }
     
 }

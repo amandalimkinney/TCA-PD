@@ -15,14 +15,14 @@ import javax.persistence.PersistenceContext;
 public class AddHoursManager {
     @PersistenceContext(unitName = "TCA_Professional_DevelopmentPU")
     private EntityManager em;
-    
+    //TODO : fix which teacher to add to!!!
     public void addHours(Date date, int numHours, String method, String hostOrg, String location, String type, String topicName) 
     {
-        DevelopmentHours hrs = addHoursHelper(date, numHours, method, hostOrg, location, type, topicName);
+        addHoursHelper(date, numHours, method, hostOrg, location, type, topicName);
         
     }
 
-    private DevelopmentHours addHoursHelper(Date date, int numHours, String method, String hostOrg, String location, String type, String topicName) 
+    private void addHoursHelper(Date date, int numHours, String method, String hostOrg, String location, String type, String topicName) 
     {
         Teacher t = em.find(Teacher.class, 1001);
         //em.refresh(t);
@@ -34,9 +34,8 @@ public class AddHoursManager {
         hrs.setHostOrganization(hostOrg);
         hrs.setLocation(location);
         hrs.setType(type);
-        hrs.setTopic(type);
+        hrs.setTopic(topicName);
         em.persist(hrs);
-        return hrs;
     }
 
 }

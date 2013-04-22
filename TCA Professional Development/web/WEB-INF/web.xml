@@ -25,6 +25,7 @@
         <url-pattern>/teacher/addhours.jsp-submit</url-pattern>
         <url-pattern>/teacher/addhours</url-pattern>
         <url-pattern>/teacher/viewcourselist</url-pattern>
+        <url-pattern>/teacher/viewcourselist-signup</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

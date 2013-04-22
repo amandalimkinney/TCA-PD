@@ -75,7 +75,7 @@ public class CourseSignupQueuePK implements Serializable {
 
     @Override
     public String toString() {
-        return "Access_control.CourseSignupQueuePK[ courseId=" + courseId + ", teacherId=" + teacherId + " ]";
+        return "Data_Objects.CourseSignupQueuePK[ courseId=" + courseId + ", teacherId=" + teacherId + " ]";
     }
     
 }

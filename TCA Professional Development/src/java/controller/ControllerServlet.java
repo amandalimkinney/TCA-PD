@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import session.AccountFacade;
 import session.AddHoursManager;
 import session.CourseFacade;
+import session.CourseSignUpManager;
 
 public class ControllerServlet extends HttpServlet {
 
@@ -24,6 +25,8 @@ public class ControllerServlet extends HttpServlet {
     AddHoursManager addhoursmanager;
     @EJB
     AccountFacade account;
+    @EJB
+    CourseSignUpManager coursesignupmanager;
     
     Converter converter = new Converter();
     Validator validator = new Validator();
@@ -181,17 +184,35 @@ public class ControllerServlet extends HttpServlet {
                     request.setAttribute("type", request.getParameter("type"));
                     request.setAttribute("hostOrg", request.getParameter("hostOrg"));
                     request.setAttribute("topicName", request.getParameter("topicName"));
-        } else if (userPath.equals("/teacher/courselist.jsp/signup")) {
-            // TODO: Implement update cart action
-
-        // if purchase action is called
-        } else if (userPath.equals("/purchase")) {
-            // TODO: Implement purchase action
-
-            userPath = "/confirmation";
-        } else if (userPath.equals("/purchase"))
-        {
+        } else if (userPath.equals("/teacher/viewcourselist-signup")) {
+            // TODO course sign up
+            //get account
+            //if not logged in, don't do anything
             
+            //get the course ID
+            
+            String courseId = request.getParameter("courseId");
+            //register them for the course
+            //check if full
+            //add the teacher to the course
+            //add the course to the teacher's hours
+            int err = 0;
+            if (courseId != null && !courseId.isEmpty()) {
+                Course course = courseFacade.find(Integer.parseInt(courseId));
+                err = coursesignupmanager.signUpForCourse(course, null);
+            }
+            
+            String msg = "ERROR: There was an error processing your request. Please try again or contact a system admin.";
+            if(err == -1) {
+                msg = "ERROR: the course is full.";
+            }
+            else if (err == 1){
+                msg = "You have successfully signed up.";
+            }
+            request.setAttribute("msg", msg);
+            
+            userPath = "/teacher/courselistconfirm.jsp";
+
         }
 
         // use RequestDispatcher to forward request internally

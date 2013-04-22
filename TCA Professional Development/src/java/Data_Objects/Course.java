@@ -46,6 +46,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Course implements Serializable {
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "course_topic")
+    private String courseTopic;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "begin_time")
     @Temporal(TemporalType.TIME)
     private Date beginTime;
@@ -297,6 +302,14 @@ public class Course implements Serializable {
 
     public void setEndTime(Date endTime) {
         this.endTime = endTime;
+    }
+
+    public String getCourseTopic() {
+        return courseTopic;
+    }
+
+    public void setCourseTopic(String courseTopic) {
+        this.courseTopic = courseTopic;
     }
     
 }
