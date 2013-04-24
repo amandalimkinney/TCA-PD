@@ -41,13 +41,11 @@ public class CourseSignUpManager {
         try {
             //add the teacher to the coursesignupqueue
             addToQueue(course, teacher);
-            
-            
+
             //add the course to the teacher's hours
             addCourseToHours(course, teacher);
             return 1;
         } catch (Exception e) {
-            e.printStackTrace();
             context.setRollbackOnly();
             return 0;
         }
