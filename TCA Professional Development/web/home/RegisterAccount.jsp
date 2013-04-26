@@ -17,6 +17,13 @@
             <div id="page1div">
                     
                     <h1>Register Account</h1>
+                    <%
+                    String errorMessage = request.getParameter("ERROR");
+                    if( errorMessage != null)
+                    {
+                        out.print("<p>" + errorMessage + "</p>");
+                    }
+                    %>
                     <form action="<%=request.getRequestURI()%>--submit" method="POST">
                     <BR>First Name       <INPUT TYPE=text NAME=firstName size="15" <%if(request.getParameter("firstName") != null)out.print( "value=\"" + request.getAttribute("firstName") +"\"");%>>
                     <BR>Last Name        <INPUT TYPE=text NAME=lastName size="15" <%if(request.getParameter("lastName") != null)out.print( "value=\"" + request.getAttribute("lastName") +"\"");%>>  
