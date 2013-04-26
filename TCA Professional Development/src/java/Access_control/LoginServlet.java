@@ -128,7 +128,7 @@ import java.security.*;
             } 
             catch (Exception e) 
             {
-                response.sendRedirect("/loginerror.jsp");
+                response.sendRedirect("/TCA_Professional_Development/home/login.jsp?ERROR=Log-in Failed");
             }    
                  /*UserBean user = new UserBean();
                  user.setUserName(request.getParameter("sUserName"));

@@ -12,6 +12,10 @@
         <servlet-name>GetCourseServlet</servlet-name>
         <servlet-class>Data_Objects.GetCourseServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterAccountServlet</servlet-name>
+        <servlet-class>Access_control.RegisterAccountServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>GetCourseServlet</servlet-name>
         <url-pattern>/teacher/doRegister.jsp</url-pattern>
@@ -26,20 +30,25 @@
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/home/doLogin.jsp</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterAccountServlet</servlet-name>
+        <url-pattern>/home/RegisterAccount.jsp--submit</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <error-page>
+        <error-code>403</error-code>
+        <location>/index.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/index.jsp</location>
+    </error-page>
     <security-constraint>
         <!-- web resources that are protected -->
-        <web-resource-collection>
-            <web-resource-name>All Resources</web-resource-name>
-            <url-pattern>/home/index.jsp</url-pattern>
-            <!-- All methods but OPTIONS must be authenticated. OPTIONS must work without authentication for cross domain in Firefox to work -->
-            <http-method>GET</http-method>
-            <http-method>POST</http-method>
-        </web-resource-collection>
         <web-resource-collection>
             <web-resource-name>admin</web-resource-name>
             <description/>
@@ -69,9 +78,29 @@
             <role-name>administrator</role-name>
         </auth-constraint>
     </security-constraint>
+    <security-constraint>
+        <display-name>Index</display-name>
+        <web-resource-collection>
+            <web-resource-name>index</web-resource-name>
+            <description/>
+            <url-pattern>/home/index.jsp</url-pattern>
+            <http-method>GET</http-method>
+            <http-method>PUT</http-method>
+            <http-method>HEAD</http-method>
+            <http-method>POST</http-method>
+            <http-method>OPTIONS</http-method>
+            <http-method>TRACE</http-method>
+            <http-method>DELETE</http-method>
+        </web-resource-collection>
+        <auth-constraint>
+            <description/>
+            <role-name>administrator</role-name>
+            <role-name>default</role-name>
+        </auth-constraint>
+    </security-constraint>
     <login-config>
         <auth-method>FORM</auth-method>
-        <realm-name>file</realm-name>
+        <realm-name>TCADBLogin</realm-name>
         <form-login-config>
             <form-login-page>/home/login.jsp</form-login-page>
             <form-error-page>/home/loginerror.jsp</form-error-page>
@@ -80,5 +109,9 @@
     <security-role>
         <description/>
         <role-name>administrator</role-name>
+    </security-role>
+    <security-role>
+        <description/>
+        <role-name>default</role-name>
     </security-role>
 </web-app>

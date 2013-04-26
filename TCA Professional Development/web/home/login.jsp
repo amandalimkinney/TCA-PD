@@ -16,8 +16,19 @@
 
             <div id="page1div">
                     
-                    <h1>Login</h1>
-                    <p>This site requires authentication. Please enter your credentials to continue.</p>
+                    <h1>Log-in</h1>
+                    <%
+                    String errorMessage = request.getParameter("ERROR");
+                    if( errorMessage != null)
+                    {
+                        out.print("<p>" + errorMessage + "</p>");
+                    }
+                    else
+                    {
+                        out.print("<p>This site requires authentication. Please enter your credentials to continue.</p>");
+                    }
+                    %>
+                    
                     <form name="loginForm" method="POST" action="/TCA_Professional_Development/home/doLogin.jsp" style="margin: 20px 0 0 0;">
                     <strong>Username: </strong>
                     <input type="text" name="j_username" size="25" style="margin: 0 0 0 10px;"/><br/><br/>
@@ -25,7 +36,9 @@
                     <input type="password" size="25" name="j_password" style="margin: 0 0 0 17px;"/><br/><br/>
                     <input type="submit" value="Submit" style="margin: 25px 0 0 0;"/>
                     <input type="reset" value="Reset" style="margin: 25px 0 0 0;"/>
-                    </form>            
+                    </form>
+                    
+                    <a href="/TCA_Professional_Development/home/RegisterAccount.jsp">Register Account</a>
                     
                     <p>&nbsp;</p>
                     
