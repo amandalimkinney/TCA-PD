@@ -5,6 +5,7 @@
 package Data_Objects;
 
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -14,11 +15,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -32,12 +34,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Account.findByAccountId", query = "SELECT a FROM Account a WHERE a.accountId = :accountId"),
     @NamedQuery(name = "Account.findByUsername", query = "SELECT a FROM Account a WHERE a.username = :username"),
     @NamedQuery(name = "Account.findByPassword", query = "SELECT a FROM Account a WHERE a.password = :password"),
-    @NamedQuery(name = "Account.findByIsTeacher", query = "SELECT a FROM Account a WHERE a.isTeacher = :isTeacher"),
-    @NamedQuery(name = "Account.findByIsAdmin", query = "SELECT a FROM Account a WHERE a.isAdmin = :isAdmin"),
-    @NamedQuery(name = "Account.findByIsHeadofschool", query = "SELECT a FROM Account a WHERE a.isHeadofschool = :isHeadofschool"),
-    @NamedQuery(name = "Account.findByIsInstructor", query = "SELECT a FROM Account a WHERE a.isInstructor = :isInstructor"),
-    @NamedQuery(name = "Account.findByInActiveDirectory", query = "SELECT a FROM Account a WHERE a.inActiveDirectory = :inActiveDirectory")})
+    @NamedQuery(name = "Account.findByInActiveDirectory", query = "SELECT a FROM Account a WHERE a.inActiveDirectory = :inActiveDirectory"),
+    @NamedQuery(name = "Account.findByAccountGroup", query = "SELECT a FROM Account a WHERE a.accountGroup = :accountGroup")})
 public class Account implements Serializable {
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
+    private Collection<Permissions> permissionsCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -54,26 +55,13 @@ public class Account implements Serializable {
     private String password;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "isTeacher")
-    private boolean isTeacher;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "isAdmin")
-    private boolean isAdmin;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "isHeadofschool")
-    private boolean isHeadofschool;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "isInstructor")
-    private boolean isInstructor;
-    @Basic(optional = false)
-    @NotNull
     @Column(name = "in_active_directory")
     private boolean inActiveDirectory;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "account")
-    private HeadOfSchool headOfSchool;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "account_group")
+    private String accountGroup;
 
     public Account() {
     }
@@ -82,14 +70,11 @@ public class Account implements Serializable {
         this.accountId = accountId;
     }
 
-    public Account(Integer accountId, String username, boolean isTeacher, boolean isAdmin, boolean isHeadofschool, boolean isInstructor, boolean inActiveDirectory) {
+    public Account(Integer accountId, String username, boolean inActiveDirectory, String accountGroup) {
         this.accountId = accountId;
         this.username = username;
-        this.isTeacher = isTeacher;
-        this.isAdmin = isAdmin;
-        this.isHeadofschool = isHeadofschool;
-        this.isInstructor = isInstructor;
         this.inActiveDirectory = inActiveDirectory;
+        this.accountGroup = accountGroup;
     }
 
     public Integer getAccountId() {
@@ -116,38 +101,6 @@ public class Account implements Serializable {
         this.password = password;
     }
 
-    public boolean getIsTeacher() {
-        return isTeacher;
-    }
-
-    public void setIsTeacher(boolean isTeacher) {
-        this.isTeacher = isTeacher;
-    }
-
-    public boolean getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
-    }
-
-    public boolean getIsHeadofschool() {
-        return isHeadofschool;
-    }
-
-    public void setIsHeadofschool(boolean isHeadofschool) {
-        this.isHeadofschool = isHeadofschool;
-    }
-
-    public boolean getIsInstructor() {
-        return isInstructor;
-    }
-
-    public void setIsInstructor(boolean isInstructor) {
-        this.isInstructor = isInstructor;
-    }
-
     public boolean getInActiveDirectory() {
         return inActiveDirectory;
     }
@@ -156,12 +109,12 @@ public class Account implements Serializable {
         this.inActiveDirectory = inActiveDirectory;
     }
 
-    public HeadOfSchool getHeadOfSchool() {
-        return headOfSchool;
+    public String getAccountGroup() {
+        return accountGroup;
     }
 
-    public void setHeadOfSchool(HeadOfSchool headOfSchool) {
-        this.headOfSchool = headOfSchool;
+    public void setAccountGroup(String accountGroup) {
+        this.accountGroup = accountGroup;
     }
 
     @Override
@@ -186,7 +139,16 @@ public class Account implements Serializable {
 
     @Override
     public String toString() {
-        return "Access_control.Account[ accountId=" + accountId + " ]";
+        return "Data_Objects.Account[ accountId=" + accountId + " ]";
+    }
+
+    @XmlTransient
+    public Collection<Permissions> getPermissionsCollection() {
+        return permissionsCollection;
+    }
+
+    public void setPermissionsCollection(Collection<Permissions> permissionsCollection) {
+        this.permissionsCollection = permissionsCollection;
     }
     
 }
