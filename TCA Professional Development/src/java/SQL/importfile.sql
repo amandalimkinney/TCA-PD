@@ -27,11 +27,7 @@ DROP TABLE IF EXISTS `account`;
 CREATE TABLE `account` (
   `account_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `isTeacher` tinyint(1) NOT NULL DEFAULT '0',
-  `isAdmin` tinyint(1) NOT NULL DEFAULT '0',
-  `isHeadofschool` tinyint(1) NOT NULL DEFAULT '0',
-  `isInstructor` tinyint(1) NOT NULL DEFAULT '0',
+  `password` varchar(45) NOT NULL,
   `in_active_directory` tinyint(1) NOT NULL,
   PRIMARY KEY (`account_id`),
   UNIQUE KEY `account_id_UNIQUE` (`account_id`),
@@ -45,7 +41,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (100,'john','aaa1',1,0,1,1,0),(101,'david','bbb1',0,1,0,1,1),(102,'bush','ccc1',1,1,0,0,1);
+INSERT INTO `account` VALUES (100,'john','aaa1',0),(101,'david','bbb1',1),(102,'bush','ccc1',1);
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,6 +204,32 @@ INSERT INTO `head_of_school` VALUES (101,1,1,1,'1'),(102,1,0,1,'1');
 UNLOCK TABLES;
 
 --
+-- Table structure for table `permissions`
+--
+
+DROP TABLE IF EXISTS `permissions`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `permissions` (
+  `account_id` int(11) NOT NULL,
+  `accountGroup` varchar(45) NOT NULL,
+  `index` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`index`),
+  KEY `account_id_idx` (`account_id`),
+  CONSTRAINT `account` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `permissions`
+--
+
+LOCK TABLES `permissions` WRITE;
+/*!40000 ALTER TABLE `permissions` DISABLE KEYS */;
+/*!40000 ALTER TABLE `permissions` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `teacher`
 --
 
@@ -246,4 +268,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-04-21 16:29:28
+-- Dump completed on 2013-04-26 10:09:21

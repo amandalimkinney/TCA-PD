@@ -7,6 +7,8 @@
  * TO GET THIS TO WORK:
  * In the 3.1.2 glassfish installation folder under glassfish/modules/
  * Replace all org.eclipse.*.jar with the version from 3.1.1
+ * There are 7 jars to delete, and 6 jars to put in their place
+ * (moxy is not in the old version, delete it)
  * There is a BUG in 3.1.2 version that messes up the lower/upper case of
  * column names
  * As a result, createNativeQuery results mapped to Course.class are unusable
