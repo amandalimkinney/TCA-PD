@@ -2,6 +2,33 @@
 <!DOCTYPE glassfish-web-app PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Servlet 3.0//EN" "http://glassfish.org/dtds/glassfish-web-app_3_0-1.dtd">
 <glassfish-web-app error-url="">
   <context-root>/TCA_Professional_Development</context-root>
+  <security-role-mapping>
+    <role-name>default</role-name>
+    <group-name>default</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>root</role-name>
+    <group-name>root</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>teacher</role-name>
+    <group-name>teacher</group-name>
+    <group-name>instructor</group-name>
+    <group-name>headofschool</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>admin</role-name>
+    <group-name>root</group-name>
+    <group-name>admin</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>instructor</role-name>
+    <group-name>instructor</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>headofschool</role-name>
+    <group-name>headofschool</group-name>
+  </security-role-mapping>
   <resource-ref>
     <res-ref-name>tca</res-ref-name>
     <jndi-name>localhost TCA</jndi-name>

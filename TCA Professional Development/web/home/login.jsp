@@ -5,7 +5,7 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
               <title>TCA Professional Development Home</title>
-        <link rel="stylesheet" type="text/css" href="css/TCAProfDev.css" />
+        <link rel="stylesheet" type="text/css" href="../css/TCAProfDev.css" />
     </head>
 
     <body>

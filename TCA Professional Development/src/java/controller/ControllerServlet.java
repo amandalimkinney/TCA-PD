@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import session.AccountFacade;
 import session.AddHoursManager;
 import session.CourseFacade;
@@ -48,6 +49,8 @@ public class ControllerServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
 
+        String temp = request.getRemoteUser();
+        
         String userPath = request.getServletPath();
 
         if (userPath.equals("/teacher/viewcourselist")) {
