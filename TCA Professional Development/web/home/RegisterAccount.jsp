@@ -16,29 +16,23 @@
 
             <div id="page1div">
                     
-                    <h1>Log-in</h1>
+                    <h1>Register Account</h1>
                     <%
                     String errorMessage = request.getParameter("ERROR");
                     if( errorMessage != null)
                     {
                         out.print("<p>" + errorMessage + "</p>");
                     }
-                    else
-                    {
-                        out.print("<p>This site requires authentication. Please enter your credentials to continue.</p>");
-                    }
                     %>
+                    <form action="<%=request.getRequestURI()%>--submit" method="POST">
+                    <BR>First Name       <INPUT TYPE=text NAME=firstName size="15" <%if(request.getParameter("firstName") != null)out.print( "value=\"" + request.getAttribute("firstName") +"\"");%>>
+                    <BR>Last Name        <INPUT TYPE=text NAME=lastName size="15" <%if(request.getParameter("lastName") != null)out.print( "value=\"" + request.getAttribute("lastName") +"\"");%>>  
+                    <BR>E-Mail           <INPUT TYPE=text NAME=email size="15" <%if(request.getParameter("email") != null)out.print( "value=\"" + request.getAttribute("email") +"\"");%>>  
+                    <BR>Password         <INPUT TYPE=password NAME=password1 size="15" >  
+                    <BR>Re-enter Password<INPUT TYPE=password NAME=password2 size="15" >
                     
-                    <form name="loginForm" method="POST" action="/TCA_Professional_Development/home/doLogin.jsp" style="margin: 20px 0 0 0;">
-                    <strong>Username: </strong>
-                    <input type="text" name="j_username" size="25" style="margin: 0 0 0 10px;"/><br/><br/>
-                    <strong>Password: </strong>
-                    <input type="password" size="25" name="j_password" style="margin: 0 0 0 17px;"/><br/><br/>
-                    <input type="submit" value="Submit" style="margin: 25px 0 0 0;"/>
-                    <input type="reset" value="Reset" style="margin: 25px 0 0 0;"/>
+                    <BR><INPUT TYPE=SUBMIT>
                     </form>
-                    
-                    <a href="/TCA_Professional_Development/home/RegisterAccount.jsp">Register Account</a>
                     
                     <p>&nbsp;</p>
                     

@@ -9,6 +9,7 @@
  
         session.removeAttribute("currentSessionUser");
         session.invalidate();
+        request.logout();
         response.sendRedirect("../index.jsp");        
         %>
         <h1>Logout was done successfully.</h1>
