@@ -1,9 +1,12 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    width:  1000px;
+    min-width: 1000px;
+    min-height: 690px;
+    height: auto;
     /*text-align: center;*/
     margin: auto auto auto auto;
+    overflow: scroll;
    
 }
 
@@ -11,6 +14,7 @@ body {
     background: #FFFFFF;
     width: auto;
     height: auto;
+    overflow: scroll;
 }
 
 
@@ -33,7 +37,7 @@ body {
     float: none;
     width: 900px;
     /*text-align: center;*/
-    margin: 20px 0 0 90px;
+    margin: 20px 0 0 25px;
     font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
     font-size: 40px;
     color: #FFFFFF;
@@ -42,7 +46,7 @@ body {
 #headerSubTitle {
     float: none;
     width: 900px;
-    margin: 15px 0 0 95px;
+    margin: 15px 0 0 30px;
     font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
     font-size: 24px;
     color: #FFFFFF;
@@ -50,6 +54,7 @@ body {
 
 #widgetBar {
     height: 40px;
+    width: auto;
     background: #BDBDBD;
     border-bottom: 2px solid;
 }
@@ -64,7 +69,8 @@ body {
 }
 
 #footer {
-    height: 90px;
+    min-height: 90px;
+    height: auto;
     margin-top: 0px;
     clear: left;
     background: #BDBDBD;
@@ -80,8 +86,8 @@ body {
 #missionTitle {
     margin-top: 0px;
     margin-bottom: 0px;
-    margin-left: 10px;
-    text-align: center;
+    margin-left: 500px;
+    text-align: left;
     font-size: 14px;
     font-family: ‘Lucida Sans Unicode’, ‘Lucida Grande’, sans-serif;
 }
@@ -91,8 +97,11 @@ body {
     text-align: left;
     font-size: 11px;
     font-family:"Times New Roman",Georgia,Serif;
-    margin-right: 250px;
-    margin-left: 250px;
+   /* margin-right: 350px;*/
+    width: 550px;
+    margin-left: 300px;
+    
+    
 }
 
 #footerLogo {
@@ -152,12 +161,13 @@ body {
 }
 
 #pageBody {
-    height: auto;
+    height: 425px;
     width: auto;
     float: none;
     background: #FAFAFA;
     border-top: 2px solid;
     margin-left: 250px;
+    overflow: scroll;
 }
 
 #upcomingCourses {
@@ -266,16 +276,34 @@ h4 {
 }
 
 #addCourseBox {
-    width: 500px;
-    height: 700px;
-    margin: 20px 20px 20px 100px;
+    width: 475px;
+    height: 375px;
+    margin: 20px 20px 20px 115px;
     border: 1px solid black;
     background: #E6E6E6;
 }
 
+#input {
+    width: 500px;
+    height: 10px;
+    margin-top: 10px;
+    margin-left: 5px;
+}
+
+#Itable {
+    width: 470px;
+}
+
+#category {
+    text-align: right;
+    width: 130px;
+}
+
+#input2 {
+    text-align: left;
+    width: 250px;
+}
+
 #submit {
-    width: 100px;
-    line-height: 20px;
-    margin: 625px 10px 20px 400px;
-    font-size: 14px;
+    text-align: center;    
 }
