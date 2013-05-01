@@ -15,76 +15,238 @@
             <%@include file="../WEB-INF/jspf/sidebar.jspf" %>
         </div>
         <div id="pageBody">
-             <div id="addCourseBox">
+             <div id="addTCACourseBox">
                     <%
                     if(request.getAttribute("errormsg") != null)
                         out.println("Error! " + request.getAttribute("errormsg"));
                     %>
                     <div id="linkLabel">Add New TCA Course</div>
-                    <form action="<%=request.getRequestURI()%>-submit" method="post">
-                        Date (mm/dd/yyyy) <INPUT TYPE=text NAME=date size="10" 
-                                                 <c:if test="${date != null}">
-                                                     value=<%=request.getAttribute("date")%>
-                                                 </c:if>>
-                        <BR>
-                        Number of Hours <INPUT TYPE=text NAME=numHours SIZE=5
-                                               <c:if test="${numHours != null}">
-                                                     value=<%=request.getAttribute("numHours")%>
-                                                 </c:if>><BR>
-                        Method <select NAME=method>
-                            <option disabled="true" <c:if test="${method == null}">
-                                                     selected="true"</c:if>>Select one</option>
-                            <option value="conference" <c:if test="${method != null && method == 'conference'}">
-                                                     selected="true"</c:if>>Conference</option>
-                            <option value="tcaCourse"<c:if test="${method != null && method == 'tcaCourse'}">
-                                                     selected="true"</c:if>>TCA Course</option>
-                            <option value="course"<c:if test="${method != null && method == 'course'}">
-                                                     selected="true"</c:if>>Course</option>
-                            <option value="presenting"<c:if test="${method != null && method == 'presenting'}">
-                                                     selected="true"</c:if>>Presenting a Course or Conference</option>
-                            <option value="workshop"<c:if test="${method != null && method == 'workshop'}">
-                                                     selected="true"</c:if>>Workshop</option>
-                            <option value="book"<c:if test="${method != null && method == 'book'}">
-                                                     selected="true"</c:if>>Book</option>
-                            <option value="newCurriculum"<c:if test="${method != null && method == 'newCurriculum'}">
-                                                     selected="true"</c:if>>Developing new curriculum</option>
-                            <option value="travel"<c:if test="${method != null && method == 'travel'}">
-                                                     selected="true"</c:if>>Travel</option>
-                            <option value="other"<c:if test="${method != null && method == 'other'}">
-                                                     selected="true"</c:if>>Other</option>
-                        </select><BR>
-                        Hosting Organization <select name="hostOrg">
-                            <option disabled="true" selected="true">Select one</option>
-                            <option value="1"<c:if test="${hostOrg != null && hostOrg == '1'}">
-                                                     selected="true"</c:if>>popular 1</option>
-                            <option value="2"<c:if test="${hostOrg != null && hostOrg == '2'}">
-                                                     selected="true"</c:if>>popular 2</option>
-                            <option value="other"<c:if test="${hostOrg != null && hostOrg == 'other'}">
-                                                     selected="true"</c:if>>Other</option>
-                        </select><BR>
-                        Location <input NAME=location TYPE=radio VALUE="on-site" 
-                                        <c:if test="${location != null && location == 'on-site'}">
-                                                     checked="true"</c:if>/> On-site
-                        <input NAME=location TYPE=radio VALUE="off-site" 
-                               <c:if test="${location != null && location == 'off-site'}">
-                                                     checked="true"</c:if>/> Off-site<BR>
-                        Topic Type <input NAME=type TYPE=radio VALUE="academic" 
+                         <form action="<%=request.getRequestURI()%>-submit" method="post">
+
+                    <div id="input">
+                        <table id="Itable">
+                            <tr>
+                                <td id="category">
+                                    Course Name:
+                                </td>
+                                <td id="input2">
+                                    <INPUT type=text NAME=courseName size=30
+                                           <c:if test="${courseName != null}">
+                                               value=<%=request.getAttribute("courseName")%>
+                                           </c:if>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <BR>
+                    <div id="input">
+                        <table id="Itable">
+                            <tr>
+                                <td id="category">
+                                    Topic Type:
+                                </td>
+                                <td id="input2">
+                                    <input NAME=type TYPE=radio VALUE="academic" 
                                           <c:if test="${type != null && type == 'academic'}">
                                                      checked="true"</c:if>/> Academic
-                        <input NAME=type TYPE=radio VALUE="technology"  <c:if test="${type != null && type == 'technology'}">
+                                    <input NAME=type TYPE=radio VALUE="technology"  <c:if test="${type != null && type == 'technology'}">
                                                      checked="true"</c:if>/> Technology
-                        <input NAME=type TYPE=radio VALUE="spiritual"  <c:if test="${type != null && type == 'spiritual'}">
-                                                    checked="true"</c:if>/> Spiritual<BR>
-                        Topic <INPUT TYPE=TEXT NAME=topicName SIZE=30<c:if test="${topicName != null}">
-                                                     value=<%=request.getAttribute("topicName")%>
-                                                 </c:if>><BR>
-                        <INPUT TYPE=SUBMIT>
-                    </form>
-                    <div id="submit">
-                        <a href="#">Save Course</a>
+                                    <input NAME=type TYPE=radio VALUE="spiritual"  <c:if test="${type != null && type == 'spiritual'}">
+                                                    checked="true"</c:if>/> Spiritual
+                                </td>
+                            </tr>
+                        </table>
                     </div>
+                    <BR>
+                    <div id="input">
+                        <table id="Itable">
+                            <tr>
+                                <td id="category">
+                                    Topic:
+                                </td>
+                                <td id="input2">
+                                    <INPUT TYPE=TEXT NAME=topicName SIZE=30
+                                           <c:if test="${topicName != null}">
+                                                value=<%=request.getAttribute("topicName")%>
+                                           </c:if>>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <BR>
+                    <div id="input">
+                        <table id="Itable"> 
+                            <tr>
+                                <td id="category">
+                                    Date (mm/dd/yyyy):
+                                </td>
+                                <td id="input2">
+                                    <INPUT TYPE=text NAME=date size="10" 
+                                                 <c:if test="${date != null}">
+                                                     value=<%=request.getAttribute("date")%>
+                                                 </c:if>> 
+                                    
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <BR>
+                    <div id="input">
+                        <table id="Itable">
+                            <tr>
+                                <td id="category">
+                                    Start Time:
+                                </td>
+                                <td id="input2">
+                                    <INPUT Type=text NAME=beginTime SIZE=5
+                                           <c:if test="${beginTime != null}">
+                                               value=<%=request.getAttribute("beginTime")%>
+                                           </c:if>>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <BR>
+                    <div id="input">
+                        <table id="Itable">
+                            <tr>
+                                <td id="category">
+                                    End Time:
+                                </td>
+                                <td id="input2">
+                                    <INPUT Type=text NAME=endTime SIZE=5
+                                           <c:if test="${endTime != null}">
+                                               value=<%=request.getAttribute("endTime")%>
+                                           </c:if>>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <BR>
+                    <div id="input">
+                        <table id="Itable">
+                            <tr>
+                                <td id="category">
+                                    Number of Hours:
+                                </td>
+                                <td id="input2">
+                                    <INPUT Type=text NAME=time SIZE=5
+                                           <c:if test="${numHours != null}">
+                                               value=<%=request.getAttribute("numHours")%>
+                                           </c:if>>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <BR>
+                    <div id="input">
+                        <table id="Itable">
+                            <tr>
+                                <td id="category">
+                                    Room:
+                                </td>
+                                <td id="input2">
+                                    <INPUT Type=text NAME=courseRoom SIZE=5
+                                           <c:if test="${courseRoom != null}">
+                                               value=<%=request.getAttribute("courseRoom")%>
+                                           </c:if>>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <BR>
+                    <div id="input">
+                        <table id="Itable">
+                            <tr>
+                                <td id="category">
+                                    Available Seats:
+                                </td>
+                                <td id="input2">
+                                    <INPUT type=text NAME=totalSeats SIZE=5
+                                            <c:if test="${totalSeats != null}">
+                                               value=<%=request.getAttribute("totalSeats")%> 
+                                            </c:if>>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <BR>
+                    <div id="input">
+                        <table id="Itable">
+                            <tr>
+                                <td id="category">
+                                    Course Instructor:
+                                </td>
+                                <td id="input2">
+                                    <INPUT type=text NAME=courseInstructor SIZE=30
+                                            <c:if test="${courseInstructor != null}">
+                                               value=<%=request.getAttribute("courseInstructor")%> 
+                                            </c:if>>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <BR>
+                    <div id="input">
+                        <table id="Itable">
+                            <tr>
+                                <td id="category">
+                                    Course Assistant:
+                                </td>
+                                <td id="input2">
+                                    <INPUT type=text NAME=courseAssistant SIZE=30
+                                            <c:if test="${courseAssistant != null}">
+                                               value=<%=request.getAttribute("courseAssistant")%> 
+                                            </c:if>>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <BR>
+                    <div id="input">
+                        <table id="Itable">
+                            <tr>
+                                <td id="category">
+                                    Equipment:
+                                </td>
+                                <td id="input2">
+                                    <INPUT type=text NAME=equipment SIZE=30
+                                            <c:if test="${equipment != null}">
+                                               value=<%=request.getAttribute("equipment")%> 
+                                            </c:if>>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <BR>
+                    <div id="input">
+                        <table id="Itable">
+                            <tr>
+                                <td id="category">
+                                    Description:
+                                </td>
+                                <td id="input2">
+                                    <textarea name=description rows=5 cols=30>
+                                    </textarea>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <BR>
+                    <BR>
+                    <BR>
+                    <BR>
+                    <div id="input">
+                        <table id="Itable">
+                            <tr> 
+                                <td id="submit">
+                                    <INPUT TYPE=SUBMIT>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                         </form>
                 </div>
-
         </div>
         <div id="footer">
                 <%@include file="../WEB-INF/jspf/footer.jspf" %>
