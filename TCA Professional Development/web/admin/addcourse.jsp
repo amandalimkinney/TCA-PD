@@ -130,9 +130,9 @@
                                     Number of Hours:
                                 </td>
                                 <td id="input2">
-                                    <INPUT Type=text NAME=time SIZE=5
+                                    <INPUT Type=text NAME=hours SIZE=5
                                            <c:if test="${numHours != null}">
-                                               value=<%=request.getAttribute("numHours")%>
+                                               value=<%=request.getAttribute("hours")%>
                                            </c:if>>
                                 </td>
                             </tr>

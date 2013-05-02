@@ -291,6 +291,14 @@ h4 {
     background: #E6E6E6;
 }
 
+#accountBox {
+    width: 475px;
+    height: 400px;
+    margin: 20px 20px 20px 115px;
+    border: 1px solid black;
+    background: #E6E6E6;
+}
+
 #input {
     width: 500px;
     height: 10px;
@@ -304,7 +312,7 @@ h4 {
 
 #category {
     text-align: right;
-    width: 130px;
+    width: 150px;
 }
 
 #input2 {
