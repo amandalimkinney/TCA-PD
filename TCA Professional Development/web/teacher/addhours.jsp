@@ -24,11 +24,12 @@
                         out.println("Error! " + request.getAttribute("errormsg"));
                     %>
                     <div id="linkLabel">Add New Course</div>
+                    <form action="<%=request.getRequestURI()%>-submit" method="post">
                     <div id="input">
                         <table id="Itable">
                             <tr>
                                 <td id="category">
-                                  <form action="<%=request.getRequestURI()%>-submit" method="post">
+                                  
                             Date (mm/dd/yyyy):</td>
                                 <td id="input2"><INPUT TYPE=text NAME=date size="10" 
                                                  <c:if test="${date != null}">
@@ -170,7 +171,7 @@
                         </table>
                     </div>
                         
-                   
+                    </form>
                 </div>
 
             </div>

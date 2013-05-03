@@ -34,7 +34,7 @@
         
         <a href="#" class="links"> System Administrator</a><br>
         <a href="../admin/addcourse.jsp" class="links">Add TCA Course</a><br>
-        <a href="../admin/addaccount" class="links">Add New Account</a><br>
+        <a href="../admin/addaccount.jsp" class="links">Add New Account</a><br>
         <a href="../admin/editaccount" class="links">Edit an Account</a><br>
     </div>
     
