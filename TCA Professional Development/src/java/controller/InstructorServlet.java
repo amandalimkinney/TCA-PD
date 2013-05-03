@@ -40,9 +40,9 @@ public class InstructorServlet extends HttpServlet {
         String userPath = request.getServletPath();
 
         if (userPath.equals("/instructor/attendance")) {
-            List<Course> courses = coursefacade.findInstructorCourses();
+            /*List<Course> courses = coursefacade.findInstructorCourses();
             getServletContext().setAttribute("courses", courses);
-            userPath = "/instructor/attendanceFind.jsp";
+            userPath = "/instructor/attendanceFind.jsp";*/
         
         } 
 
@@ -72,9 +72,9 @@ public class InstructorServlet extends HttpServlet {
             String courseId = request.getParameter("courseId");
             int id = Integer.parseInt(courseId);
             
-            List<Teacher> attendees = signupqueue.getAttendees(id);
+            /*List<Teacher> attendees = signupqueue.getAttendees(id);
             getServletContext().setAttribute("attendees", attendees);
-            getServletContext().setAttribute("courseId", id);
+            getServletContext().setAttribute("courseId", id);*/
             
             //TODO find past attendance already recorded
             

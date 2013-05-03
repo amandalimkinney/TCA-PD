@@ -14,32 +14,7 @@
         <a href="../teacher/viewcourselist" class="links">Courses</a>
     
         <br>
-        <%/*
-        String[] groups = (String[])request.getSession().getAttribute("Groups");
-        boolean[] groupsBools = new boolean[]{false,false,false,false};
-        boolean atleastone;
-        for(int i =0; i<groups.length;i++)
-        {
-            if(groups[i].equals("root") || groups[i].equals("admin"))
-            {
-                groupsBools[0] = true;
-            }
-            if(groups[i].equals("teacher"))
-            {
-                groupsBools[1] = true;
-            }
-            if(groups[i].equals("instructor"))
-            {
-                groupsBools[1] = true;
-            }
-            if(groups[i].equals("headofschool"))
-            {
-                groupsBools[1] = true;
-            }
-        }
         
-        
-        %>
         <a href="../teacher/addhours" class="links">Add Hours</a><br>
         
         <a href="../teacher/coursehistory" class="links">Your Course History</a><br>
