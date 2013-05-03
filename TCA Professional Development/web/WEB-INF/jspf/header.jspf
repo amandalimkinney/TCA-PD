@@ -3,15 +3,25 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!--<div id="header">-->
     <div id="widgetBar">
-    
-        
+        <table align="right">
+            <tr align="right">
+            <td>
+        <a href="<%=request.getContextPath()%>/home/changepassword.jsp" class="headerWidget">
+            Change Password
+        </a>
+            </td>
+            <td>
         <a href="<%=request.getContextPath()%>/home/doLogout.jsp" class="headerWidget">
             Logout
         </a>
-
+            </td>
+            <td>
         <a href="<%=request.getContextPath()%>/home/index.jsp" class="headerWidget">
             Home
         </a>
+            </td>
+            </tr>
+        </table>
 
     </div>
 

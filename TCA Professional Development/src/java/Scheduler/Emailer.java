@@ -43,12 +43,12 @@ public class Emailer {
             InitialContext ic = new InitialContext();
             Session mailSession = (Session)ic.lookup("tca/mail");
             Message msg = new MimeMessage(mailSession);
-            msg.setSubject("New Password");
+            msg.setSubject("Your New Password");
             msg.setRecipient(RecipientType.TO, new InternetAddress(to, firstName + " " + lastName));
-            msg.setFrom(new InternetAddress("jiffall@gmail.com", "Jeff"));
+            msg.setFrom(new InternetAddress("TCAUtility@gmail.com", "TCA System"));
 
             BodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setText(pw);
+            messageBodyPart.setText("We have successfully reset your password \nPlease use the following password to log in to your account\nIt is recommended that you change your password after you log in\n\n"+pw+"\n\nIf you have received this message in error please contact your system administrator\n\nHave a nice day");
 
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(messageBodyPart);
@@ -75,7 +75,7 @@ public class Emailer {
             msg.setFrom(new InternetAddress("TCAUtility@gmail.com", "TCA System"));
 
             BodyPart messageBodyPart = new MimeBodyPart();
-            messageBodyPart.setText("We have recieved a request to reset your password. Please use the following code to reset your password\n"+code);
+            messageBodyPart.setText("We have recieved a request to reset your password\nPlease use the following code to reset your password\n\n"+code+"\n\nIf you have received this message in error please contact your system administrator\n\nHave a nice day");
 
             Multipart multipart = new MimeMultipart();
             multipart.addBodyPart(messageBodyPart);

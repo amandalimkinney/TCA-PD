@@ -12,7 +12,7 @@
             <div id="header">
                 <%@include file="/WEB-INF/jspf/indexheader.jspf" %>
             </div>
-            <div id="pageBody">
+            <div id="page1div">
                 <h1>Password Reset</h1>
                 <%
                 if(request.getParameter("ERROR") != null )
@@ -25,7 +25,7 @@
                         "<p>Please Enter Your E-Mail Address" +
                         "<form name=\"resetPasswordForm\" method=\"POST\" action=\"/TCA_Professional_Development/home/resetPassword.jsp--submit\" style=\"margin: 20px 0 0 0;\">" +
                         "<strong>E-Mail: </strong>" +
-                        "<input type=\"text\" name=\"j_username\" size=\"25\" style=\"margin: 0 0 0 10px;\"/><br/><br/>" +
+                        "<input type=\"text\" name=\"j_username\" size=\"25\" style=\"margin: 0 0 0 10px;\"/><br/>" +
                         "<input type=\"submit\" value=\"Submit\" style=\"margin: 25px 0 0 0;\"/>" +
                         "</form>");
                     }
@@ -48,7 +48,7 @@
                         "<strong>Reset Code: </strong>" +
                         "</td>" +
                         "<td>" +
-                        "<input type=\"text\" name=\"code\" size=\"25\" style=\"margin: 0 0 0 10px;\"/><br/><br/>" +
+                        "<input type=\"text\" name=\"code\" size=\"25\" style=\"margin: 0 0 0 10px;\"/><br/>" +
                         "</td>" +
                         "</tr>" +
                         "<tr>" +

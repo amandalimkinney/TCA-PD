@@ -117,21 +117,23 @@ public class RegisterAccountServlet extends HttpServlet {
         {
             int i = 0;
             String[][] input;
+            String[][] roles;
             while(request.getParameter("firstName" + i) != null)
             {
                 i++;
             }
+            roles = new String[i][];
             input = new String[i][5];
             for(int j = 0; j<i;j++)
             {
                 input[j][0] = request.getParameter("firstName" + j);
                 input[j][1] = request.getParameter("lastName" + j);
                 input[j][2] = request.getParameter("email" + j);
-                input[j][3] = request.getParameter("Role" + j);
-                input[j][4] = request.getParameter("delete" + j);
+                roles[j] = request.getParameterValues("Role" + j);
+                input[j][3] = request.getParameter("delete" + j);
             }
             
-            AccountManagement.updateAccounts(input,request.getUserPrincipal().getName());
+            AccountManagement.updateAccounts(input,roles,request.getUserPrincipal().getName());
             
             response.sendRedirect("/TCA_Professional_Development/admin/editaccount.jsp");
         }
@@ -158,6 +160,17 @@ public class RegisterAccountServlet extends HttpServlet {
             catch(Exception e)
             {
                 response.sendRedirect("/TCA_Professional_Development/home/login.jsp?ERROR=" + e.getMessage());
+            }
+        }
+        else if(userPath.equals("/home/changepassword.jsp--submit"))
+        {
+            try
+            {
+                response.sendRedirect("/TCA_Professional_Development/home/changepassword.jsp?ERROR="+AccountManagement.changePassword(request.getUserPrincipal().toString(),request.getParameter("password"),request.getParameter("password1"),request.getParameter("password2")));
+            }
+            catch(Exception e)
+            {
+                response.sendRedirect("/TCA_Professional_Development/home/changepassword.jsp?ERROR=" + e.getMessage());
             }
         }
     }

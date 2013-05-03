@@ -29,6 +29,57 @@ import javax.mail.internet.MimeMultipart;
 public class AccountManagement 
 {
     private static String[] resetAttempt;
+    
+    public static String changePassword(String userName,String currentPW,String password1,String password2) throws Exception
+    {
+        ResultSet results = null;
+        Connection conn = null;
+        Statement stmt = null;
+        try
+            {
+                InitialContext ctx = new InitialContext();
+                DataSource ds = (DataSource)ctx.lookup("jdbc/TCADB");
+                conn = ds.getConnection();
+                stmt = conn.createStatement();
+                results = stmt.executeQuery("Select username from tca.account where username = '"+userName+"' and password ='"+hashPassword(currentPW)+"'");
+                int i = 0;
+                if(results.last())
+                {
+                    if(password1.equals(password2))
+                    {
+                        String message = checkPassword(password1);
+                        if(!message.equals(""))
+                        {
+                            throw new Exception(message);
+                        }
+                        else
+                        {
+                            stmt.execute("update account SET password='"+hashPassword(password1)+"'");
+                           }
+                    }
+                    else
+                    {
+                        throw new Exception("New Passwords Must Match");
+                    }    
+                }
+                else
+                {
+                    throw new Exception("Invalid Password");
+                }
+            }
+            catch(Exception e)
+            {
+                throw new Exception("Unable to update Password");
+            }
+            finally
+            {
+                try{conn.close();}catch(Exception e){}
+                try{stmt.close();}catch(Exception e){}
+                conn = null;
+            }
+        return "Succesfully Changed Password";
+    }
+    
     private static String hashPassword(String password) throws Exception
     {
         char[] HEX = {'0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f'};
@@ -268,12 +319,15 @@ public class AccountManagement
                 ResultSet results = stmt.executeQuery(query);
                 if(!results.first())
                 {
-                    stmt.execute("Insert into account (UserName,PassWord,G,FirstName,LastName) "
+                    stmt.execute("Insert into account (UserName,PassWord,FirstName,LastName) "
                         + "Values('" + email
                         + "','" + hashPassword(password1)
-                        + "','" + "default"
                         + "','" + firstName
                         + "','" + lastName
+                        + "')");
+                    stmt.execute("Insert into accountGroups (UserName,G) "
+                        + "Values('" + email
+                        + "','default"
                         + "')");
                 }
                 else
@@ -310,6 +364,7 @@ public class AccountManagement
                 conn = ds.getConnection();
                 stmt = conn.createStatement();
                 results = stmt.executeQuery("Select firstname,lastname,username from tca.account where username != 'root' order by username");
+                String[][] groups = getAccountsGroups();
                 int i = 0;
                 if(results.last())
                 {
@@ -335,6 +390,13 @@ public class AccountManagement
                         }
                         if(results.getObject(3) != null)
                         {
+                            for(int j = 0 ; j<groups.length;j++)
+                            {
+                                if(results.getObject(3).toString().equals(groups[j][0]))
+                                {
+                                    toReturn[i][3] = groups[j][1];
+                                }
+                            }
                             toReturn[i][2] = results.getObject(3).toString();
                         }
                         else
@@ -371,7 +433,7 @@ public class AccountManagement
                 DataSource ds = (DataSource)ctx.lookup("jdbc/TCADB");
                 conn = ds.getConnection();
                 stmt = conn.createStatement();
-                results = stmt.executeQuery("Select group from tca.groups where username = '"+username+"'");
+                results = stmt.executeQuery("Select g from tca.accountGroups where username = '"+username+"'");
                 int i = 0;
                 if(results.last())
                 {
@@ -411,38 +473,43 @@ public class AccountManagement
         Connection conn = null;
         Statement stmt = null;
         String[][] toReturn = null;
+        String[][] toReturn2 = null;
         try
             {
                 InitialContext ctx = new InitialContext();
                 DataSource ds = (DataSource)ctx.lookup("jdbc/TCADB");
                 conn = ds.getConnection();
                 stmt = conn.createStatement();
-                results = stmt.executeQuery("Select username,group from tca.groups where username != 'root' order by username");
+                results = stmt.executeQuery("Select username,g from tca.accountGroups where username != 'root' order by username");
                 int i = 0;
+                
                 if(results.last())
                 {
-                    toReturn = new String[results.getRow()][4];
+                    
+                    toReturn = new String[results.getRow()][2];
                     results.first();
-                    do
+                    if(results.getObject(1) != null && results.getObject(2) != null)
                     {
-                        if(results.getObject(1) != null)
+                        String currentUser = results.getObject(1).toString();
+                        do
                         {
-                            toReturn[i][0] = results.getObject(1).toString();
-                        }
-                        else
+                            if(results.getObject(1) != null && results.getObject(2) != null)
+                            {
+                                if(!currentUser.equals(results.getObject(1).toString()))
+                                {
+                                    currentUser=results.getObject(1).toString();
+                                    i++;
+                                }
+                                toReturn[i][0] = results.getObject(1).toString();
+                                toReturn[i][1] += ":"+results.getObject(2).toString();
+                            }
+                        }while(results.next() && i < 200);
+                        toReturn2 = new String[i+1][2];
+                        for(int j = 0;j<=i;j++)
                         {
-                            toReturn[i][0] = "";
+                            toReturn2[j] = toReturn[j];
                         }
-                        if(results.getObject(2) != null)
-                        {
-                            toReturn[i][1] = results.getObject(2).toString();
-                        }
-                        else
-                        {
-                            toReturn[i][1] = "";
-                        }
-                        i++;
-                    }while(results.next() && i < 200);
+                    }
                 }
             }
             catch(Exception e)
@@ -456,7 +523,7 @@ public class AccountManagement
                 conn = null;
                
             }
-        return toReturn;
+        return toReturn2;
     }
     
     public static String changeAccount(String[] input,String username)
@@ -470,7 +537,8 @@ public class AccountManagement
             Statement stmt = null;
             try
             {
-                query = "update account SET firstname='"+input[0]+"',lastname='"+input[1]+"', password='"+hashPassword(input[2])+"' where username='"+input[2]+"';";
+                query = "update account SET firstname='"+input[0]+"',lastname='"+input[1]+"', password='"+hashPassword(input[2])+"' where username='"+input[2]+"';delete from accountgroups where username='"+username+"';";
+                
                 InitialContext ctx = new InitialContext();
                 DataSource ds = (DataSource)ctx.lookup("jdbc/TCADB");
                 conn = ds.getConnection();
@@ -492,31 +560,51 @@ public class AccountManagement
         return errorMessage;
     }
     
-    public static String updateAccounts(String[][] input,String username)
+    public static String updateAccounts(String[][] input,String[][] roles,String username)
     {
         String errorMessage="";
         String query = "";
+        String[] queries;
+        int qIndex = 0;
         for(int i = 0 ; i<input.length;i++)
         {
             if(!username.equals(input[i][2]))
             {
-                if(input[i][4] != null)
+                queries = new String[2 + roles[i].length];
+                if(input[i][3] != null)
                 {
-                    query = "delete from account where username='"+input[i][2]+"';delete from groups where username='"+input[i][2]+"'";
+                    queries[0] = "delete from account where username='"+input[i][2]+"';delete from groups where username='"+input[i][2]+"'";
+                    queries[1] = "delete from accountGroups where username='"+input[i][2]+"';";
                 }
                 else
                 {
-                    query = "update account SET firstname='"+input[i][0]+"',lastname='"+input[i][1]+"' where username='"+input[i][2]+"';";//need to add group table
+                    queries[0] = "update account SET firstname='"+input[i][0]+"',lastname='"+input[i][1]+"' where username='"+input[i][2]+"';";//need to add group table
+                    
+                    queries[1] = "delete from accountGroups where username='"+input[i][2]+"';";
+                    for(int j=0;j<roles[i].length;j++)
+                    {
+                        queries[2 + j] = "insert into accountGroups(username,g) values('"+input[i][2]+"','"+roles[i][j]+"');";
+                    }
                 }
+                
                 Connection conn = null;
                 Statement stmt = null;
+                
                 try
                 {
                     InitialContext ctx = new InitialContext();
                     DataSource ds = (DataSource)ctx.lookup("jdbc/TCADB");
                     conn = ds.getConnection();
                     stmt = conn.createStatement();
-                    stmt.execute(query);
+                    
+                    for(int j=0;j<queries.length;j++)
+                    {
+                        if(queries[j]!=null)
+                        {
+                            stmt.execute(queries[j]);
+                        }
+                    }
+                    queries = null;
                 }
                 catch(Exception e)
                 {
