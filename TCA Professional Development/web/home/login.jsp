@@ -28,18 +28,41 @@
                         out.print("<p>This site requires authentication. Please enter your credentials to continue.</p>");
                     }
                     %>
-                    
+                    <table>
                     <form name="loginForm" method="POST" action="/TCA_Professional_Development/home/doLogin.jsp" style="margin: 20px 0 0 0;">
-                    <strong>Username: </strong>
-                    <input type="text" name="j_username" size="25" style="margin: 0 0 0 10px;"/><br/><br/>
-                    <strong>Password: </strong>
-                    <input type="password" size="25" name="j_password" style="margin: 0 0 0 17px;"/><br/><br/>
-                    <input type="submit" value="Submit" style="margin: 25px 0 0 0;"/>
-                    <input type="reset" value="Reset" style="margin: 25px 0 0 0;"/>
+                    <tr>
+                        <td valign="top">
+                            <label>Username: </label>
+                        </td>
+                        <td>
+                            <input type="text" size="25" name="j_username" /><br/><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top">
+                            <label>Password: </label>
+                        </td>
+                        <td>
+                            <input type="password" size="25" name="j_password" /><br/><br/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Submit" />
+                            <input type="reset" value="Reset" />
+                        </td>
+                    </tr>
                     </form>
                     
-                    <a href="/TCA_Professional_Development/home/RegisterAccount.jsp">Register Account</a>
-                    
+                    <tr>
+                        <td>
+                            <a href="/TCA_Professional_Development/home/RegisterAccount.jsp">Register Account</a>
+                        </td>
+                        <td>
+                            <a href="/TCA_Professional_Development/home/resetPassword.jsp">Reset Password</a>
+                        </td>
+                    </tr>
+                    </table>
                     <p>&nbsp;</p>
                     
 
