@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package Access_control;
+package Data_Access;
 
+import Access_control.*;
 import java.sql.*;
 
 import javax.naming.InitialContext;
@@ -59,15 +60,16 @@ public class AccountManagement
                 DataSource ds = (DataSource)ctx.lookup("jdbc/TCADB");
                 conn = ds.getConnection();
                 stmt = conn.createStatement();
-                ResultSet results = stmt.executeQuery("Select UN from Users where username = '" + email + "'");
+                ResultSet results = stmt.executeQuery("Select UN from Users where un = '" + email + "'");
                 if(!results.first())
                 {
-                    stmt.execute("Insert into Users (UserName,PassWword,G,FirstName,LastName) "
+                    stmt.execute("Insert into Users (UN,PW,G,FirstName,LastName,Email) "
                         + "Values('" + email
                         + "','" + password1
                         + "','" + "default"
                         + "','" + firstName
                         + "','" + lastName
+                        + "','" + email
                         + "')");
                 }
                 else

@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import java.io.UnsupportedEncodingException;
+ 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.ejb.Singleton;
@@ -27,7 +29,6 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMessage.RecipientType;
 import javax.mail.internet.MimeMultipart;
 import javax.naming.NamingException;
-
 /**
  *
  * @author Jeff
@@ -35,7 +36,7 @@ import javax.naming.NamingException;
 public class RegisterAccountServlet extends HttpServlet {
 
     @Resource(name = "tca/mail")
- private Session mailSession;
+    private Session mailSession;
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -63,7 +64,6 @@ public class RegisterAccountServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         if(true == true)
         {
             String temp = "";
@@ -82,11 +82,24 @@ public class RegisterAccountServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String userPath = request.getServletPath();
-        if (userPath.equals("/home/RegisterAccount.jsp--submit")) 
-        {
         try
         {
+            Message msg = new MimeMessage(mailSession);
+            msg.setSubject("Hello World!");
+            msg.setRecipient(RecipientType.TO, new InternetAddress(
+              "jiffall@gmail.com", "czetsuya 2"));
+            msg.setFrom(new InternetAddress("jiffall@gmail.com", "jeff"));
+
+            BodyPart messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setText("Hello World!.");
+
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(messageBodyPart);
+
+            msg.setContent(multipart);
+
+            Transport.send(msg);
+            
             String firstName = request.getParameter("firstName").toString();
             String lastName = request.getParameter("lastName").toString();
             String email = request.getParameter("email").toString();
@@ -100,7 +113,7 @@ public class RegisterAccountServlet extends HttpServlet {
             String errorMessage = AccountManagement.registerAccount(firstName, lastName, email, password1,password2);
             if(errorMessage!= "")
             {
-                response.sendRedirect("/TCA_Professional_Development/home/RegisterAccount.jsp?ERROR=" + errorMessage);
+                response.sendRedirect("/TCA_Professional_Development/home/RegisterAccount.jsp?ERROR=\"" + errorMessage + "\"");
             }
             else
             {
@@ -110,57 +123,10 @@ public class RegisterAccountServlet extends HttpServlet {
         catch(Exception e)
         {
             String errorMessage = e.getMessage();
-            response.sendRedirect("/TCA_Professional_Development/home/RegisterAccount.jsp?ERROR=" + errorMessage);
+            response.sendRedirect("/TCA_Professional_Development/home/RegisterAccount.jsp?ERROR=\"" + errorMessage + "\"");
         }
     }
-        else if(userPath.equals("/admin/editaccount.jsp--submit"))
-        {
-            int i = 0;
-            String[][] input;
-            while(request.getParameter("firstName" + i) != null)
-            {
-                i++;
-            }
-            input = new String[i][5];
-            for(int j = 0; j<i;j++)
-            {
-                input[j][0] = request.getParameter("firstName" + j);
-                input[j][1] = request.getParameter("lastName" + j);
-                input[j][2] = request.getParameter("email" + j);
-                input[j][3] = request.getParameter("Role" + j);
-                input[j][4] = request.getParameter("delete" + j);
-            }
-            
-            AccountManagement.updateAccounts(input,request.getUserPrincipal().getName());
-            
-            response.sendRedirect("/TCA_Professional_Development/admin/editaccount.jsp");
-        }
-        else if(userPath.equals("/home/resetPassword.jsp--submit"))
-        {
-            
-            
-            try
-            {
-                AccountManagement.resetPasswordStep1(request.getParameter("j_username"));
-                response.sendRedirect("/TCA_Professional_Development/home/resetPassword.jsp?USER=" + request.getParameter("j_username"));
-            }
-            catch(Exception e)
-            {
-                response.sendRedirect("/TCA_Professional_Development/home/resetPassword.jsp?ERROR=" + e.getMessage());
-            }
-        }
-        else if(userPath.equals("/home/resetPassword.jsp--submit2"))
-        {
-            try
-            {
-                response.sendRedirect("/TCA_Professional_Development/home/login.jsp?ERROR="+AccountManagement.resetPasswordStep2(request.getParameter("username"),request.getParameter("code")));
-            }
-            catch(Exception e)
-            {
-                response.sendRedirect("/TCA_Professional_Development/home/login.jsp?ERROR=" + e.getMessage());
-            }
-        }
-    }
+
     /**
      * Returns a short description of the servlet.
      *
@@ -170,5 +136,4 @@ public class RegisterAccountServlet extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-    
 }

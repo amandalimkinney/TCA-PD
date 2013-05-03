@@ -11,87 +11,82 @@ import javax.mail.*;
 import javax.mail.internet.*;
 import javax.activation.*;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
+import javax.mail.BodyPart;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.Multipart;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage.RecipientType;
+import javax.mail.internet.MimeMultipart;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
 /**
  *
  * @author Erik
  */
-public final class Emailer {
+public class Emailer {
     
-    private String[] recipientName;
-    private String[] recipientEmail;  
-    private Account[] recipientAccount;
     
-    public Emailer(){
+    public static void sendResetPassword(String to,String firstName,String lastName,String pw) throws Exception
+    {
+        try
+        {
+            InitialContext ic = new InitialContext();
+            Session mailSession = (Session)ic.lookup("tca/mail");
+            Message msg = new MimeMessage(mailSession);
+            msg.setSubject("New Password");
+            msg.setRecipient(RecipientType.TO, new InternetAddress(to, firstName + " " + lastName));
+            msg.setFrom(new InternetAddress("jiffall@gmail.com", "Jeff"));
 
-    }
-    
-    public Emailer(Account[] account) throws Exception{
-        this.recipientAccount = account;
-    }    
-    
-    public void setRecipientNames() throws Exception{
-        for (int i = 0; i < recipientAccount.length; i++){
-            this.recipientName[i] = (recipientAccount[i].getFirstName() + " " + recipientAccount[i].getLastName());
+            BodyPart messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setText(pw);
+
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(messageBodyPart);
+
+            msg.setContent(multipart);
+
+            Transport.send(msg);
+        }
+        catch(Exception e)
+        {
+            throw e;
         }
     }
     
-    public void setRecipientEmails() throws Exception{
-        for (int j = 0; j < recipientAccount.length; j++){
-            this.recipientEmail[j] = (recipientAccount[j].getEmail());
+    public static void sendResetCode(String to,String firstName,String lastName,String code) throws Exception
+    {
+        try
+        {
+            InitialContext ic = new InitialContext();
+            Session mailSession = (Session)ic.lookup("tca/mail");
+            Message msg = new MimeMessage(mailSession);
+            msg.setSubject("Password Reset Request");
+            msg.setRecipient(RecipientType.TO, new InternetAddress(to, firstName + " " + lastName));
+            msg.setFrom(new InternetAddress("TCAUtility@gmail.com", "TCA System"));
+
+            BodyPart messageBodyPart = new MimeBodyPart();
+            messageBodyPart.setText("We have recieved a request to reset your password. Please use the following code to reset your password\n"+code);
+
+            Multipart multipart = new MimeMultipart();
+            multipart.addBodyPart(messageBodyPart);
+
+            msg.setContent(multipart);
+
+            Transport.send(msg);
+        }
+        catch(Exception e)
+        {
+            throw e;
         }
     }
-    
-    public String[] getRecipientNames() throws Exception{
-        return recipientName;
-    }
-    
-    public String[] getRecipientEmail() throws Exception{
-        return recipientEmail;
-    }
-    
-    public void sendEmail(String subject, String bodyText){
-        
-        // First recipient email address
-        String to = ("\"" + recipientName[0] + "\" <" + recipientEmail[0] + ">");
-        String from = "noreply@TCA.org";
-        String host = "localhost";
-        
-        // Set up system
-        Properties properties = System.getProperties();
-        properties.setProperty("mail.smtp.host", host);
-        properties.setProperty("mail.user", "myuser");
-        properties.setProperty("mail.password", "mypwd");        
-        Session session = Session.getDefaultInstance(properties);
-
-        try{
-           // Create a default MimeMessage object.
-           MimeMessage message = new MimeMessage(session);
-
-           // Set From: header field of the header.
-           message.setFrom(new InternetAddress(from));
-
-           // Set To: header field of the header.
-           message.addRecipient(Message.RecipientType.TO,
-                                    new InternetAddress(to));
-           
-           if (recipientAccount.length > 1){
-               for (int l = 1; l < recipientAccount.length; l++){
-                 message.addRecipient(Message.RecipientType.TO, new
-                   InternetAddress(("\"" + recipientName[1] + "\" <" + recipientEmail[1] + ">")));                 
-               }
-           }
-
-           // Set Subject: header field
-           message.setSubject(subject);
-
-           // Now set the actual message
-           message.setText(bodyText);
-
-           // Send message
-           Transport.send(message);
-
-        }  catch (MessagingException e) {
-               System.out.println("Error - Message not sent; " + e);
-        }
-     }
 }

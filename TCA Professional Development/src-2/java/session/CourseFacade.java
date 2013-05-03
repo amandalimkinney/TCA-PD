@@ -17,6 +17,7 @@
  */
 package session;
 
+import Data_Objects.Account;
 import Data_Objects.Course;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -25,6 +26,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -47,28 +49,12 @@ public class CourseFacade extends AbstractFacade<Course> {
      public List<Course> findNextMonthCourses() {
          return em.createNativeQuery("SELECT * FROM course WHERE date BETWEEN CURDATE() AND DATE_ADD(CURDATE(), INTERVAL 30 DAY)", Course.class).getResultList();
     } 
-//     
-//     public List<Course> findNextMonthCourses2(List<Course> all)
-//     {
-//         List<Course> current = new ArrayList<Course>();
-//         for(Course c : all)
-//         {
-//             if(dateInNextMonth(c.getDate())) {
-//                 current.add(c);
-//             }
-//         }
-//         return current;
-//                 
-//     }
-//     
-//     public static boolean dateInNextMonth(Date date)
-//     {
-//         Calendar cal = Calendar.getInstance();
-//         Date today = cal.getTime();
-//         cal.add(Calendar.DAY_OF_MONTH, 30);
-//         Date next = cal.getTime();
-//         
-//         return (date.compareTo(today) > 0 && date.compareTo(next) < 0);
-//     }
+     
+     public List<Course> findInstructorCourses(){
+         Account acc = em.find(Account.class, 101);
+         Query q = em.createNativeQuery("SELECT * FROM course WHERE course_instructor_id = " + acc.getAccountId(), Course.class);
+         return q.getResultList();
+     }
+
      
 }

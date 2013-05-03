@@ -4,18 +4,16 @@
  */
 package Data_Objects;
 
-import Data_Objects.CourseSignupQueue;
-import Data_Objects.Attendance;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -42,36 +40,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Course.findByStatus", query = "SELECT c FROM Course c WHERE c.status = :status"),
     @NamedQuery(name = "Course.findByDate", query = "SELECT c FROM Course c WHERE c.date = :date"),
     @NamedQuery(name = "Course.findByHours", query = "SELECT c FROM Course c WHERE c.hours = :hours"),
-    @NamedQuery(name = "Course.findByEquipment", query = "SELECT c FROM Course c WHERE c.equipment = :equipment")})
+    @NamedQuery(name = "Course.findByEquipment", query = "SELECT c FROM Course c WHERE c.equipment = :equipment"),
+    @NamedQuery(name = "Course.findByCourseInstructor", query = "SELECT c FROM Course c WHERE c.courseInstructor = :courseInstructor"),
+    @NamedQuery(name = "Course.findByCourseAssistants", query = "SELECT c FROM Course c WHERE c.courseAssistants = :courseAssistants"),
+    @NamedQuery(name = "Course.findByBeginTime", query = "SELECT c FROM Course c WHERE c.beginTime = :beginTime"),
+    @NamedQuery(name = "Course.findByEndTime", query = "SELECT c FROM Course c WHERE c.endTime = :endTime"),
+    @NamedQuery(name = "Course.findByCourseTopic", query = "SELECT c FROM Course c WHERE c.courseTopic = :courseTopic")})
 public class Course implements Serializable {
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "course_topic")
-    private String courseTopic;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "begin_time")
-    @Temporal(TemporalType.TIME)
-    private Date beginTime;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "end_time")
-    @Temporal(TemporalType.TIME)
-    private Date endTime;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "date")
-    @Temporal(TemporalType.DATE)
-    private Date date;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "course_instructor")
-    private String courseInstructor;
-    @Size(max = 90)
-    @Column(name = "course_assistants")
-    private String courseAssistants;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -113,15 +88,42 @@ public class Course implements Serializable {
     private boolean status;
     @Basic(optional = false)
     @NotNull
+    @Column(name = "date")
+    @Temporal(TemporalType.DATE)
+    private Date date;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "hours")
     private int hours;
     @Size(max = 45)
     @Column(name = "equipment")
     private String equipment;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "course")
-    private CourseSignupQueue courseSignupQueue;
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "course")
-    private Attendance attendance;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "course_instructor")
+    private String courseInstructor;
+    @Size(max = 90)
+    @Column(name = "course_assistants")
+    private String courseAssistants;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "begin_time")
+    @Temporal(TemporalType.TIME)
+    private Date beginTime;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "end_time")
+    @Temporal(TemporalType.TIME)
+    private Date endTime;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "course_topic")
+    private String courseTopic;
+    @JoinColumn(name = "course_instructor_id", referencedColumnName = "account_id")
+    @ManyToOne(optional = false)
+    private Account courseInstructorId;
 
     public Course() {
     }
@@ -130,7 +132,7 @@ public class Course implements Serializable {
         this.courseId = courseId;
     }
 
-    public Course(Integer courseId, String courseName, String courseType, String courseRoom, String courseDetails, int totalSeats, String description, boolean status, Date date, int hours) {
+    public Course(Integer courseId, String courseName, String courseType, String courseRoom, String courseDetails, int totalSeats, String description, boolean status, Date date, int hours, String courseInstructor, Date beginTime, Date endTime, String courseTopic) {
         this.courseId = courseId;
         this.courseName = courseName;
         this.courseType = courseType;
@@ -141,6 +143,10 @@ public class Course implements Serializable {
         this.status = status;
         this.date = date;
         this.hours = hours;
+        this.courseInstructor = courseInstructor;
+        this.beginTime = beginTime;
+        this.endTime = endTime;
+        this.courseTopic = courseTopic;
     }
 
     public Integer getCourseId() {
@@ -207,6 +213,14 @@ public class Course implements Serializable {
         this.status = status;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public int getHours() {
         return hours;
     }
@@ -221,55 +235,6 @@ public class Course implements Serializable {
 
     public void setEquipment(String equipment) {
         this.equipment = equipment;
-    }
-
-    public CourseSignupQueue getCourseSignupQueue() {
-        return courseSignupQueue;
-    }
-
-    public void setCourseSignupQueue(CourseSignupQueue courseSignupQueue) {
-        this.courseSignupQueue = courseSignupQueue;
-    }
-
-    public Attendance getAttendance() {
-        return attendance;
-    }
-
-    public void setAttendance(Attendance attendance) {
-        this.attendance = attendance;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (courseId != null ? courseId.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Course)) {
-            return false;
-        }
-        Course other = (Course) object;
-        if ((this.courseId == null && other.courseId != null) || (this.courseId != null && !this.courseId.equals(other.courseId))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "Access_control.Course[ courseId=" + courseId + " ]";
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
     }
 
     public String getCourseInstructor() {
@@ -310,6 +275,39 @@ public class Course implements Serializable {
 
     public void setCourseTopic(String courseTopic) {
         this.courseTopic = courseTopic;
+    }
+
+    public Account getCourseInstructorId() {
+        return courseInstructorId;
+    }
+
+    public void setCourseInstructorId(Account courseInstructorId) {
+        this.courseInstructorId = courseInstructorId;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (courseId != null ? courseId.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Course)) {
+            return false;
+        }
+        Course other = (Course) object;
+        if ((this.courseId == null && other.courseId != null) || (this.courseId != null && !this.courseId.equals(other.courseId))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Data_Objects.Course[ courseId=" + courseId + " ]";
     }
     
 }

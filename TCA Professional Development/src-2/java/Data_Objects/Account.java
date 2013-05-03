@@ -34,11 +34,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Account.findByAccountId", query = "SELECT a FROM Account a WHERE a.accountId = :accountId"),
     @NamedQuery(name = "Account.findByUsername", query = "SELECT a FROM Account a WHERE a.username = :username"),
     @NamedQuery(name = "Account.findByPassword", query = "SELECT a FROM Account a WHERE a.password = :password"),
-    @NamedQuery(name = "Account.findByInActiveDirectory", query = "SELECT a FROM Account a WHERE a.inActiveDirectory = :inActiveDirectory"),
-    @NamedQuery(name = "Account.findByAccountGroup", query = "SELECT a FROM Account a WHERE a.accountGroup = :accountGroup")})
+    @NamedQuery(name = "Account.findByInActiveDirectory", query = "SELECT a FROM Account a WHERE a.inActiveDirectory = :inActiveDirectory")})
 public class Account implements Serializable {
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "accountId")
-    private Collection<Permissions> permissionsCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "courseInstructorId")
+    private Collection<Course> courseCollection;
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -50,18 +49,15 @@ public class Account implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "username")
     private String username;
-    @Size(max = 45)
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "password")
     private String password;
     @Basic(optional = false)
     @NotNull
     @Column(name = "in_active_directory")
     private boolean inActiveDirectory;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 50)
-    @Column(name = "account_group")
-    private String accountGroup;
 
     public Account() {
     }
@@ -70,11 +66,11 @@ public class Account implements Serializable {
         this.accountId = accountId;
     }
 
-    public Account(Integer accountId, String username, boolean inActiveDirectory, String accountGroup) {
+    public Account(Integer accountId, String username, String password, boolean inActiveDirectory) {
         this.accountId = accountId;
         this.username = username;
+        this.password = password;
         this.inActiveDirectory = inActiveDirectory;
-        this.accountGroup = accountGroup;
     }
 
     public Integer getAccountId() {
@@ -109,14 +105,6 @@ public class Account implements Serializable {
         this.inActiveDirectory = inActiveDirectory;
     }
 
-    public String getAccountGroup() {
-        return accountGroup;
-    }
-
-    public void setAccountGroup(String accountGroup) {
-        this.accountGroup = accountGroup;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -143,12 +131,12 @@ public class Account implements Serializable {
     }
 
     @XmlTransient
-    public Collection<Permissions> getPermissionsCollection() {
-        return permissionsCollection;
+    public Collection<Course> getCourseCollection() {
+        return courseCollection;
     }
 
-    public void setPermissionsCollection(Collection<Permissions> permissionsCollection) {
-        this.permissionsCollection = permissionsCollection;
+    public void setCourseCollection(Collection<Course> courseCollection) {
+        this.courseCollection = courseCollection;
     }
     
 }

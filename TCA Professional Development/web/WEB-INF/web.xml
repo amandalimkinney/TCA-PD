@@ -12,6 +12,10 @@
         <servlet-name>GetCourseServlet</servlet-name>
         <servlet-class>Data_Access.GetCourseServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterAccountServlet</servlet-name>
+        <servlet-class>Data_Access.RegisterAccountServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/home/doLogin.jsp</url-pattern>
@@ -27,18 +31,29 @@
         <url-pattern>/teacher/viewcourselist</url-pattern>
         <url-pattern>/teacher/viewcourselist-signup</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterAccountServlet</servlet-name>
+        <url-pattern>/home/resetPassword.jsp--submit2</url-pattern>
+        <url-pattern>/home/resetPassword.jsp--submit</url-pattern>
+        <url-pattern>/home/RegisterAccount.jsp--submit</url-pattern>
+        <url-pattern>/admin/editaccount.jsp--submit</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+        <welcome-file>home/login.jsp</welcome-file>
+    </welcome-file-list>
     <error-page>
         <error-code>403</error-code>
-        <location>/home/login.jsp</location>
+        <location>/index.jsp</location>
     </error-page>
     <error-page>
         <error-code>404</error-code>
-        <location>/home/index.jsp</location>
+        <location>/index.jsp</location>
     </error-page>
     <security-constraint>
         <display-name>index</display-name>

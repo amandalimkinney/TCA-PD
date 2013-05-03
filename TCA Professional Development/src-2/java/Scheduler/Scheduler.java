@@ -113,14 +113,14 @@ public final class Scheduler {
     }
     
     public void sendReminder() throws Exception{
-        /*
+        
         Emailer sendMailer = new Emailer(relevantAccounts);
         String subjectLine = ("REMINDER: CLASS TODAY -- " + theCourse.getCourseName());
         String messageBody = ("This is a reminder that a class you signed up for, "
                 + theCourse.getCourseID() + ", is today. Here is further information: "
                 + theCourse.getDetails());
         
-        sendMailer.sendEmail (subjectLine, messageBody);*/
+        sendMailer.sendEmail (subjectLine, messageBody);
         
     }
     
