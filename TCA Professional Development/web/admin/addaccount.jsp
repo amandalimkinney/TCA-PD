@@ -136,6 +136,22 @@
                         </table>
                     </div>
                     <BR>
+                    <div id="input">
+                        <table id="Itable">
+                            <tr>
+                                <td id="category">
+                                    Email:
+                                </td>
+                                <td id="input2">
+                                    <INPUT NAME=emailID type=text size=30
+                                           <c:if test="${emailID != null}">
+                                               value=<%=request.getAttribute("emailID")%>
+                                           </c:if>>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <BR>
                     <BR>
                     <div id="input">
                         <table id="Itable">
