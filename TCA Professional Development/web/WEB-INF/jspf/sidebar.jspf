@@ -44,7 +44,7 @@
         
         <a href="../teacher/coursehistory" class="links">Your Course History</a><br>
         <a href="../teacher/coursehistory" class="links">Your Saved PD Hours</a><br>
-         <a href="../instructor/attendace" class="links">Attendance</a><br>
+         <a href="../instructor/attendance" class="links">Attendance</a><br>
     
     </div>
     
@@ -59,7 +59,8 @@
         
         <a href="#" class="links"> System Administrator</a><br>
         <a href="../admin/addcourse.jsp" class="links">Add TCA Course</a><br>
-        <a href="../admin/editaccount.jsp" class="links">Edit an Account</a><br>
+        <a href="../admin/addaccount.jsp" class="links">Add New Account</a><br>
+        <a href="../admin/editaccount" class="links">Edit an Account</a><br>
     </div>
     
     

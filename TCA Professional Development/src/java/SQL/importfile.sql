@@ -57,10 +57,10 @@ CREATE TABLE `attendance` (
   `teacher_id` int(11) NOT NULL,
   `attended` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`course_id`,`teacher_id`),
-  UNIQUE KEY `course_id` (`course_id`),
-  UNIQUE KEY `teacher_id` (`teacher_id`),
-  CONSTRAINT `attendance_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
-  CONSTRAINT `attendance_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`)
+  KEY `fk1_idx` (`teacher_id`),
+  KEY `fk2_idx` (`course_id`),
+  CONSTRAINT `fk1` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk2` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -70,7 +70,7 @@ CREATE TABLE `attendance` (
 
 LOCK TABLES `attendance` WRITE;
 /*!40000 ALTER TABLE `attendance` DISABLE KEYS */;
-INSERT INTO `attendance` VALUES (101,1001,1),(102,1002,1),(103,1003,0);
+INSERT INTO `attendance` VALUES (101,1001,1),(101,1002,1),(102,1002,1),(103,1003,0);
 /*!40000 ALTER TABLE `attendance` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -98,7 +98,10 @@ CREATE TABLE `course` (
   `begin_time` time NOT NULL,
   `end_time` time NOT NULL,
   `course_topic` varchar(45) NOT NULL,
-  PRIMARY KEY (`course_id`)
+  `course_instructor_id` int(11) NOT NULL,
+  PRIMARY KEY (`course_id`),
+  KEY `instructorid_idx` (`course_instructor_id`),
+  CONSTRAINT `instructorid` FOREIGN KEY (`course_instructor_id`) REFERENCES `account` (`account_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -108,7 +111,7 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (101,'cs','academic','1','a',10,'test',1,'2012-01-02',3,'3','a',NULL,'12:00:00','13:30:00',''),(102,'se','tech','4','a',15,'test',1,'2013-02-02',3,'2','a',NULL,'02:00:00','03:00:00',''),(103,'ee','academic','2','a',20,'test',1,'2013-04-22',3,'2','a',NULL,'02:00:00','03:00:00',''),(104,'te','tech','2','a',10,'test',1,'2013-05-02',2,'3','a',NULL,'04:00:00','04:30:00','');
+INSERT INTO `course` VALUES (101,'cs','academic','1','a',10,'test',1,'2012-01-02',3,'3','a',NULL,'12:00:00','13:30:00','',101),(102,'se','tech','4','a',15,'test',1,'2013-02-02',3,'2','a',NULL,'02:00:00','03:00:00','',101),(103,'ee','academic','2','a',20,'test',1,'2013-04-22',3,'2','a',NULL,'02:00:00','03:00:00','',101),(104,'te','tech','2','a',10,'test',1,'2013-05-02',2,'3','a',NULL,'04:00:00','04:30:00','',101);
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,10 +128,9 @@ CREATE TABLE `course_signup_queue` (
   `applied_on` date NOT NULL,
   `waitinglist_num` int(4) NOT NULL DEFAULT '-1',
   PRIMARY KEY (`course_id`,`teacher_id`),
-  UNIQUE KEY `course_id` (`course_id`),
-  UNIQUE KEY `teacher_id` (`teacher_id`),
-  CONSTRAINT `course_signup_queue_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`),
-  CONSTRAINT `course_signup_queue_ibfk_2` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`)
+  KEY `course_signup_queueibfk2_idx` (`teacher_id`),
+  CONSTRAINT `course_signup_queueibfk2` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`teacher_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `course_signup_queue_ibfk_1` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -138,7 +140,7 @@ CREATE TABLE `course_signup_queue` (
 
 LOCK TABLES `course_signup_queue` WRITE;
 /*!40000 ALTER TABLE `course_signup_queue` DISABLE KEYS */;
-INSERT INTO `course_signup_queue` VALUES (101,1001,'0001-01-13',1),(102,1002,'0002-02-13',1);
+INSERT INTO `course_signup_queue` VALUES (101,1001,'0001-01-13',1),(101,1002,'2012-04-04',1),(102,1002,'0002-02-13',1);
 /*!40000 ALTER TABLE `course_signup_queue` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,4 +270,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-04-26 10:09:21
+-- Dump completed on 2013-05-02 19:12:08
