@@ -5,7 +5,7 @@
 
         <meta http-equiv="Content-Type" content="text/html; charset="UTF-8">
               <title>TCA Professional Development Home</title>
-        <link rel="stylesheet" type="text/css" href="css/TCAProfDev.css" />
+        <link rel="stylesheet" type="text/css" href="../css/TCAProfDev.css" />
     </head>
 
     <body>
@@ -25,13 +25,57 @@
                     }
                     %>
                     <form action="<%=request.getRequestURI()%>--submit" method="POST">
-                    <BR>First Name       <INPUT TYPE=text NAME=firstName size="15" <%if(request.getParameter("firstName") != null)out.print( "value=\"" + request.getAttribute("firstName") +"\"");%>>
-                    <BR>Last Name        <INPUT TYPE=text NAME=lastName size="15" <%if(request.getParameter("lastName") != null)out.print( "value=\"" + request.getAttribute("lastName") +"\"");%>>  
-                    <BR>E-Mail           <INPUT TYPE=text NAME=email size="15" <%if(request.getParameter("email") != null)out.print( "value=\"" + request.getAttribute("email") +"\"");%>>  
-                    <BR>Password         <INPUT TYPE=password NAME=password1 size="15" >  
-                    <BR>Re-enter Password<INPUT TYPE=password NAME=password2 size="15" >
+                        <table>
+                            <tr>
+                                <td>
+                                    First Name
+                                </td>
+                                 <td>
+                                    <INPUT TYPE=text NAME=firstName size="15" <%if(request.getParameter("firstName") != null)out.print( "value=\"" + request.getAttribute("firstName") +"\"");%>>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Last Name
+                                </td>
+                                 <td>
+                                    <INPUT TYPE=text NAME=lastName size="15" <%if(request.getParameter("lastName") != null)out.print( "value=\"" + request.getAttribute("lastName") +"\"");%>>  
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    E-Mail
+                                </td>
+                                 <td>
+                                    <INPUT TYPE=text NAME=email size="15" <%if(request.getParameter("email") != null)out.print( "value=\"" + request.getAttribute("email") +"\"");%>>  
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Password
+                                </td>
+                                 <td>
+                                    <INPUT TYPE=password NAME=password1 size="15" > 
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Re-enter Password
+                                </td>
+                                 <td>
+                                    <INPUT TYPE=password NAME=password2 size="15" >
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <INPUT TYPE=SUBMIT>
+                                    <INPUT TYPE=RESET>
+                                </td>
+                                
+                            </tr>
+                        </table>
                     
-                    <BR><INPUT TYPE=SUBMIT>
+                    
                     </form>
                     
                     <p>&nbsp;</p>

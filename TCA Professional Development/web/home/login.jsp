@@ -16,7 +16,7 @@
 
             <div id="page1div">
                     
-                    <h1>Log-in</h1>
+                    <h1>Login</h1>
                     <%
                     String errorMessage = request.getParameter("ERROR");
                     if( errorMessage != null)

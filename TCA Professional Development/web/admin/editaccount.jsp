@@ -15,10 +15,10 @@
             <%@include file="../WEB-INF/jspf/sidebar.jspf" %>
         </div>
         <div id="pageBody">
-             <h1>Edit Accounts</h1>
-                    
+             
+                    <form name="EditAccountForm" method="POST" action="/TCA_Professional_Development/admin/editaccount.jsp--submit" style="margin: 20px 20px 20px 20px;">
                     <table> 
-                    <form name="EditAccountForm" method="POST" action="/TCA_Professional_Development/admin/editaccount.jsp--submit" style="margin: 20px 0 0 0;">
+                    <h1>Edit Accounts</h1>
                         
                         <tr>
                             <td>
@@ -50,11 +50,11 @@
                                     "<td><input type=\"text\" value=\""+accounts[i][1]+"\" name=\"lastName"+i+"\" size=\"10\" style=\"\"/></td>" +
                                     "<td><input type=\"text\" value=\""+accounts[i][2]+"\" name=\"email"+i+"\" size=\"15\" style=\"\"/ readonly></td>" +
                                     "<td><select name=\"Role"+i+"\" multiple required >";
-                                toOut += "<option value=\"admin\" ";if(accounts[i][3].equals("admin")){toOut+="selected";};toOut+=">Administrator</option>" ;
-                                toOut += "<option value=\"headofschool\" ";if(accounts[i][3].equals("headofschool")){toOut+="selected";};toOut+=">Head of School</option>" ;
-                                toOut += "<option value=\"teacher\" ";if(accounts[i][3].equals("teacher")){toOut+="selected";};toOut+=">Teacher</option>" ;
-                                toOut += "<option value=\"instructor\" ";if(accounts[i][3].equals("instructor")){toOut+="selected";};toOut+=">Instructor</option>" ;
-                                toOut += "<option value=\"default\" ";if(accounts[i][3].equals("default")){toOut+="selected";};toOut+=">Default</option>" ;
+                                toOut += "<option value=\"admin\" ";if(accounts[i][3].contains("admin")){toOut+="selected";};toOut+=">Administrator</option>" ;
+                                toOut += "<option value=\"headofschool\" ";if(accounts[i][3].contains("headofschool")){toOut+="selected";};toOut+=">Head of School</option>" ;
+                                toOut += "<option value=\"teacher\" ";if(accounts[i][3].contains("teacher")){toOut+="selected";};toOut+=">Teacher</option>" ;
+                                toOut += "<option value=\"instructor\" ";if(accounts[i][3].contains("instructor")){toOut+="selected";};toOut+=">Instructor</option>" ;
+                                toOut += "<option value=\"default\" ";if(accounts[i][3].contains("default")){toOut+="selected";};toOut+=">Default</option>" ;
                                 
                                 toOut+="</select></td>" +
                                     "<td><input type=\"checkbox\" name=\"delete"+i+"\" value=\"Delete Account\"></td>" +
@@ -69,10 +69,11 @@
                             <td>
                                 <input type="submit" value="Submit" style="margin: 25px 0 0 0;"/>
                             </td>
-                        </tr>"
-                    </form>
+                        </tr>
                     </table>
-                    <a href="/TCA_Professional_Development/home/RegisterAccount.jsp">Register Account</a>
+                    </form>
+
+                    
                     
                     <p>&nbsp;</p>
         </div>

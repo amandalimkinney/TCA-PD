@@ -1,42 +1,71 @@
 <%@ page pageEncoding="UTF-8" %>
 <div id="sideMenu">
     
-    <div  id="linkLabel"> 
-        Quick Links
-    </div>
     
-    <div id="standardLinks">
-    
-        <a href="../home/index.jsp" class="links">Home</a>
-    
-        <br>
-    
-        <a href="../teacher/viewcourselist" class="links">Courses</a>
-    
-        <br>
+    <%
+        String[] groups = ((String)request.getSession().getAttribute("Groups")).split(":");
+        boolean[] groupsBools = new boolean[]{false,false,false,false};
+        for(int i =0; i<groups.length;i++)
+        {
+            String current = groups[i];
+            if(groups[i].equals("root") || groups[i].equals("admin"))
+            {
+                groupsBools[0] = true;
+            }
+            if(groups[i].equals("teacher") || groups[i].equals("root"))
+            {
+                groupsBools[1] = true;
+            }
+            if(groups[i].equals("instructor") || groups[i].equals("root"))
+            {
+                groupsBools[2] = true;
+            }
+            if(groups[i].equals("headofschool") || groups[i].equals("root"))
+            {
+                groupsBools[3] = true;
+            }
+        }
         
-        <a href="../teacher/addhours" class="links">Add Hours</a><br>
-        
-        <a href="../teacher/coursehistory" class="links">Your Course History</a><br>
-        <a href="../teacher/coursehistory" class="links">Your Saved PD Hours</a><br>
-         <a href="../instructor/attendance" class="links">Attendance</a><br>
+        if(groupsBools[0])
+        {
+            out.print(
+            "<div  id=\"linkLabel\">"+
+            "Admin Links"+
+            "</div>"+
+            "<div id=\"roleLinks\">"+
+            "<a href=\"../admin/addcourse.jsp\" class=\"links\">Add TCA Course</a><br>"+
+            "<a href=\"../admin/editaccount.jsp\" class=\"links\">Edit an Account</a><br>"+
+            "</div>"
+            );
+        }
+        if(groupsBools[2])
+        {
+            out.print(
+            "<div  id=\"linkLabel\">"+
+            "Instructor Links"+
+            "</div>"+
+            "<div id=\"roleLinks\">"+
+            "<a href=\"../instructor/attendance\" class=\"links\">Take Attendance</a><br>"+
+            "</div>"
+            );
+        }
+        if(groupsBools[1])
+        {
+            out.print(
+            "<div  id=\"linkLabel\">"+
+            "Teacher Links"+
+            "</div>"+
+            "<div id=\"roleLinks\">"+
+            "<a href=\"../teacher/addhours.jsp\" class=\"links\">Add Hours</a><br>"+
+            "<a href=\"../teacher/viewhours.jsp\" class=\"links\">View Hours</a><br>"+
+            "<a href=\"../teacher/viewcourselist.jsp\" class=\"links\">View Courses</a><br>"+
+            "<a href=\"../teacher/coursehistory.jsp\" class=\"links\">Your Course History</a><br>"+
+            "</div>"
+            );
+        }
+        %>
     
-    </div>
     
-    <div id="linkLabel">
-        Views
-    </div>
-    
-    <div id="roleLinks">
-        <a href="#" class="links"> Instructor</a>
-        
-        <br>
-        
-        <a href="#" class="links"> System Administrator</a><br>
-        <a href="../admin/addcourse.jsp" class="links">Add TCA Course</a><br>
-        <a href="../admin/addaccount.jsp" class="links">Add New Account</a><br>
-        <a href="../admin/editaccount" class="links">Edit an Account</a><br>
-    </div>
     
     
     
