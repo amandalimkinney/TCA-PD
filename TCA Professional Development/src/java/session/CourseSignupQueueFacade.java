@@ -4,7 +4,6 @@
  */
 package session;
 
-import session.AbstractFacade;
 import Data_Objects.CourseSignupQueue;
 import Data_Objects.Teacher;
 import java.util.ArrayList;
@@ -12,7 +11,6 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 
 /**
  *
@@ -34,8 +32,11 @@ public class CourseSignupQueueFacade extends AbstractFacade<CourseSignupQueue> {
     
     public List<Teacher> getAttendees(int id)
     {
-        List<Teacher> attendees = new ArrayList<Teacher>();
-        List<CourseSignupQueue> signup = em.createNamedQuery("CourseSignupQueue.findByCourseId", CourseSignupQueue.class).getResultList();
+        List<Teacher> attendees = new ArrayList<>();
+        List<CourseSignupQueue> signup = em
+                .createNamedQuery("CourseSignupQueue.findByCourseId", CourseSignupQueue.class)
+                .setParameter("courseId", id)
+                .getResultList();
         for(int j = 0; j<signup.size();j++)
         {
             attendees.add(signup.get(j).getTeacher());

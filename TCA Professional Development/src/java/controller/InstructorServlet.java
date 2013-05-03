@@ -1,15 +1,16 @@
 package controller;
 
 import Data_Objects.Course;
-import Data_Objects.CourseSignupQueue;
 import Data_Objects.Teacher;
 import java.io.IOException;
+import java.util.Enumeration;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import session.AttendanceFacade;
 import session.CourseFacade;
 import session.CourseSignupQueueFacade;
 
@@ -29,6 +30,8 @@ public class InstructorServlet extends HttpServlet {
     CourseFacade coursefacade;
     @EJB
     CourseSignupQueueFacade signupqueue;
+    @EJB
+    AttendanceFacade attendancefacade;
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,20 +42,9 @@ public class InstructorServlet extends HttpServlet {
         if (userPath.equals("/instructor/attendance")) {
             List<Course> courses = coursefacade.findInstructorCourses();
             getServletContext().setAttribute("courses", courses);
-            userPath = "attendanceFind.jsp";
+            userPath = "/instructor/attendanceFind.jsp";
         
-        } else if (userPath.equals("/teacher/attendance2")) {
-            String courseId = request.getParameter("courseId");
-            int id = Integer.parseInt(courseId);
-            
-            List<Teacher> attendees = signupqueue.getAttendees(id);
-            getServletContext().setAttribute("attendees", attendees);
-            
-            //find past attendance already recorded
-            
-
-            userPath = "/instructor/attendanceTake.jsp";
-        }
+        } 
 
         // use RequestDispatcher to forward request internally
         //String url = "/WEB-INF/view" + userPath + ".jsp";
@@ -76,9 +68,29 @@ public class InstructorServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         String userPath = request.getServletPath();
+        if (userPath.equals("/instructor/attendance2")) {
+            String courseId = request.getParameter("courseId");
+            int id = Integer.parseInt(courseId);
+            
+            List<Teacher> attendees = signupqueue.getAttendees(id);
+            getServletContext().setAttribute("attendees", attendees);
+            getServletContext().setAttribute("courseId", id);
+            
+            //TODO find past attendance already recorded
+            
 
-            if (userPath.equals("/teacher/addhours.jsp-submit")) {
-        } else if (userPath.equals("/teacher/viewcourselist-signup")) {
+            userPath = "/instructor/attendanceTake.jsp";
+        }
+        else if(userPath.equals("/instructor/attendanceSubmit")) 
+        {
+            //get course id first
+            String id = request.getParameter("courseId");
+            int courseId = Integer.parseInt(id);
+            
+            String[] attendees = request.getParameterValues("attendance");
+            attendancefacade.takeAttendance(attendees, courseId);
+            
+            userPath = "/instructor/attendanceConfirm.jsp";
         }
 
         // use RequestDispatcher to forward request internally
