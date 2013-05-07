@@ -46,12 +46,14 @@ import java.security.*;
                 password = request.getParameter("j_password").toString();
                 request.login(username, password);
                 String[] groups = AccountManagement.getAccountGroups(username);
+                String[] accountInfo = AccountManagement.getAccount(username);
                 String groupString = "";
                 for(int i = 0; i < groups.length;i++ )
                 {
                     groupString+=groups[i]+":";
                 }
                 request.getSession().setAttribute("Groups", groupString);
+                request.getSession().setAttribute("AccountID", accountInfo[4]);
                 response.sendRedirect("/TCA_Professional_Development/home/index.jsp");
             } 
             catch (Exception e) 

@@ -18,22 +18,44 @@ USE `tca`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for accountGroups
+--
+DROP TABLE IF EXISTS `accountgroups`
+CREATE TABLE `accountgroups` (
+  `username` varchar(45) NOT NULL,
+  `g` varchar(45) NOT NULL,
+  PRIMARY KEY (`username`,`g`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8$$;
+
+--insert data into accountGroups
+INSERT INTO `tca`.`accountgroups`
+(`username`,
+`g`)
+VALUES
+(
+'root',
+'root'
+);
+
+--
 -- Table structure for table `account`
 --
-
 DROP TABLE IF EXISTS `account`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `account` (
   `account_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `in_active_directory` tinyint(1) NOT NULL,
+  `password` varchar(256) NOT NULL,
+  `firstname` varchar(45) DEFAULT NULL,
+  `lastname` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`account_id`),
   UNIQUE KEY `account_id_UNIQUE` (`account_id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8$$;
 /*!40101 SET character_set_client = @saved_cs_client */;
+
+
 
 --
 -- Dumping data for table `account`
@@ -41,8 +63,19 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES (100,'john','aaa1',0),(101,'david','bbb1',1),(102,'bush','ccc1',1);
-/*!40000 ALTER TABLE `account` ENABLE KEYS */;
+INSERT INTO `tca`.`account`
+(
+`username`,
+`password`,
+`firstname`,
+`lastname`)
+VALUES
+(
+'root',
+'5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',
+'root',
+'root'
+);/*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --

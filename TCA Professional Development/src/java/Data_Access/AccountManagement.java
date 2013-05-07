@@ -219,11 +219,11 @@ public class AccountManagement
                 DataSource ds = (DataSource)ctx.lookup("jdbc/TCADB");
                 conn = ds.getConnection();
                 stmt = conn.createStatement();
-                results = stmt.executeQuery("Select firstname,lastname,username from tca.account where username = '"+userName+"'");
+                results = stmt.executeQuery("Select firstname,lastname,username,accountid from tca.account where username = '"+userName+"'");
                 int i = 0;
                 if(results.last())
                 {
-                    toReturn = new String[4];
+                    toReturn = new String[5];
                     results.first();
                     do
                     {
@@ -250,6 +250,14 @@ public class AccountManagement
                         else
                         {
                             toReturn[2] = "";
+                        }
+                        if(results.getObject(4) != null)
+                        {
+                            toReturn[4] = results.getObject(4).toString();
+                        }
+                        else
+                        {
+                            toReturn[4] = "";
                         }
                         i++;
                     }while(results.next() && i < 200);
