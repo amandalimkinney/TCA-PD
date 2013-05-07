@@ -212,7 +212,7 @@ th {
     width: 713px;
     border-color: black;
     border: 3px solid;
-    height: 385px;
+    /*height: 485px;*/
     background: #FAFAFA; 
     vertical-align: top;
     border-spacing: 10px;
@@ -231,7 +231,7 @@ th {
 h4 {
     margin-top: 5px;
     margin-left: 5px;
-    font-size: 14px;
+    font-size: 20px;
     margin-bottom: 10px;
 }
 
@@ -249,23 +249,31 @@ h4 {
     background: #F2F2F2;
     vertical-align: top;
     margin-bottom: 5px;
+    height: 400px;
 }
 
 #courseDescription {
     font-size: 12px;
     margin-top: 10px;
     height: 100px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 #courseDetails {
-    width: 200px;
+    width: 320px;
     height: 130px;
-    margin-left: 10px;
+    margin-left: 5px;
     font-size: 12px;
     margin-top: 10px;
     border-spacing: 7px;
-    border: 1px solid black;
+   border: 1px solid black;
     margin-bottom: 10px;
+}
+
+#details {
+    font-size: 14px;
+    text-decoration: underline;
 }
 
 #signUp {
