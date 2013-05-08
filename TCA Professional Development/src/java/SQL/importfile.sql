@@ -20,14 +20,15 @@ USE `tca`;
 --
 -- Table structure for accountGroups
 --
-DROP TABLE IF EXISTS `accountgroups`
+UNLOCK TABLES;
+DROP TABLE `accountgroups`;
+
 CREATE TABLE `accountgroups` (
   `username` varchar(45) NOT NULL,
   `g` varchar(45) NOT NULL,
   PRIMARY KEY (`username`,`g`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8$$;
+);
 
---insert data into accountGroups
 INSERT INTO `tca`.`accountgroups`
 (`username`,
 `g`)
@@ -35,12 +36,16 @@ VALUES
 (
 'root',
 'root'
-);
-
+)
+;
 --
 -- Table structure for table `account`
 --
-DROP TABLE IF EXISTS `account`;
+DROP TABLE `account`;
+DROP TABLE `account`;
+
+
+
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `account` (
@@ -52,7 +57,7 @@ CREATE TABLE `account` (
   PRIMARY KEY (`account_id`),
   UNIQUE KEY `account_id_UNIQUE` (`account_id`),
   UNIQUE KEY `username_UNIQUE` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8$$;
+) ENGINE=InnoDB AUTO_INCREMENT=5 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
@@ -61,8 +66,6 @@ CREATE TABLE `account` (
 -- Dumping data for table `account`
 --
 
-LOCK TABLES `account` WRITE;
-/*!40000 ALTER TABLE `account` DISABLE KEYS */;
 INSERT INTO `tca`.`account`
 (
 `username`,
@@ -75,7 +78,10 @@ VALUES
 '5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8',
 'root',
 'root'
-);/*!40000 ALTER TABLE `account` ENABLE KEYS */;
+);
+LOCK TABLES `account` WRITE;
+/*!40000 ALTER TABLE `account` DISABLE KEYS */;
+/*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
