@@ -52,6 +52,7 @@ import java.security.*;
                 {
                     groupString+=groups[i]+":";
                 }
+                
                 request.getSession().setAttribute("Groups", groupString);
                 request.getSession().setAttribute("AccountID", accountInfo[4]);
                 response.sendRedirect("/TCA_Professional_Development/home/index.jsp");
