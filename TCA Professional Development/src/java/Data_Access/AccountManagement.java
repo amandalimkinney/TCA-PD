@@ -219,7 +219,7 @@ public class AccountManagement
                 DataSource ds = (DataSource)ctx.lookup("jdbc/TCADB");
                 conn = ds.getConnection();
                 stmt = conn.createStatement();
-                results = stmt.executeQuery("Select firstname,lastname,username,accountid from tca.account where username = '"+userName+"'");
+                results = stmt.executeQuery("Select firstname,lastname,username,account_id from tca.account where username = '"+userName+"'");
                 int i = 0;
                 if(results.last())
                 {
